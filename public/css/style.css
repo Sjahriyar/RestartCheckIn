@@ -15,6 +15,10 @@ body {
     height: 100vh
 }
 
+footer{
+  margin-top: 400px;
+  color: rgb(249, 249, 249);
+}
 .user {
     width: 90%;
     max-width: 340px;
@@ -61,7 +65,7 @@ body {
     transition: 0.3s;
 
 }
-.form__input:active, .form__input:focus { background: rgb(204, 201, 201); }
+.form__input:active, .form__input:focus { background: rgb(237, 237, 237); }
 .btn {
     display: block;
     width: 100%;
