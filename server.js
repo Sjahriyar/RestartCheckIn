@@ -33,7 +33,7 @@ app.use('/', require('./controllers/admin'))
 app.use('/bootcamp', require('./controllers/bootcamp'))
 app.use('/students', require('./controllers/students'))
 app.use('/records', require('./controllers/records'))
-
+app.use('/editstud', require('./controllers/edit_students'))
 //Server Listen to port
 app.listen(process.env.PORT || 4500, ()=>{
   console.log('Server is running on port 4500')
