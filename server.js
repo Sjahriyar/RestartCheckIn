@@ -22,7 +22,7 @@ var mysql = require('mysql'), // node-mysql module
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use(myConnection(mysql, dbOptions, 'single')
+app.use(myConnection(mysql, dbOptions, 'single'))
 
 //Route
 app.use('/', require('./controllers/bootcamp'))
