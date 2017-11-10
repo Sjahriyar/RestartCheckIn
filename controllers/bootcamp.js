@@ -4,25 +4,24 @@ const { check, validationResult } = require('express-validator/check')
 const { matchedData, sanitize } = require('express-validator/filter')
 
 
-//EXAMPLE FOR MYSQL USAGE
 
-// module.exports = function(req, res, next) {
-//     ...
-//     req.getConnection(function(err, connection) {
-//       if (err) return next(err);
-//
-//       connection.query('SELECT 1 AS RESULT', [], function(err, results) {
-//         if (err) return next(err);
-//
-//         results[0].RESULT;
-//         // -> 1
-//
-//         res.send(200);
-//       });
-//
-//     });
-//     ...
-// }
+//Register New Bootcamp
+router.post('/bootcamp/add', (req,res)=>{
+
+    req.getConnection(function(err, connection) {
+      if (err) return next(err);
+
+        let bootcamp = {bootcamp_name: '', start_date: '', end_date: '', bootcamp_cancel: '',slack_link:'', login_id:''}
+        let sql = 'INSERT INTO bootcamp_name SET ?'
+        let query = connection.query(sql,bootcamp,(err,result)=>{
+          if (err) throw err
+          res.send("New Bootcamp Registred Successfully!")
+        })
+
+      });
+
+    })
+
 
 //Register New Student
 router.post('/student/add', (req,res)=>{

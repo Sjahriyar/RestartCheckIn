@@ -11,10 +11,10 @@ var mysql = require('mysql'), // node-mysql module
     myConnection = require('express-myconnection'), // express-myconnection module
     dbOptions = {
       host: 'localhost',
-      user: '',
-      password: '',
+      user: 'root',
+      password: 'root',
       port: 3306,
-      database: ''
+      database: 'checking_system'
     }
 //END MySql
 
@@ -25,7 +25,7 @@ app.use(bodyParser.json())
 app.use(myConnection(mysql, dbOptions, 'single')
 
 //Route
-// app.use('/', require('./controllers/logreg'))
+app.use('/', require('./controllers/bootcamp'))
 
 
 //Server Listen to port
