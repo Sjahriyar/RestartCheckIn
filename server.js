@@ -10,6 +10,9 @@ const app = express()
 //Setup View Engine
 app.set('view engine', 'ejs')
 
+//static folder
+app.use(express.static('./public'))
+
 //MySql configuration
 var mysql = require('mysql'), // node-mysql module
     myConnection = require('express-myconnection'), // express-myconnection module
