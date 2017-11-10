@@ -11,7 +11,7 @@ router.post('/bootcamp/add', (req,res)=>{
     req.getConnection(function(err, connection) {
       if (err) return next(err);
 
-        let bootcamp = {bootcamp_name: '', start_date: '', end_date: '', bootcamp_cancel: '',slack_link:'', login_id:''}
+        let bootcamp = {bootcamp_name: 'req.body.btname', start_date: '', end_date: '', bootcamp_cancel: '',slack_link:'', login_id:''}
         let sql = 'INSERT INTO bootcamp_name SET ?'
         let query = connection.query(sql,bootcamp,(err,result)=>{
           if (err) throw err
@@ -30,12 +30,12 @@ router.post('/student/add', (req,res)=>{
 
 
 //Get List of all Students
-router.get('/student/all', (req,res)=>{
-
-})
+// router.get('/', (req,res)=>{
+//   res.render('../views/index')
+// })
 
 //Get student by id
-router.get('student/:id', (req,res)=>{
+router.get('../views/', (req,res)=>{
 
 })
 
