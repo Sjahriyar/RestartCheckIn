@@ -1,8 +1,6 @@
 $font-family:   "Roboto";
 $font-size:     14px;
 
-$color-primary: #ABA194;
-
 * {
     margin: 0;
     padding: 0;
@@ -78,11 +76,11 @@ body {
     outline: 0;
     border: 0;
     color: white;
-    background: $color-primary;
+    background: #4f4c4a;
     transition: 0.3s;
 
     &:hover {
-        background: darken($color-primary, 5%);
+        background: darken(#4f4c4a, 5%);
     }
 }
 
