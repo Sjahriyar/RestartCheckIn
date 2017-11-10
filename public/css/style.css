@@ -1,5 +1,3 @@
-$font-family:   "Roboto";
-$font-size:     14px;
 
 * {
     margin: 0;
@@ -62,11 +60,8 @@ body {
     outline: 0;
     transition: 0.3s;
 
-    &:focus {
-        background: darken(#fff, 3%);
-    }
 }
-
+.form__input:active, .form__input:focus { background: rgb(204, 201, 201); }
 .btn {
     display: block;
     width: 100%;
@@ -79,11 +74,8 @@ body {
     background: #4f4c4a;
     transition: 0.3s;
 
-    &:hover {
-        background: darken(#4f4c4a, 5%);
-    }
 }
-
+.btn:active, .btn:focus { background: rgb(96, 96, 96); }
 @keyframes NO {
   from, to {
     -webkit-transform: translate3d(0, 0, 0);
