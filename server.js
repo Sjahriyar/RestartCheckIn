@@ -1,34 +1,44 @@
-const express = require('express')
-const path = require('path')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const session = require('express-session')
+// load the things we need
+var express = require('express');
+var mysql = require('mysql');
+var app = express();
 
-const app = express()
+var con = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "sasa",
+      database: "checking_system"
+    });
 
-//MySql configuration
-var mysql = require('mysql'), // node-mysql module
-    myConnection = require('express-myconnection'), // express-myconnection module
-    dbOptions = {
-      host: 'localhost',
-      user: 'root',
-      password: 'root',
-      port: 3306,
-      database: 'checking_system'
-    }
-//END MySql
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 
-//Middle-Wares
-app.use(cors())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-app.use(myConnection(mysql, dbOptions, 'single'))
+// use res.render to load up an ejs view file
 
-//Route
-app.use('/', require('./controllers/bootcamp'))
+// index page 
+app.get('/', function(req, res) {
+	res.render('pages/index');
+	       
+});
+
+// about page 
+app.get('/about', function(req, res) {
+      con.query("SELECT * FROM bootcamp_name", function (err, result, fields) {
+        if (err) throw err;
+          res.render('pages/about',{result : result});
+      });
+});
+
+// about page 
+app.get('/newstudent', function(req, res) {
+	 con.query("SELECT * FROM bootcamp_name", function (err, result, fields) {
+        if (err) throw err;
 
 
-//Server Listen to port
-app.listen(process.env.PORT || 4500, ()=>{
-  console.log('Server is running on port 4500')
-})
+          res.render('pages/newstudent',{result : result});
+      });
+          
+});
+
+app.listen(8080);
+console.log('8080 is the magic port');

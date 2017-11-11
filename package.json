@@ -1,42 +1,9 @@
 {
-  "name": "impactproject",
-  "version": "1.0.0",
-  "description": "Restart Check-in System",
+  "name": "node-ejs",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Sjahriyar/RestartCheckIn.git"
-  },
-  "keywords": [
-    "MERN",
-    "Rasberry",
-    "pi",
-    "Express",
-    "Nodejs",
-    "Mongo",
-    "API"
-  ],
-  "author": "Shahriar Soheytizadeh",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Sjahriyar/RestartCheckIn/issues"
-  },
-  "homepage": "https://github.com/Sjahriyar/RestartCheckIn.git#readme",
   "dependencies": {
-    "async": "^2.6.0",
-    "body-parser": "^1.18.2",
-    "cors": "^2.8.4",
-    "express": "^4.16.2",
-    "express-myconnection": "^1.0.4",
-    "express-session": "^1.15.6",
-    "express-validator": "^4.3.0",
-    "mysql": "^2.15.0",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {
-    "nodemon": "^1.12.1"
+    "ejs": "^1.0.0",
+    "express": "^4.6.1",
+    "express-ejs-layouts": "^1.1.0"
   }
 }
