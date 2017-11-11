@@ -1,13 +1,16 @@
-const express = require('express')
-const path = require('path')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const session = require('express-session')
-const ejs = require('ejs')
-const app = express()
+const express = require('express'),
+      path = require('path'),
+      bodyParser = require('body-parser'),
+      cors = require('cors'),
+      session = require('express-session'),
+      ejs = require('ejs'),
+      flash = require('express-flash'),
+      app = express();
 
+//BodyParser MiddleWare to encode request from body
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json())
+
 //Setup View Engine
 app.set('view engine', 'ejs')
 
@@ -28,8 +31,10 @@ var mysql = require('mysql'), // node-mysql module
 
 //Middle-Wares
 app.use(cors())
-
 app.use(myConnection(mysql, dbOptions, 'single'))
+// app.use(express.cookieParser('keyboard cat'))
+// app.use(express.session({ cookie: { maxAge: 60000 }}))
+// app.use(flash())
 
 //Route
 app.use('/',urlencodedParser, require('./controllers/admin'))

@@ -24,7 +24,10 @@ footer{
     max-width: 340px;
     margin: 10vh auto;
 }
-
+.drop_btcmp{
+  padding-left: 50px;
+  padding-right: 50px;
+}
 .user__header {
     text-align: center;
     opacity: 0;
