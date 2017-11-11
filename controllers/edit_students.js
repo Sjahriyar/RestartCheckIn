@@ -8,7 +8,7 @@ router.get('/', (req,res)=>{
       let query = connection.query(sql, (err, result) => {
         if (err) throw err
         res.render('edit_students', {data:result})
-        console.log(result);
+        // console.log(result);
     })
   })
 })

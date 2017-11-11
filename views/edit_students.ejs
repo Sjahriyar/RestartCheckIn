@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Edit Students</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/editstud.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="javascript/jq.js"></script>
       <% include ./partials/head %>
   </head>
@@ -12,14 +12,11 @@
        <% include ./partials/header %>
    </header>
    <div class="container-table">
-
-
+         <select id='mySelectElement' value='2'>
+           <% for(var i=0; i< data.length; i++) { %>
+            <option value='1'><%= data[i].bootcamp_name %>  </option>  <% } %>
+         </select>
     <div class="table-place">
-      <select id='mySelectElement' value='2' name='mySelectElement'>
-        <% for(var i=0; i< data.length; i++) { %>
-         <option value='1'><%= data[i].bootcamp_name %>  </option>  <% } %>
-
-      </select>
       <div class="table-container">
              <table class="table table-students">
                <tbody>
