@@ -13,23 +13,7 @@ var con = mysql.createConnection({
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-// use res.render to load up an ejs view file
-
-// index page 
-app.get('/', function(req, res) {
-	res.render('pages/index');
-	       
-});
-
-// about page 
-app.get('/about', function(req, res) {
-      con.query("SELECT * FROM bootcamp_name", function (err, result, fields) {
-        if (err) throw err;
-          res.render('pages/about',{result : result});
-      });
-});
-
-// about page 
+// new student page 
 app.get('/newstudent', function(req, res) {
 	 con.query("SELECT * FROM bootcamp_name", function (err, result, fields) {
         if (err) throw err;
@@ -39,6 +23,29 @@ app.get('/newstudent', function(req, res) {
       });
           
 });
+
+
+
+
+// about page 
+app.get('/about', function(req, res) {
+      con.query("SELECT * FROM bootcamp_name", function (err, result, fields) {
+        if (err) throw err;
+          res.render('pages/about',{result : result});
+      });
+});
+
+
+
+// use res.render to load up an ejs view file
+
+// index page 
+app.get('/', function(req, res) {
+	res.render('pages/index');
+	       
+});
+
+
 
 app.listen(8080);
 console.log('8080 is the magic port');
