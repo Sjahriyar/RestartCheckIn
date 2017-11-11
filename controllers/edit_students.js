@@ -11,7 +11,7 @@ const router = express.Router()
 // })
 
 
-router.put('/', (req,res)=>{
+router.get('/', (req,res)=>{
   res.render('edit_students')
 })
 

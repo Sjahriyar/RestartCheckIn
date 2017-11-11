@@ -10,26 +10,34 @@
 </header>
 
     <div class="container">
-      <form method="POST" action="bootcamp/add" id="contact" class="form">
-        <h4>Register new Bootcamp</h4>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Bootcamps
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% for(i=0 ; i < data.length ; i++){ %> <a class="dropdown-item" href="#"> <h5 class="drop_btcmp"><%= data[i].bootcamp_name %></h5> <br /> </a> <% } %>
+          </div>
+        </div>
+      <form method="POST" action="/bootcamp" id="contact" class="form">
+        <h4>Manage Bootcamps</h4>
         <hr />
           <div class="form__group">
-              <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" class="form__input" />
+              <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" class="form__input" required/>
           </div>
 
           <div class="form__group">
-          <input type='date' class="form__input" />
+          <input type='date' name="start_date" class="form__input" required/>
           </div>
 
           <div class="form__group">
-              <input type="date" placeholder="End Date" class="form__input" />
+              <input type="date" name="end_date" placeholder="End Date" class="form__input" required/>
           </div>
 
           <div class="form__group">
-              <input type="url" placeholder="Slack Link" class="form__input" />
+              <input type="url" name="slack_link" placeholder="Slack Link" class="form__input" />
           </div>
 
-          <button class="btn" type="submit">Submit</button>
+          <button class="btn">Submit</button>
       </form>
 
 
