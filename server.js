@@ -1,51 +1,49 @@
-// load the things we need
-var express = require('express');
-var mysql = require('mysql');
-var app = express();
+const express = require('express'),
+      path = require('path'),
+      bodyParser = require('body-parser'),
+      cors = require('cors'),
+      session = require('express-session'),
+      ejs = require('ejs'),
+      flash = require('express-flash'),
+      app = express();
 
-var con = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "sasa",
-      database: "checking_system"
-    });
+//BodyParser MiddleWare to encode request from body
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.use(bodyParser.json())
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
+//Setup View Engine
+app.set('view engine', 'ejs')
 
-// new student page 
-app.get('/newstudent', function(req, res) {
-	 con.query("SELECT * FROM bootcamp_name", function (err, result, fields) {
-        if (err) throw err;
+//static folder
+app.use(express.static('./public'))
 
+//MySql configuration
+var mysql = require('mysql'), // node-mysql module
+    myConnection = require('express-myconnection'), // express-myconnection module
+    dbOptions = {
+      host: 'localhost',
+      user: 'root',
+      password: 'sasa',
+      port: 3306,
+      database: 'checking_system'
+    }
+//END MySql
 
-          res.render('pages/newstudent',{result : result});
-      });
-          
-});
+//Middle-Wares
+app.use(cors())
+app.use(myConnection(mysql, dbOptions, 'single'))
+// app.use(express.cookieParser('keyboard cat'))
+// app.use(express.session({ cookie: { maxAge: 60000 }}))
+// app.use(flash())
 
+//Route
+app.use('/',urlencodedParser, require('./controllers/admin'))
+app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
+app.use('/students',urlencodedParser, require('./controllers/students'))
+app.use('/records',urlencodedParser, require('./controllers/records'))
+app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
 
-
-
-// about page 
-app.get('/about', function(req, res) {
-      con.query("SELECT * FROM bootcamp_name", function (err, result, fields) {
-        if (err) throw err;
-          res.render('pages/about',{result : result});
-      });
-});
-
-
-
-// use res.render to load up an ejs view file
-
-// index page 
-app.get('/', function(req, res) {
-	res.render('pages/index');
-	       
-});
-
-
-
-app.listen(8080);
-console.log('8080 is the magic port');
+//Server Listen to port
+app.listen(process.env.PORT || 4500, ()=>{
+  console.log('Server is running on port 4500')
+})

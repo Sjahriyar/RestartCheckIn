@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ./partials/head %>
+</head>
+  <body>
+<header>
+    <% include ./partials/header %>
+</header>
+
+    <div class="container">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Bootcamps
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% for(i=0 ; i < data.length ; i++){ %> <a class="dropdown-item" href="#"> <h5 class="drop_btcmp"><%= data[i].bootcamp_name %></h5> <br /> </a> <% } %>
+          </div>
+        </div>
+      <form method="POST" action="/bootcamp" id="contact" class="form">
+        <h4>Manage Bootcamps</h4>
+        <hr />
+          <div class="form__group">
+              <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" class="form__input" required/>
+          </div>
+
+          <div class="form__group">
+          <input type='date' name="start_date" class="form__input" required/>
+          </div>
+
+          <div class="form__group">
+              <input type="date" name="end_date" placeholder="End Date" class="form__input" required/>
+          </div>
+
+          <div class="form__group">
+              <input type="url" name="slack_link" placeholder="Slack Link" class="form__input" />
+          </div>
+
+          <button class="btn">Submit</button>
+      </form>
+
+
+    </div>
+
+    <footer>
+      <% include ./partials/footer %>
+    </footer>
