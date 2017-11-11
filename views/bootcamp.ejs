@@ -10,23 +10,16 @@
 </header>
 
     <div class="container">
-      <form id="contact" class="form">
+      <form method="POST" action="bootcamp/add" id="contact" class="form">
         <h4>Register new Bootcamp</h4>
         <hr />
           <div class="form__group">
-            <i class="icon-append icon-user">
-              <input type="text" placeholder="Bootcamp Name" class="form__input" />
-              </i>
+              <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" class="form__input" />
           </div>
 
           <div class="form__group">
-      <div class='input-group date' id='datetimepicker2'>
           <input type='date' class="form__input" />
-          <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-      </div>
-  </div>
+          </div>
 
           <div class="form__group">
               <input type="date" placeholder="End Date" class="form__input" />
@@ -36,7 +29,7 @@
               <input type="url" placeholder="Slack Link" class="form__input" />
           </div>
 
-          <button class="btn" type="button">Submit</button>
+          <button class="btn" type="submit">Submit</button>
       </form>
 
 
