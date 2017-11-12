@@ -14,19 +14,12 @@ router.get('/', (req,res)=>{
         res.render('bootcamp',{data: results})
       })
     })
-<<<<<<< HEAD
-=======
 
->>>>>>> Shahriar
 })
 
 //Register New Bootcamp
 router.post('/', (req,res)=>{
-<<<<<<< HEAD
-console.log(req.body)
-=======
 
->>>>>>> Shahriar
     req.getConnection(function(err, connection) {
       if (err) return next(err);
 
@@ -42,11 +35,6 @@ console.log(req.body)
     })
 
 
-<<<<<<< HEAD
-//Get All Bootcamps from DataBase
-router.put('/', (req,res)=>{
-
-=======
 //Get by ID
 router.put('/edit/:id', (req,res)=>{
   req.getConnection(function(err, connection) {
@@ -60,7 +48,6 @@ router.put('/edit/:id', (req,res)=>{
       })
 
     });
->>>>>>> Shahriar
 })
 
 

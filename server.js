@@ -2,22 +2,26 @@ const express = require('express'),
       path = require('path'),
       bodyParser = require('body-parser'),
       cors = require('cors'),
-      session = require('express-session'),
+     session = require('express-session'),
       ejs = require('ejs'),
       flash = require('express-flash'),
       app = express();
 
+
+
+
+// //Set Session for the application
+// app.use(session({
+//   cokkieName:session,
+//   sercet:'jkfhkjhfdkk8jhhj',
+//   duration: 30 * 60 * 1000,
+//   activeDuration: 5 * 60 * 1000,
+// }));
+
 //BodyParser MiddleWare to encode request from body
-<<<<<<< HEAD
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
-=======
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json())
 
->>>>>>> Shahriar
 //Setup View Engine
 app.set('view engine', 'ejs')
 
@@ -34,8 +38,6 @@ var mysql = require('mysql'), // node-mysql module
       port: 3306,
       database: 'checking_system'
     }
-
-  
 //END MySql
 
 //Middle-Wares
@@ -45,20 +47,25 @@ app.use(myConnection(mysql, dbOptions, 'single'))
 // app.use(express.session({ cookie: { maxAge: 60000 }}))
 // app.use(flash())
 
+
+var sess = {
+  secret: 'keyboard cat',
+  cookie: {}
+}
+
+// if (app.get('env') === 'production') {
+//   app.set('trust proxy', 1) // trust first proxy
+//   sess.cookie.secure = true // serve secure cookies
+// }
+sess.cookie.secure = "Mishoo"
+app.use(session(sess))
+
 //Route
 app.use('/',urlencodedParser, require('./controllers/admin'))
 app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
 app.use('/students',urlencodedParser, require('./controllers/students'))
-<<<<<<< HEAD
-app.use('/students/add',urlencodedParser, require('./controllers/students'))
-
 app.use('/records',urlencodedParser, require('./controllers/records'))
 app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
-=======
-app.use('/records',urlencodedParser, require('./controllers/records'))
-app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
-app.use('/editbtcmp',urlencodedParser, require('./controllers/edit_bootcamp'))
->>>>>>> Shahriar
 
 //Server Listen to port
 app.listen(process.env.PORT || 4500, ()=>{
