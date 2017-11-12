@@ -15,6 +15,7 @@
             Select Bootcamps
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<<<<<<< HEAD
             <% for(i=0 ; i < data.length ; i++){ %> <a class="dropdown-item" href="#"> <h5 class="drop_btcmp"><%= data[i].bootcamp_name %></h5> <br /> </a> <% } %>
           </div>
         </div>
@@ -23,6 +24,18 @@
         <hr />
           <div class="form__group">
               <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" class="form__input" required/>
+=======
+            <% for(i=0 ; i < data.length ; i++){ %> <a class="dropdown-item" href="/editbtcmp/<%= data[i].bootcamp_id %>"> <h5 class="drop_btcmp"><%= data[i].bootcamp_name %></h5> <br /> </a> <% } %>
+          </div>
+        </div>
+      <form method="POST" action="/bootcamp" id="contact" class="form">
+        <h4>Add New Bootcamp</h4>
+        <hr />
+
+          <div class="form__group">
+
+              <input type="text" name="bootcamp_name" placeholder="Bootcamp Name"  class="form__input" required/>
+>>>>>>> Shahriar
           </div>
 
           <div class="form__group">

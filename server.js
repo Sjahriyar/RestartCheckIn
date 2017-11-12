@@ -8,10 +8,16 @@ const express = require('express'),
       app = express();
 
 //BodyParser MiddleWare to encode request from body
+<<<<<<< HEAD
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
+=======
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.use(bodyParser.json())
+
+>>>>>>> Shahriar
 //Setup View Engine
 app.set('view engine', 'ejs')
 
@@ -43,10 +49,16 @@ app.use(myConnection(mysql, dbOptions, 'single'))
 app.use('/',urlencodedParser, require('./controllers/admin'))
 app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
 app.use('/students',urlencodedParser, require('./controllers/students'))
+<<<<<<< HEAD
 app.use('/students/add',urlencodedParser, require('./controllers/students'))
 
 app.use('/records',urlencodedParser, require('./controllers/records'))
 app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
+=======
+app.use('/records',urlencodedParser, require('./controllers/records'))
+app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
+app.use('/editbtcmp',urlencodedParser, require('./controllers/edit_bootcamp'))
+>>>>>>> Shahriar
 
 //Server Listen to port
 app.listen(process.env.PORT || 4500, ()=>{
