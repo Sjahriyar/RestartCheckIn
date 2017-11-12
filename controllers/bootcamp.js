@@ -14,11 +14,12 @@ router.get('/', (req,res)=>{
         res.render('bootcamp',{data: results})
       })
     })
+
 })
 
 //Register New Bootcamp
 router.post('/', (req,res)=>{
-console.log(req.body)
+
     req.getConnection(function(err, connection) {
       if (err) return next(err);
 
@@ -34,9 +35,19 @@ console.log(req.body)
     })
 
 
-//Get All Bootcamps from DataBase
-router.put('/', (req,res)=>{
+//Get by ID
+router.put('/edit/:id', (req,res)=>{
+  req.getConnection(function(err, connection) {
+    if (err) return next(err);
 
+      let sql = `SELECT * FROM bootcamp_name WHERE bootcamp_id = ${req.params.id}`
+      let query = connection.query(sql,(err,result)=>{
+        if (err) throw err
+        console.log(result);
+        res.render('bootcamp', {take: result})
+      })
+
+    });
 })
 
 

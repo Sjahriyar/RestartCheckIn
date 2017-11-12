@@ -42,6 +42,7 @@ app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
 app.use('/students',urlencodedParser, require('./controllers/students'))
 app.use('/records',urlencodedParser, require('./controllers/records'))
 app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
+app.use('/editbtcmp',urlencodedParser, require('./controllers/edit_bootcamp'))
 
 //Server Listen to port
 app.listen(process.env.PORT || 4500, ()=>{
