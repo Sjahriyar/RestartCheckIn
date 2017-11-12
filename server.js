@@ -8,9 +8,10 @@ const express = require('express'),
       app = express();
 
 //BodyParser MiddleWare to encode request from body
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
-app.use(bodyParser.json())
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+var urlencodedParser = bodyParser.urlencoded({ extended: true })
 //Setup View Engine
 app.set('view engine', 'ejs')
 
@@ -27,6 +28,8 @@ var mysql = require('mysql'), // node-mysql module
       port: 3306,
       database: 'checking_system'
     }
+
+  
 //END MySql
 
 //Middle-Wares
@@ -40,6 +43,8 @@ app.use(myConnection(mysql, dbOptions, 'single'))
 app.use('/',urlencodedParser, require('./controllers/admin'))
 app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
 app.use('/students',urlencodedParser, require('./controllers/students'))
+app.use('/students/add',urlencodedParser, require('./controllers/students'))
+
 app.use('/records',urlencodedParser, require('./controllers/records'))
 app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
 

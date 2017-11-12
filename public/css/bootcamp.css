@@ -18,18 +18,24 @@
     animation: arrive 500ms ease-in-out 0.7s forwards;
 }
 body {
-    font-family:"Open Sans", Helvetica, Arial, sans-serif;
-    font-weight:300;
-  	font-size: 12px;
-  	line-height:30px;
-    background-size: 200% 100% !important;
-    animation: move 10s ease infinite;
-    transform: translate3d(0, 0, 0);
-    background: linear-gradient(45deg, #E74C3C 10%, #514f51 90%);
-    height: 100vh
+  font-family:"Open Sans", Helvetica, Arial, sans-serif;
+  font-weight:300;
+  font-size: 12px;
+  line-height:30px;
+  background-size: 200% 100% !important;
+  animation: move 10s ease infinite;
+  transform: translate3d(0, 0, 0);
+  background: linear-gradient(45deg, #E74C3C 10%, #514f51 90%);
+  height: 100vh
 }
 .container {
 	max-width:400px;
+	width:100%;
+	margin:0 auto;
+	position:relative;
+}
+.container_main {
+	max-width:600px;
 	width:100%;
 	margin:0 auto;
 	position:relative;
