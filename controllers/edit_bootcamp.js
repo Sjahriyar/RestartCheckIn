@@ -23,7 +23,7 @@ router.post('/edit/:id', (req,res)=>{
   req.getConnection(function(err, connection) {
     if (err) return next(err);
 
-      let sql = `UPDATE bootcamp_name SET bootcamp_name= '${req.body.bootcamp_name}', start_date = '${req.body.start_date}' WHERE bootcamp_id = ${req.params.id}`
+      let sql = `UPDATE bootcamp_name SET bootcamp_name= '${req.body.bootcamp_name}', start_date = '${req.body.start_date}', end_date = '${req.body.end_date}', slack_link = '${req.body.start_date}' WHERE bootcamp_id = ${req.params.id}`
       let query = connection.query(sql,(err,result)=>{
         if (err) throw err
         console.log(result);

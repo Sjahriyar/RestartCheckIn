@@ -32,9 +32,13 @@ var mysql = require('mysql'), // node-mysql module
 //Middle-Wares
 app.use(cors())
 app.use(myConnection(mysql, dbOptions, 'single'))
-// app.use(express.cookieParser('keyboard cat'))
-// app.use(express.session({ cookie: { maxAge: 60000 }}))
-// app.use(flash())
+app.use(session({
+  secret: 'Oh it is sO Secure',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 160000 }
+}))
+app.use(flash())
 
 //Route
 app.use('/',urlencodedParser, require('./controllers/admin'))

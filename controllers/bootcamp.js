@@ -27,7 +27,7 @@ router.post('/', (req,res)=>{
         let sql = 'INSERT INTO bootcamp_name SET ?'
         let query = connection.query(sql,bootcamp,(err,result)=>{
           if (err) throw err
-          res.send("New Bootcamp Registred Successfully!")
+          req.flash('succeed', 'Bootcamp successfully registred!')
         })
 
       });
