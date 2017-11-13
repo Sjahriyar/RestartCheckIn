@@ -25,7 +25,7 @@ router.post('/login', (req,res)=>{
       res.redirect('/bootcamp')
     }
     else {
-      res.send('does now exist')
+      req.flash('danger','User Does not exist!')
     }
   });
 })
