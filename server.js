@@ -4,7 +4,7 @@ const express = require('express'),
       cors = require('cors'),
       session = require('express-session'),
       ejs = require('ejs'),
-      flash = require('express-flash'),
+      flash = require('connect-flash'),
       app = express();
 
 //BodyParser MiddleWare to encode request from body
@@ -39,12 +39,19 @@ app.use(session({
   cookie: { maxAge: 160000 }
 }))
 
+//Session Set to store admin data
 app.use(function(req, res, next){
     res.locals.user_session = req.session.admin;
     next();
 });
 
-app.use(flash())
+//Express Messages
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages'),
+  res.locals.error = require('express-messages')(req, res);
+  next();
+});
 
 //Authentication Control check if user is logged in, grant access to other pages
 var authenticate = function (req, res, next) {
