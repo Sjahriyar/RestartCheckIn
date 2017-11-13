@@ -38,9 +38,25 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 160000 }
 }))
+
+app.use(function(req, res, next){
+    res.locals.user_session = req.session.admin;
+    next();
+});
+
 app.use(flash())
 
-//Route
+//Authentication Control check if user is logged in, grant access to other pages
+var authenticate = function (req, res, next) {
+
+  if (req.session.admin) {
+    next();
+  }
+  else {
+    res.redirect('/')
+  }
+}
+//Routes
 app.use('/',urlencodedParser, require('./controllers/admin'))
 app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
 app.use('/students',urlencodedParser, require('./controllers/students'))
