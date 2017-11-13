@@ -1,0 +1,54 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*css for tables*/
+.table-place {
+  height: auto;
+  width: 70%;
+  margin-top: 30px;
+}
+
+.container-table {
+  align-content: center;
+  max-width: 50%;
+  height: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+/*css for report page*/
+
+.container {
+	max-width:80%;
+	/*width:100%;*/
+	margin:0 auto;
+	position:relative;
+}
+
+body {
+    font-family:"Open Sans", Helvetica, Arial, sans-serif;
+    font-weight:300;
+  	font-size: 12px;
+  	line-height:30px;
+    background-size: 200% 100% !important;
+    animation: move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(45deg, #E74C3C 10%, #514f51 90%);
+    height: 100vh
+
+}
+
+.header{
+pointer-events:none;
+box-shadow: 0 0 0;
+}
+
+.student{
+  font-size: 35px;
+  text-align: center;
+}
