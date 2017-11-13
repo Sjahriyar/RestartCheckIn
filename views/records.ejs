@@ -19,7 +19,19 @@
    <div class="table-place">
      <div class="table-container">
             <table class="table table-students">
-            
+              <tbody>
+               <tr>
+                 <th>Date</th>
+                 <th>SignIn Time</th>
+                 <th>Alert</th>
+               </tr>
+               <% for(var i=0; i< data.length; i++) { %>
+               <tr>
+                   <td>irene<%= data[i].stu_name %></td>
+                   <td><%= data[i].email %></td>
+                   <td><%= data[i].city %></td>
+                 <% } %>
+               </tr>
               </tbody>
             </table>
           </div>

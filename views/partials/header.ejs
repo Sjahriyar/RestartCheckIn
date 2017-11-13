@@ -4,15 +4,16 @@
 
     <div class="navbar-header">
         <a class="navbar-brand" href="#">
-            <span class="glyphicon glyphicon glyphicon-tree-deciduous"></span>
+
+            <span>Welcome <%= user_session %></span>
         </a>
 
         <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
             <li><a href="/bootcamp">Bootcamp</a></li>
             <li><a href="/students">Students</a></li>
-            <li><a href="/editstud">Edit Students</a></li>
+            <li><a href="/seestuds">View Students</a></li>
             <li><a href="/records">Report</a></li>
+            <li class="logout"><a href="/bootcamp/signout">Log out</a></li>
         </ul>
     </div>
 

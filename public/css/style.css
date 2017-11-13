@@ -19,6 +19,9 @@ footer{
 
   color: rgb(249, 249, 249);
 }
+.logout{
+  color: red;
+}
 .user {
     width: 90%;
     max-width: 340px;

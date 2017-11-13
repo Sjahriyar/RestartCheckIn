@@ -9,12 +9,11 @@
   <div class="container-fluid">
 
       <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-              <span class="glyphicon glyphicon glyphicon-tree-deciduous">Restart</span>
+          <a  href="/">
+              <span class="navbar-brand">Welcome</span>
           </a>
 
           <ul class="nav navbar-nav">
-              <li><a href="/">Home</a></li>
               <li><a href="/about">About</a></li>
           </ul>
       </div>
@@ -28,17 +27,17 @@
             <img src="https://restart.network/images/logo_restart_nav.png" alt="logo" width="150px" />
         </header>
 
-        <form class="form">
+        <form class="form" method="POST" action="/login">
 
             <div class="form__group">
-                <input type="email" placeholder="Email" class="form__input" />
+                <input type="email" name="email" placeholder="Email" class="form__input" />
             </div>
 
             <div class="form__group">
-                <input type="password" placeholder="Password" class="form__input" />
+                <input type="password" name="password" placeholder="Password" class="form__input" />
             </div>
 
-            <button class="btn" type="button">Log in</button>
+            <button class="btn" type="submit">Log in</button>
         </form>
     </div>
 

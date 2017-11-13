@@ -4,7 +4,7 @@ const express = require('express'),
       cors = require('cors'),
       session = require('express-session'),
       ejs = require('ejs'),
-      flash = require('express-flash'),
+      flash = require('connect-flash'),
       app = express();
 
 //BodyParser MiddleWare to encode request from body
@@ -38,16 +38,46 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 160000 }
 }))
-app.use(flash())
 
-//Route
+//Session Set to store admin data
+app.use(function(req, res, next){
+    res.locals.user_session = req.session.admin;
+    next();
+});
+
+//Express Messages
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages'),
+  res.locals.error = require('express-messages')(req, res);
+  next();
+});
+
+//Authentication Control check if user is logged in, grant access to other pages
+var authenticate = function (req, res, next) {
+
+  if (req.session.admin) {
+    next();
+  }
+  else {
+    res.redirect('/')
+  }
+}
+//Routes
 app.use('/',urlencodedParser, require('./controllers/admin'))
+<<<<<<< HEAD
 app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
 app.use('/students',urlencodedParser, require('./controllers/students'))
 app.use('/records',urlencodedParser, require('./controllers/records'))
 app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
 app.use('/editbtcmp',urlencodedParser, require('./controllers/edit_bootcamp'))
 app.use('/selectrpt',urlencodedParser, require('./controllers/select_record'))
+=======
+app.use('/bootcamp',urlencodedParser, authenticate, require('./controllers/bootcamp'))
+app.use('/students',urlencodedParser, authenticate, require('./controllers/students'))
+app.use('/records',urlencodedParser, authenticate, require('./controllers/records'))
+app.use('/seestuds',urlencodedParser, authenticate, require('./controllers/see_students'))
+>>>>>>> origin/Shahriar
 
 
 //Server Listen to port
