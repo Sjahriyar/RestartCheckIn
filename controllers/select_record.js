@@ -5,6 +5,7 @@ const { matchedData, sanitize } = require('express-validator/filter')
 
 //Get by ID
 router.get('/:id', (req,res)=>{
+  console.log(req.params.id);
   req.getConnection(function(err, connection) {
     if (err) return next(err);
 
@@ -12,9 +13,13 @@ router.get('/:id', (req,res)=>{
       let query = connection.query(sql,(err,result)=>{
         if (err) throw err
         console.log(result);
-        res.render('select_record', {data: result})
-      })
+        res.render('select_record', {data: result, data_student: result_student})
+      });
+    });
 
     });
-})
+});
+
+
+
 module.exports = router

@@ -10,33 +10,8 @@
 </header>
 
 
-    <div class="container">
+<footer>
+  <% include ./partials/footer %>
+</footer>
 
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" >
-          <h4>Reports</h4>
-        </button>
-      </div>
-      <br /><br />
-<!-- code for selecting bootcamp name -->
-
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Select Bootcamp
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <% for(i=0 ; i < data.length ; i++){
-                 %> <a class="dropdown-item" href="/selectrpt/<%= data[i].bootcamp_id %>">
-                    <h5 class="drop_btcmp"><%= data[i].bootcamp_name %></h5>
-                    <br /> </a> <% } %>
-            </div>
-          </div>
-
-    </div>
-
-
-    <footer>
-      <% include ./partials/footer %>
-    </footer>
-
-  </body>
+</body>
