@@ -38,15 +38,31 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 160000 }
 }))
+
+app.use(function(req, res, next){
+    res.locals.user_session = req.session.admin;
+    next();
+});
+
 app.use(flash())
 
-//Route
+//Authentication Control check if user is logged in, grant access to other pages
+var authenticate = function (req, res, next) {
+
+  if (req.session.admin) {
+    next();
+  }
+  else {
+    res.redirect('/')
+  }
+}
+//Routes
 app.use('/',urlencodedParser, require('./controllers/admin'))
-app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
-app.use('/students',urlencodedParser, require('./controllers/students'))
-app.use('/records',urlencodedParser, require('./controllers/records'))
-app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
-app.use('/editbtcmp',urlencodedParser, require('./controllers/edit_bootcamp'))
+app.use('/bootcamp',urlencodedParser, authenticate, require('./controllers/bootcamp'))
+app.use('/students',urlencodedParser, authenticate, require('./controllers/students'))
+app.use('/records',urlencodedParser, authenticate, require('./controllers/records'))
+app.use('/editstud',urlencodedParser, authenticate, require('./controllers/edit_students'))
+
 
 //Server Listen to port
 app.listen(process.env.PORT || 4500, ()=>{
