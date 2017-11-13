@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ./partials/head %>
+</head>
+  <body>
+<header>
+    <% include ./partials/header %>
+</header>
+    <div class="container">
+
+<!-- code for bootcamp name indication -->
+<% for(i=0 ; i < data.length ; i++){ %>
+      <form method="post" action="/selectrpt/edit/<%= data[i].bootcamp_id %>" id="contact" class="form">
+        <h3>Report</h3>
+        <hr />
+
+          <div class="form__group">
+
+              <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" value="<%= data[i].bootcamp_name %>" class="form__input" required/>
+          </div>
+
+<!-- code for selecting bootcamp students or indication -->
+
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              All Students
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <% for(i=0 ; i < data.length ; i++){
+              %>
+                <a class="dropdown-item" href="#">
+                  <h5 class="drop_btcmp"><%= data[i].bootcamp_students %></h5>
+                  <br />
+                </a>
+              <% } %>
+            </div>
+          </div>
+<% } %>
+
+          <div class="form__group">
+            <input type='date' name="start_date" class="form__input" required/>
+          </div>
+
+          <div class="form__group">
+              <input type="date" name="end_date" placeholder="End Date" class="form__input" required/>
+          </div>
+          <button type="submit" class="btn_edit">Submit</button>
+          <input class="btn_edit" type="button" onclick="location.href='/records';" value="Cancel" />
+          </form>
+    </div>
+
+    <footer>
+      <% include ./partials/footer %>
+    </footer>
