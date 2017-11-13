@@ -33,6 +33,14 @@
           <option value="<%=res.bootcamp_id%>"> <%=res.bootcamp_name%> </option>
           <%});%>
         </select>
+				<% if(errors){ %>
+        <% errors.forEach(function(err){
+          if(err.param == "slelectbootcamp"){
+					 %>
+					   <ul>
+            <font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+        <%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -42,6 +50,17 @@
       <td>Student name</td>
       <td>
       	<input type="text" name="stu_name" class="form-control form-control-sm" >
+				<% if(errors){ %>
+        <% errors.forEach(function(err){
+          if(err.param == "stu_name"){
+					 %>
+					   <ul>
+            <font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+        <%}} );}; %>
+
+
+
       	 </td>
     </tr>
 <!--//  TR -->
@@ -51,6 +70,16 @@
       <td>Student birth date</td>
       <td>
       	<input type="date" name="stu_birth" class="form-control form-control-sm" >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_birth"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
+
+
       	 </td>
     </tr>
 <!--//  TR -->
@@ -65,6 +94,14 @@
           <option value="<%=res.num_code%>"> <%=res.nationality%> </option>
           <%});%>
         </select>
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_nath"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
 
       	 </td>
     </tr>

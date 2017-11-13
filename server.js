@@ -2,13 +2,32 @@ const express = require('express'),
       path = require('path'),
       bodyParser = require('body-parser'),
       cors = require('cors'),
+      cookieParser = require('cookie-parser'),
      session = require('express-session'),
+    expressValidator = require('express-validator'),
       ejs = require('ejs'),
       flash = require('express-flash'),
       app = express();
 
+// app.use( express.cookieParser() );
+      // From - https://github.com/ctavan/express-validator
+      app.use(expressValidator({
+        errorFormatter: function(param, msg, value) {
+            var namespace = param.split('.')
+            , root    = namespace.shift()
+            , formParam = root;
 
-
+          while(namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+          }
+          return {
+            param : formParam,
+            msg   : msg,
+            value : value
+          };
+        }
+      }));
+      // End of express-validator
 
 // //Set Session for the application
 // app.use(session({
@@ -41,24 +60,16 @@ var mysql = require('mysql'), // node-mysql module
 //END MySql
 
 //Middle-Wares
-app.use(cors())
+// app.use(cors())
+app.use(cors({
+    origin:['http://localhost:4500'],
+    methods:['GET','POST', 'DELETE', 'PUT'],
+    credentials: true // enable set cookie
+}));
+
 app.use(myConnection(mysql, dbOptions, 'single'))
-// app.use(express.cookieParser('keyboard cat'))
-// app.use(express.session({ cookie: { maxAge: 60000 }}))
-// app.use(flash())
 
 
-var sess = {
-  secret: 'keyboard cat',
-  cookie: {}
-}
-
-// if (app.get('env') === 'production') {
-//   app.set('trust proxy', 1) // trust first proxy
-//   sess.cookie.secure = true // serve secure cookies
-// }
-sess.cookie.secure = "Mishoo"
-app.use(session(sess))
 
 //Route
 app.use('/',urlencodedParser, require('./controllers/admin'))
