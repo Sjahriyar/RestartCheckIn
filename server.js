@@ -23,7 +23,7 @@ var mysql = require('mysql'), // node-mysql module
     dbOptions = {
       host: 'localhost',
       user: 'root',
-      password: 'root',
+      password: '',
       port: 3306,
       database: 'checking_system'
     }
@@ -65,11 +65,10 @@ var authenticate = function (req, res, next) {
 }
 //Routes
 app.use('/',urlencodedParser, require('./controllers/admin'))
-app.use('/bootcamp',urlencodedParser, authenticate, require('./controllers/bootcamp'))
-app.use('/students',urlencodedParser, authenticate, require('./controllers/students'))
-app.use('/records',urlencodedParser, authenticate, require('./controllers/records'))
-app.use('/editstud',urlencodedParser, authenticate, require('./controllers/edit_students'))
-
+app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
+app.use('/students',urlencodedParser, require('./controllers/students'))
+app.use('/records',urlencodedParser, require('./controllers/records'))
+app.use('/seestuds',urlencodedParser, require('./controllers/see_students'))
 
 //Server Listen to port
 app.listen(process.env.PORT || 4500, ()=>{

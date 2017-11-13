@@ -13,3 +13,6 @@
   margin-right: auto;
   margin-left: auto;
 }
+.box {
+  max-width: 200px !important;
+}
