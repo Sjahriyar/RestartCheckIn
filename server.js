@@ -42,14 +42,14 @@ app.use(session({
 //Session Set to store admin data
 app.use(function(req, res, next){
     res.locals.user_session = req.session.admin;
+    // res.locals.user_profile = req.session.prof;
     next();
 });
 
 //Express Messages
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages'),
-  res.locals.error = require('express-messages')(req, res);
+  res.locals.messages = require('express-messages')(req, res);
   next();
 });
 

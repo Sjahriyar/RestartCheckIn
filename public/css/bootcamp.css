@@ -51,12 +51,13 @@ body {
 
 .btn_edit {
     display: inline-block;
-    width: 40%;
+    width: 30%;
     padding: 10px;
     font-family: $font-family;
     -webkit-appearance: none;
-    margin-right: 20px;
-    margin-top: 30px;
+    border-radius: 3px;
+    margin-left: 5px;
+    margin-top: 20px;
     outline: 0;
     border: 0;
     color: white;
@@ -123,15 +124,15 @@ fieldset {
 	cursor:pointer;
 	width:100%;
 	border:none;
-	background:#0CF;
-	color:#FFF;
-	margin:0 0 5px;
+	background:#43b2f2;
+	color:#000;
+	margin:20px 0 -10px 5px;
 	padding:10px;
 	font-size:15px;
 }
 
 #contact button[type="submit"]:hover {
-	background:#09C;
+	background:#367193;
 	-webkit-transition:background 0.3s ease-in-out;
 	-moz-transition:background 0.3s ease-in-out;
 	transition:background-color 0.3s ease-in-out;
