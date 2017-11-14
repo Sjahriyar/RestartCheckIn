@@ -6,39 +6,39 @@ const router = express.Router()
 router.get('/', (req,res)=>{
   req.getConnection(function(err, connection) {
     if (err) return next (err)
-    connection.query("SELECT * FROM bootcamp_name",
-       function (err, result, fields) {
-         if (err) throw err;
-    res.render('seestudents',{result_bootcamps : result})
-})
-})
-})
-
-router.get('/stu/:id', (req,res)=>{
-  req.getConnection(function(err, connection) {
-    if (err) return next (err)
-    connection.query("SELECT * FROM bootcamp_name",
-       function (err, result, fields) {
-         if (err) throw err;
-         connection.query(`SELECT * FROM checking_system.bootcamp_students WHERE bootcamp_id = ${req.params.id}`,
-            function (err2, bootcamps, fields) {
-              if (err2) throw err2;
-
-    res.render('stutest',{result_bootcamps : result, data: bootcamps})
+      let sql = "SELECT * FROM checking_system.bootcamp_students"
+      let query = connection.query(sql, (err, result) => {
+        if (err) throw err
+        res.render('seestudents', {data:result})
+        // console.log(result);
     })
   })
 })
+// get all the students from bootcamp
+router.get('/:id', (req,res)=>{
+  req.getConnection(function(err, connection) {
+    if (err) return next(err);
 
+      let sql = `SELECT * FROM bootcamp_name WHERE bootcamp_id = ${req.params.id}`
+      let query = connection.query(sql,(err,result)=>{
+        if (err) throw err
+        console.log(result);
+        res.render('seestudents', {data: result})
+      })
 
+    });
 })
-// get ones' student data
+
+// get student data by student id
 router.get('/edit/:id', (req,res)=>{
   req.getConnection(function(err, connection) {
     if (err) return next(err);
   connection.query(`SELECT * FROM bootcamp_students WHERE stu_id = ${req.params.id}`, function (err, result, fields) {
        if (err) throw err;
+
        connection.query("SELECT * FROM countries", function (err2, result_country, fields) {
             if (err2) throw err2;
+
   res.render('edit_student',{result : result, result_country : result_country, message : ''})
       });
     });
@@ -46,7 +46,7 @@ router.get('/edit/:id', (req,res)=>{
 });
 
 
-// update edited student information
+// edit student information
 router.post('edit/:id', (req,res)=>{
   req.getConnection(function(err, connection) {
     if (err) return next(err);

@@ -6,20 +6,30 @@
 	<link rel="stylesheet" href="css/editstud.css" type="text/css">
 
 </head>
+
+
+
 <body>
 
 	<header>
 		<% include ./partials/header %>
-	</header
+	</header>
+
+
   <main>
-		<div class="container boot">
-				<div class="jumbotron" align="center">
-					<div class="container-table">
+		<div class="container-fluid">
+		<!-- <div class="row"> -->
+
+
+				<div class="jumbotron " align="center">
 					<h3>Edit <%=result.stu_name%> Information</h3>
           <% for (i=0; i< result.length; i++) { %>
 <form name="f1" method="POST" action="../editstud/edit/<%= result[i].stu_id %>" >
 					<table class="table table-hover">
+
   <tbody>
+
+
 <!--  TR -->
     <tr>
       <td>Name</td>

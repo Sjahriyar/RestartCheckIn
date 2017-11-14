@@ -18,14 +18,13 @@ router.get('/', (req,res)=>{
 })
 
 //Find A bootcamp for edit
-router.get('/showbtcmp/:id',(req,res)=>{
+router.get('/showbtcmp/:id', (req,res)=>{
   req.getConnection(function(err, connection) {
     if (err) return next(err);
 
       let sql = `SELECT * FROM bootcamp_name WHERE bootcamp_id = ${req.params.id}`
       let query = connection.query(sql,(err,result)=>{
         if (err) throw err
-        console.log(result);
         res.render('edit_bootcamp', {data: result})
       })
 
@@ -42,22 +41,23 @@ router.post('/', (req,res)=>{
         let sql = 'INSERT INTO bootcamp_name SET ?'
         let query = connection.query(sql,bootcamp,(err,result)=>{
           if (err) throw err
-          req.flash('success', 'Bootcamp successfully registred!')
+          req.flash('success', `Bootcamp ${req.body.bootcamp_name} is Successfully Registred`)
           res.redirect('back');
         })
 
       });
 
     })
-
     //Edit the bootcamp
     router.post('/editbtcmp/:id', (req,res)=>{
       req.getConnection(function(err, connection) {
         if (err) return next(err);
 
-          let sql = `UPDATE bootcamp_name SET bootcamp_name= '${req.body.bootcamp_name}', start_date = '${req.body.start_date}', end_date = '${req.body.end_date}', slack_link = '${req.body.start_date}' WHERE bootcamp_id = ${req.params.id}`
+          let sql = `UPDATE bootcamp_name SET bootcamp_name= '${req.body.bootcamp_name}', start_date = '${req.body.start_date}', end_date = '${req.body.end_date}', slack_link = '${req.body.slack_link}' WHERE bootcamp_id = ${req.params.id}`
           let query = connection.query(sql,(err,result)=>{
             if (err) throw err
+            req.flash('info', `Bootcamp Successfully Edited!`)
+            res.redirect('back');
           })
 
         });

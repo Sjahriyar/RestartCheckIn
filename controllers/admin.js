@@ -4,10 +4,46 @@ const { check, validationResult } = require('express-validator/check')
 const { matchedData, sanitize } = require('express-validator/filter')
 
 
+//Render Index
 router.get('/', (req,res)=>{
   res.render('index')
 })
 
+//Render Admin Profile Edit
+router.get('/profile/:id',(req,res)=>{
+  if (!req.session.admin) {
+    res.redirect('/')
+  }
+  else{
+
+  req.getConnection(function(err, connection) {
+    if (err) return next(err);
+
+      let sql = `SELECT * FROM login WHERE login_id = ${req.params.id}`
+      let query = connection.query(sql,(err,result)=>{
+        if (err) throw err
+          res.render('admin_profile', {info: result})
+      })
+
+    });
+  }
+})
+
+router.post('/profile/edit_admin/:id',(req,res)=>{
+  req.getConnection(function(err, connection) {
+    if (err) return next(err);
+
+      let sql = `UPDATE login SET full_name= '${req.body.full_name}', email = '${req.body.email}', password = '${req.body.password}' WHERE login_id = ${req.params.id}`
+      let query = connection.query(sql,(err,result)=>{
+        if (err) throw err
+        req.flash('info', `Profile Successfully Edited!`)
+        res.redirect('back');
+      })
+
+    });
+})
+
+//Login Panel
 router.post('/login', (req,res)=>{
   req.getConnection(function(err, connection) {
     if (err) return next(err)
@@ -25,7 +61,7 @@ router.post('/login', (req,res)=>{
       res.redirect('/bootcamp')
     }
     else {
-      res.send('does now exist')
+      req.flash('danger','User Does not exist!')
     }
   });
 })

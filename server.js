@@ -48,8 +48,7 @@ app.use(function(req, res, next){
 //Express Messages
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages'),
-  res.locals.error = require('express-messages')(req, res);
+  res.locals.messages = require('express-messages')(req, res);
   next();
 });
 
@@ -69,7 +68,7 @@ app.use('/bootcamp',urlencodedParser, authenticate, require('./controllers/bootc
 app.use('/students',urlencodedParser, authenticate, require('./controllers/students'))
 app.use('/records',urlencodedParser, authenticate, require('./controllers/records'))
 app.use('/seestuds',urlencodedParser, authenticate, require('./controllers/see_students'))
-
+app.use('/checkIn',urlencodedParser, require('./controllers/current_checked_in'))
 
 //Server Listen to port
 app.listen(process.env.PORT || 4500, ()=>{
