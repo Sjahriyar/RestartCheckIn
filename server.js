@@ -36,10 +36,10 @@ app.use(session({
   secret: 'Oh it is sO Secure',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 160000 }
+  // cookie: { maxAge: 160000 }
 }))
 
-//Session Set to store admin data
+// Session Set to store admin data
 app.use(function(req, res, next){
     res.locals.user_session = req.session.admin;
     next();
@@ -65,19 +65,11 @@ var authenticate = function (req, res, next) {
 }
 //Routes
 app.use('/',urlencodedParser, require('./controllers/admin'))
-<<<<<<< HEAD
-app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
-app.use('/students',urlencodedParser, require('./controllers/students'))
-app.use('/records',urlencodedParser, require('./controllers/records'))
-app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
-app.use('/editbtcmp',urlencodedParser, require('./controllers/edit_bootcamp'))
-app.use('/selectrpt',urlencodedParser, require('./controllers/select_record'))
-=======
 app.use('/bootcamp',urlencodedParser, authenticate, require('./controllers/bootcamp'))
 app.use('/students',urlencodedParser, authenticate, require('./controllers/students'))
 app.use('/records',urlencodedParser, authenticate, require('./controllers/records'))
+app.use('/show',urlencodedParser, authenticate, require('./controllers/records'))
 app.use('/seestuds',urlencodedParser, authenticate, require('./controllers/see_students'))
->>>>>>> origin/Shahriar
 
 
 //Server Listen to port

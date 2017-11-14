@@ -6,13 +6,13 @@
 }
 
 /*css for tables*/
-.table-place {
+.table1-place {
   height: auto;
   width: 70%;
   margin-top: 30px;
 }
 
-.container-table {
+.container1-table {
   align-content: center;
   max-width: 50%;
   height: auto;
@@ -21,34 +21,51 @@
   margin-right: auto;
   margin-left: auto;
 }
+}
 /*css for report page*/
 
-.container {
+.container1-table {
 	max-width:80%;
-	/*width:100%;*/
+	width:100%;
 	margin:0 auto;
 	position:relative;
 }
 
-body {
-    font-family:"Open Sans", Helvetica, Arial, sans-serif;
-    font-weight:300;
-  	font-size: 12px;
-  	line-height:30px;
-    background-size: 200% 100% !important;
-    animation: move 10s ease infinite;
-    transform: translate3d(0, 0, 0);
-    background: linear-gradient(45deg, #E74C3C 10%, #514f51 90%);
-    height: 100vh
-
-}
-
-.header{
-pointer-events:none;
-box-shadow: 0 0 0;
-}
-
 .student{
-  font-size: 35px;
+  font-size: 25px;
+  padding: 10px;
+}
+
+.stu_info{
+  display: inline-block;
+  font-size: 15px;
+  align-content: center;
   text-align: center;
+  height: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+
+}
+.form1 {
+  font-size: 15px;
+  align-content: center;
+  max-width: 100%;
+  height: auto;
+  padding-right: 15px;
+  padding-left: 190px;
+  margin-left: 120px;
+
+}
+
+#submit {
+    display: inline-block;
+    width: 70px;
+    padding: 5px;
+    font-family: $font-family;
+    -webkit-appearance: none;
+    outline: 0;
+    border: 2%;
+    background: #4f4c4a;
+    transition: 0.3s;
+
 }

@@ -20,10 +20,10 @@
 		<div class="container-fluid">
 		<!-- <div class="row"> -->
 
-
+<% for (i=0; i< result.length; i++) { %>
 				<div class="jumbotron " align="center">
-					<h3>Edit <%=result.stu_name%> Information</h3>
-          <% for (i=0; i< result.length; i++) { %>
+					<h3>Edit <%=result[i].stu_name%>		 Information</h3>
+
 <form name="f1" method="POST" action="../editstud/edit/<%= result[i].stu_id %>" >
 					<table class="table table-hover">
 
