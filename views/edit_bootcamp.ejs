@@ -14,14 +14,14 @@
       <form method="post" action="/bootcamp/editbtcmp/<%= data[i].bootcamp_id %>" id="contact" class="form">
         <h4>Edit Bootcamp</h4>
         <hr />
-<%- messages('messages', locals) %>
+
           <div class="form__group">
 
               <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" value="<%= data[i].bootcamp_name %>" class="form__input" required/>
           </div>
 
           <div class="form__group">
-          <input type='date' name="start_date" value="<%= data[i].start_date %>" class="form__input" required/>
+          <input type='text' name="start_date" value="<%= data[i].start_date %>" class="form__input" required/>
           </div>
 
           <div class="form__group">

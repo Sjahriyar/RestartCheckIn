@@ -7,13 +7,12 @@
    <header>
        <% include ./partials/header %>
    </header>
-   <div class="container-table">
-         <select id='mySelectElement' value='2'>
-           <% for(var i=0; i< data.length; i++) { %>
-            <option value='1'><%= data[i].bootcamp_name %>  </option>  <% } %>
-         </select>
-    <div class="table-place">
-      <div class="table-container">
+
+
+
+   <div class="container boot">
+
+      <div class="jumbotron row">
              <table class="table table-students">
                <tbody>
                 <tr>
@@ -39,7 +38,6 @@
            </div>
          </div>
       </div>
-    </div>
   </body>
   <footer>
     <% include ./partials/footer %>
