@@ -33,7 +33,6 @@
     "create-react-app": "^1.4.3",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "express-fileupload": "^0.3.0",
     "express-flash": "0.0.2",
     "express-messages": "^1.0.1",
     "express-myconnection": "^1.0.4",
