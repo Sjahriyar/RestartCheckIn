@@ -18,7 +18,7 @@ router.get('/', (req,res)=>{
 })
 
 //Find A bootcamp for edit
-router.get('/showbtcmp/:id',[] ,(req,res)=>{
+router.get('/showbtcmp/:id',(req,res)=>{
   req.getConnection(function(err, connection) {
     if (err) return next(err);
 
