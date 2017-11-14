@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/live_checkin.css">
+</head>
+  <body>
+<header>
+
+  <nav class="navbar navbar-inverse bg-inverse" role="navigation">
+  <div class="container-fluid">
+
+      <div class="navbar-header">
+
+
+  <a class="dropdown navbar-brand dropdown-toggle" data-toggle="dropdown">Welcome <%= user_session %>
+  </a>
+  <ul class="dropdown-menu">
+  <li><a href="/profile/1">Edit your profile</a></li>
+  </ul>
+
+
+          <ul class="nav navbar-nav">
+              <li><a href="/bootcamp">Bootcamp</a></li>
+              <li><a href="/students">Students</a></li>
+              <li><a href="/seestuds">View Students</a></li>
+              <li><a href="/records">Report</a></li>
+              <li><a href="/checkIn">Live Check-in</a></li>
+              <li class="logout"><a href="/bootcamp/signout">Log out</a></li>
+          </ul>
+      </div>
+
+  </div>
+  </nav>
+
+</header>
+
+    <div class="container">
+      <section>
+  <!--for demo wrap-->
+  <h1 class="liveh1">Fixed Table header</h1>
+  <div class="tbl-header">
+    <table class="live_table" cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th class="live_th">Name</th>
+          <th class="live_th">Check-In Time</th>
+          <th class="live_th">Photo</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <% for(i=0 ; i < grab.length ; i++){
+          var date = grab[i].sign_in_date %>
+
+        <tr>
+          <td><%= grab[i].stu_name %></td>
+          <td><%= date.toDateString() %></td>
+          <td><%= grab[i].stu_photo_name %></td>
+        </tr><% } %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</div>
+    </div>
+<script>
+setTimeout(function() {
+  location.reload();
+}, 5000);
+</script>
+    <footer>
+      <% include ./partials/footer %>
+    </footer>
