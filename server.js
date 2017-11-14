@@ -42,7 +42,6 @@ app.use(session({
 //Session Set to store admin data
 app.use(function(req, res, next){
     res.locals.user_session = req.session.admin;
-    // res.locals.user_profile = req.session.prof;
     next();
 });
 
@@ -69,7 +68,7 @@ app.use('/bootcamp',urlencodedParser, authenticate, require('./controllers/bootc
 app.use('/students',urlencodedParser, authenticate, require('./controllers/students'))
 app.use('/records',urlencodedParser, authenticate, require('./controllers/records'))
 app.use('/seestuds',urlencodedParser, authenticate, require('./controllers/see_students'))
-
+app.use('/checkIn',urlencodedParser, require('./controllers/current_checked_in'))
 
 //Server Listen to port
 app.listen(process.env.PORT || 4500, ()=>{

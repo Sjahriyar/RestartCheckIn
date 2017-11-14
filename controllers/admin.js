@@ -11,20 +11,22 @@ router.get('/', (req,res)=>{
 
 //Render Admin Profile Edit
 router.get('/profile/:id',(req,res)=>{
+  if (!req.session.admin) {
+    res.redirect('/')
+  }
+  else{
+
   req.getConnection(function(err, connection) {
     if (err) return next(err);
 
       let sql = `SELECT * FROM login WHERE login_id = ${req.params.id}`
       let query = connection.query(sql,(err,result)=>{
         if (err) throw err
-          // for(i=0;i<result.length ; i++){
-          //   var id = result[i].login_id
-          // }
-          // req.session.prof = id
           res.render('admin_profile', {info: result})
       })
 
     });
+  }
 })
 
 router.post('/profile/edit_admin/:id',(req,res)=>{
