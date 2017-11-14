@@ -9,7 +9,8 @@
     <% include ./partials/header %>
 </header>
 
-    <div class="container">
+    <div class="container_shahriar">
+      <%- messages('messages', locals) %>
       <% for(i=0 ; i < data.length ; i++){ %>
       <form method="post" action="/bootcamp/editbtcmp/<%= data[i].bootcamp_id %>" id="contact" class="form">
         <h4>Edit Bootcamp</h4>
@@ -21,11 +22,11 @@
           </div>
 
           <div class="form__group">
-          <input type='text' name="start_date" value="<%= data[i].start_date %>" class="form__input" required/>
+          <input type='date' name="start_date" value="<%= data[i].start_date %>" class="form__input" required/>
           </div>
 
           <div class="form__group">
-              <input type="date" name="end_date" value="<%= data[i].end_date %>" placeholder="End Date" class="form__input" required/>
+              <input type="date" name="end_date" value="<%= data[i].end_date %>"  class="form__input" required/>
           </div>
 
           <div class="form__group">
