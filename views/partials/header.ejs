@@ -1,0 +1,25 @@
+
+<nav class="navbar navbar-inverse bg-inverse" role="navigation">
+<div class="container-fluid">
+
+    <div class="navbar-header">
+
+
+<a class="dropdown navbar-brand dropdown-toggle" data-toggle="dropdown">Welcome <%= user_session %>
+</a>
+<ul class="dropdown-menu">
+<li><a href="/profile/1">Edit your profile</a></li>
+</ul>
+
+
+        <ul class="nav navbar-nav">
+            <li><a href="/bootcamp">Bootcamp</a></li>
+            <li><a href="/students">Students</a></li>
+            <li><a href="/seestuds">View Students</a></li>
+            <li><a href="/records">Report</a></li>
+            <li class="logout"><a href="/bootcamp/signout">Log out</a></li>
+        </ul>
+    </div>
+
+</div>
+</nav>

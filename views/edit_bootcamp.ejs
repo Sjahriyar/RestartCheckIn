@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ./partials/head %>
+</head>
+  <body>
+<header>
+    <% include ./partials/header %>
+</header>
+
+    <div class="container">
+      <% for(i=0 ; i < data.length ; i++){ %>
+      <form method="post" action="/bootcamp/editbtcmp/<%= data[i].bootcamp_id %>" id="contact" class="form">
+        <h4>Edit Bootcamp</h4>
+        <hr />
+<%- messages('messages', locals) %>
+          <div class="form__group">
+
+              <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" value="<%= data[i].bootcamp_name %>" class="form__input" required/>
+          </div>
+
+          <div class="form__group">
+          <input type='date' name="start_date" value="<%= data[i].start_date %>" class="form__input" required/>
+          </div>
+
+          <div class="form__group">
+              <input type="date" name="end_date" value="<%= data[i].end_date %>" placeholder="End Date" class="form__input" required/>
+          </div>
+
+          <div class="form__group">
+              <input type="url" name="slack_link" value="<%= data[i].slack_link %>" placeholder="Slack Link" class="form__input" />
+          </div>
+<% } %>
+
+          <button type="submit" class="btn_edit">Edit</button><input class="btn_edit" type="button" onclick="location.href='/bootcamp';" value="Cancel" />
+      </form>
+
+
+    </div>
+
+    <footer>
+      <% include ./partials/footer %>
+    </footer>

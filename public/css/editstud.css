@@ -1,0 +1,18 @@
+.table-place {
+  height: auto;
+  width: 70%;
+  margin-top: 30px;
+}
+
+.container-table {
+  align-content: center;
+  max-width: 70%;
+  height: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.box {
+  max-width: 200px !important;
+}
