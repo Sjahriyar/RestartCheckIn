@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <% include ./partials/head %>
+  </head>
+  <body>
+   <header>
+       <% include ./partials/header %>
+   </header>
+
+
+
+   <div class="container boot">
+
+      <div class=" jumbotron row">
+             <table class="table table-students">
+
+              <!-- <%= for (var i=0; i< result_bootcamps.length; i++) { %>
+                  result_bootcamps[i].bootcamp_name  -->
+               <tbody>
+                <tr>
+                  <th>Name</th>
+                  <th>E-mail</th>
+                  <th>City</th>
+                  <th>Phone</th>
+                  <th>Edit</th>
+                  <th>Reports</th>
+                </tr>
+                <% for(var i=0; i< data.length; i++) { %>
+                <tr>
+                    <td><%= data[i].stu_name %></td>
+                    <td><%= data[i].email %></td>
+                    <td><%= data[i].city %></td>
+                    <td><%= data[i].phone_num %></td>
+                    <td><a href="/seestuds/edit/<%= data[i].stu_id %>">Edit</a></td>
+                    <td><a href="#Irene URL#">View</a></td>
+                  <% } %>
+                </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+      </div>
+  </body>
+  <footer>
+    <% include ./partials/footer %>
+  </footer>
+</html>
