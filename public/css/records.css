@@ -1,0 +1,71 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*css for tables*/
+.table1-place {
+  height: auto;
+  width: 70%;
+  margin-top: 30px;
+}
+
+.container1-table {
+  align-content: center;
+  max-width: 50%;
+  height: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+}
+/*css for report page*/
+
+.container1-table {
+	max-width:80%;
+	width:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+.student{
+  font-size: 25px;
+  padding: 10px;
+}
+
+.stu_info{
+  display: inline-block;
+  font-size: 15px;
+  align-content: center;
+  text-align: center;
+  height: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+
+}
+.form1 {
+  font-size: 15px;
+  align-content: center;
+  max-width: 100%;
+  height: auto;
+  padding-right: 15px;
+  padding-left: 190px;
+  margin-left: 120px;
+
+}
+
+#submit {
+    display: inline-block;
+    width: 70px;
+    padding: 5px;
+    font-family: $font-family;
+    -webkit-appearance: none;
+    outline: 0;
+    border: 2%;
+    background: #4f4c4a;
+    transition: 0.3s;
+
+}

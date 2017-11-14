@@ -1,10 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+
+<head>
+  <meta charset="utf-8">
+  <title>Reports</title>
+
+    <% include ./partials/head %>
+    <link href="css/records.css" rel="stylesheet" type="text/css">
+
+</head>
   <body>
-    <h1>Records Page by SHahriar</h1>
-  </body>
-</html>
+<header>
+    <% include ./partials/header %>
+</header>
+
+  <div class="header">
+      <span class="btn btn-secondary"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
+      <h3>Report</h3>
+      </span>
+  </div>
+
+  <!-- header to print name of student -->
+      <div class="stu_info" >
+        <div class="student" >
+<% for (i=0; i< data.length; i++) { %>
+          Name:<%= data[i].stu_name %>
+        </div>
+
+  <form method="POST" action="../show" class="form1">
+          <input type='hidden' name="id" value="<%=id%>" />
+        Date from:
+          <input type='date' id="1" name="start_date"  required/>
+        Date to:
+          <input type="date" id="2" name="end_date"    required/>
+
+          <input type="submit" id="submit" name="submit" class="btn" value="Filter" />
+  </form>
+      </div>
+<%}%>
+  <div class="container1-table">
+
+<!-- show sign in table -->
+
+   <div class="table1-place">
+     <div class="table1-container">
+            <table class="table table1-students">
+              <tbody>
+               <tr>
+                    <th>Date</th>
+                    <th>SignIn Time</th>
+               </tr>
+               <% for(var i=0; i< resdate.length; i++) { var x = resdate[i].sign_in_date %>
+               <tr>
+                   <td><%= x.toDateString() %></td>
+                   <td><%= x.toLocaleTimeString() %></td>
+               </tr>
+                <% } %>
+<!-- new Date().toDateString(); -->
+              </tbody>
+            </table>
+    </div>
+  </div>
+     </div>
+<footer>
+  <% include ./partials/footer %>
+</footer>
+
+</body>

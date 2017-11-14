@@ -7,6 +7,7 @@
    <header>
        <% include ./partials/header %>
    </header>
+<<<<<<< HEAD
    <div class="container boot">
      Select the bootcamp to view the students...
    <div class="jumbotron row">
@@ -24,6 +25,39 @@
        </tr>
       </tbody>
     </table>
+=======
+   <div class="container-table">
+         <select id='mySelectElement' value='2'>
+           <% for(var i=0; i< data.length; i++) { %>
+            <option value='1'><%= data[i].bootcamp_name %>  </option>  <% } %>
+         </select>
+    <div class="table-place">
+      <div class="table-container">
+             <table class="table table-students">
+               <tbody>
+                <tr>
+                  <th>Name</th>
+                  <th>E-mail</th>
+                  <th>City</th>
+                  <th>Phone</th>
+                  <th>Edit</th>
+                  <th>Reports</th>
+                </tr>
+                <% for(var i=0; i< data.length; i++) { %>
+                <tr>
+                    <td><%= data[i].stu_name %></td>
+                    <td><%= data[i].email %></td>
+                    <td><%= data[i].city %></td>
+                    <td><%= data[i].phone_num %></td>
+                    <td><a href="/seestuds/edit/<%= data[i].stu_id %>">Edit</a></td>
+                    <td><a href="/records/view/<%= data[i].stu_id %>">View</a></td>
+                  <% } %>
+                </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+>>>>>>> Irene
       </div>
     </div>
   </body>
