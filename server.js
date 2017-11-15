@@ -63,12 +63,12 @@ var authenticate = function (req, res, next) {
   }
 }
 //Routes
-app.use('/',urlencodedParser, require('./controllers/admin'))
+app.use('/',urlencodedParser, require('./controllers/current_checked_in'))
 app.use('/bootcamp',urlencodedParser, authenticate, require('./controllers/bootcamp'))
 app.use('/students',urlencodedParser, authenticate, require('./controllers/students'))
 app.use('/records',urlencodedParser, authenticate, require('./controllers/records'))
 app.use('/seestuds',urlencodedParser, authenticate, require('./controllers/see_students'))
-app.use('/checkIn',urlencodedParser, require('./controllers/current_checked_in'))
+app.use('/admin',urlencodedParser, require('./controllers/admin'))
 
 //Server Listen to port
 app.listen(process.env.PORT || 4500, ()=>{
