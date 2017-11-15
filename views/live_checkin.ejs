@@ -37,7 +37,7 @@
 </header>
 
     <div class="container_shahriar">
-    <p id="today">Date:</p>
+    <p id="today"></p>
       <section>
   <!--for demo wrap-->
   <h1 class="liveh1">Live Check-In</h1>
@@ -59,7 +59,7 @@
           var date = grab[i].sign_in_date %>
         <tr>
           <td><%= grab[i].stu_name %></td>
-          <td><%= date.toDateString() %></td>
+          <td><%= date.toLocaleTimeString() %></td>
           <td><%= grab[i].stu_photo_name %></td>
         </tr><% } %>
       </tbody>

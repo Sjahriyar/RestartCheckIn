@@ -11,8 +11,17 @@ table{
   width:100%;
   table-layout: fixed;
 }
+.datenums{
+  color: #f3f1f1;
+
+}
 #today{
-  color: white;
+  text-align: center;
+  font-weight: bold;
+  color: #5d0000;
+  width: 250px;
+  margin-left: 100px;
+  border-bottom: 1px solid white;
 }
 .tbl-header{
   background-color: rgba(255,255,255,0.3);
