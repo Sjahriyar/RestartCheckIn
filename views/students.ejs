@@ -5,7 +5,7 @@
 	<% include ./partials/head %>
 
 </head>
-<body  class="container_main" >
+<body class="container_main" >
 
 	<header>
 		<% include ./partials/header %>
@@ -17,7 +17,19 @@
 
 
 				<div class="jumbotron" align="center">
-					<h4> <%=message%> </h4>
+					<h4> <%=message%>
+
+						<%if(currentuser){%>
+						<br />
+
+						Do you want to add Photo for <%=currentuser[0].stu_name%>
+						<li><a href="/upload/<%= currentuser[0].stu_id %>" >Upload photo</a></li>
+
+						<%}%>
+
+
+					 </h4>
+
 					<h3>Register new Student</h3>
 <form name="f1" method="POST" action="../students/add" >
 					<table class="table table-hover">
@@ -112,6 +124,14 @@
       <td>Phone #</td>
       <td>
       	<input type="text" name="stu_phon" class="form-control form-control-sm" >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_phon"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -121,6 +141,14 @@
       <td>E-mail</td>
       <td>
       	<input type="text" name="stu_email" class="form-control form-control-sm" >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_email"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -131,6 +159,14 @@
       <td>
 
       	<input type="text" name="zip" size="6" class="form-control"  >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "zip"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -140,6 +176,14 @@
       <td>Address</td>
       <td>
       	<input type="text" name="stu_address" class="form-control form-control-sm" >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_address"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -148,7 +192,15 @@
     <tr>
       <td>City</td>
       <td>
-      	<input type="text" name="stu_city" class="form-control form-control-sm" >
+      	<input type="text"  name="stu_city" class="form-control form-control-sm" >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_city"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -157,19 +209,11 @@
     <tr>
       <td>Card id #</td>
       <td>
-      	<input type="text" name="stu_card" class="form-control form-control-sm" >
-      	 </td>
+      	<input type="text"  name="stu_card" class="form-control form-control-sm" >
+				</td>
     </tr>
 <!--//  TR -->
 
-<!--  TR -->
-    <tr>
-      <td>Student photo</td>
-      <td>
-      	<input type="text" name="stu_photo" class="form-control form-control-sm" >
-      	 </td>
-    </tr>
-<!--//  TR -->
 
 <!--  TR -->
     <tr>

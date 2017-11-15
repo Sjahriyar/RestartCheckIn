@@ -2,11 +2,16 @@ const express = require('express'),
       path = require('path'),
       bodyParser = require('body-parser'),
       cors = require('cors'),
-      cookieParser = require('cookie-parser'),
      session = require('express-session'),
     expressValidator = require('express-validator'),
       ejs = require('ejs'),
       flash = require('express-flash'),
+      formidable = require('formidable'),
+      http = require('http'),
+
+          fs = require('fs'),
+
+
       app = express();
 
 // app.use( express.cookieParser() );
@@ -71,10 +76,29 @@ app.use(myConnection(mysql, dbOptions, 'single'))
 
 
 
+app.use(session({
+  secret: 'Oh it is sO Secure',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 160000 }
+}))
+
+app.use(function(req, res, next){
+    res.locals.user_session = req.session.admin;
+    res.locals.phx = req.session.phname;
+    next();
+});
+
+
+
+
 //Route
 app.use('/',urlencodedParser, require('./controllers/admin'))
 app.use('/bootcamp',urlencodedParser, require('./controllers/bootcamp'))
 app.use('/students',urlencodedParser, require('./controllers/students'))
+app.use('/main',urlencodedParser, require('./controllers/main'))
+// app.use('/studentsAfterrImg',urlencodedParser, require('./controllers/students'))
+ app.use('/upload',urlencodedParser, require('./controllers/upload'))
 app.use('/records',urlencodedParser, require('./controllers/records'))
 app.use('/editstud',urlencodedParser, require('./controllers/edit_students'))
 
