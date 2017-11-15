@@ -3,13 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>Edit Students</title>
-<<<<<<< HEAD
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="javascript/js.js"></script>
-  </head>
-  <body>
-    <div class="table-container">
-=======
     <link href="css/editstud.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="javascript/jq.js"></script>
       <% include ./partials/head %>
@@ -25,7 +18,6 @@
          </select>
     <div class="table-place">
       <div class="table-container">
->>>>>>> Shahriar
              <table class="table table-students">
                <tbody>
                 <tr>
@@ -35,13 +27,6 @@
                   <th>Phone</th>
                   <th>Edit</th>
                 </tr>
-<<<<<<< HEAD
-                <tr>
-                  <td name="st-name">Irene</td>
-                  <td name="st-email">irene@mail.com</td>
-                  <td name="st-city">Rotterdam</td>
-                  <td name="st-phone">065434232</td>
-=======
                 <% for(var i=0; i< data.length; i++) { %>
                 <tr>
                     <td><%= data[i].stu_name %></td>
@@ -50,15 +35,11 @@
                     <td><%= data[i].phone_num %></td>
                     <td><a href="#">edit</a></td>
                   <% } %>
->>>>>>> Shahriar
                 </tr>
                </tbody>
              </table>
            </div>
-<<<<<<< HEAD
-=======
          </div>
       </div>
->>>>>>> Shahriar
   </body>
 </html>

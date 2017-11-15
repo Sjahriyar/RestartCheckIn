@@ -11,13 +11,12 @@ body {
     background-size: 200% 100% !important;
     animation: move 10s ease infinite;
     transform: translate3d(0, 0, 0);
-    /*background: linear-gradient(45deg, #E74C3C 10%, #514f51 90%);*/
+    background: linear-gradient(45deg, #E74C3C 10%, #514f51 90%);
     height: 100vh
 }
 
 footer{
 
-  margin-top: 5px;
   color: rgb(249, 249, 249);
 }
 .logout{
