@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<% include ./partials/head %>
+	<link rel="stylesheet" href="css/editstud.css" type="text/css">
+
+</head>
+<body>
+
+	<header>
+		<% include ./partials/header %>
+	</header
+  <main>
+		<div class="container boot">
+				<div class="jumbotron" align="center">
+					<div class="container-table">
+					<h3>Edit <%=result.stu_name%> Information</h3>
+          <% for (i=0; i< result.length; i++) { %>
+<form name="f1" method="POST" action="../editstud/edit/<%= result[i].stu_id %>" >
+					<table class="table table-hover">
+  <tbody>
+<!--  TR -->
+    <tr>
+      <td>Name</td>
+      <td>
+      	<input type="text" name="stu_name" class="form-control form-control-sm" value="<%=result[i].stu_name %>" >
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Birth date</td>
+      <td>
+      	<input type="date" name="stu_birth" class="form-control form-control-sm"  value="<%=result[i].stu_birth_date %>">
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Nationality</td>
+      <td>
+				<select name="stu_nath" >
+      		<option value="">Select nationality</option>
+          <%result_country.forEach(function(res){%>
+          <option value="<%=res.num_code%>"> <%=res.nationality%> </option>
+          <%});%>
+        </select>
+
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Phone</td>
+      <td>
+      	<input type="text" name="stu_phon" class="form-control form-control-sm" value="<%=result[i].phone_num %>">
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>E-mail</td>
+      <td>
+      	<input type="text" name="stu_email" class="form-control form-control-sm" value="<%=result[i].email %>">
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Post code</td>
+      <td>
+
+      	<input type="text" name="zip" size="6" class="form-control" value="<%=result[i].postcode %>" >
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Address</td>
+      <td>
+      	<input type="text" name="stu_address" class="form-control form-control-sm" value="<%=result[i].address %>">
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>City</td>
+      <td>
+      	<input type="text" name="stu_city" class="form-control form-control-sm" value="<%=result[i].city %>">
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Card id #</td>
+      <td>
+      	<input type="text" name="stu_card" class="form-control form-control-sm"  value="<%=result[i].card_id %>" >
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Photo</td>
+      <td>
+      	<input type="text" name="stu_photo" class="form-control form-control-sm" >
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+
+			<td  align="center">
+
+  	 </td>
+		 <td  align="center">
+			 <input type="submit" name="saveme" value="Submit"  class="btn btn-primary">
+		</td>
+    </tr>
+<!--//  TR -->
+  </tbody>
+</table>
+<%}%>
+</form>
+	</main>
+	</div>
+</div>
+	<footer>
+		<% include ./partials/footer %>
+	</footer>
+
+</body>

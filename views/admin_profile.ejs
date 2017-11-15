@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ./partials/head %>
+</head>
+  <body>
+<header>
+    <% include ./partials/header %>
+</header>
+
+    <div class="container_shahriar">
+
+            <% for(i=0 ; i < info.length ; i++){ %>
+
+        <%- messages('messages', locals) %>
+      <form method="POST" action="/admin/edit/1" id="contact" class="form">
+        <h4>Edit Your Profile</h4>
+        <hr />
+
+        <div class="form__group">
+        <input type='text' name="full_name" value="<%= info[i].full_name %>" class="form__input" required/>
+        </div>
+
+        <div class="form__group">
+            <input type="email" name="email" value="<%= info[i].email %>" class="form__input" required/>
+        </div>
+
+        <div class="form__group">
+            <input id="myPass" type="password" name="password" value="<%= info[i].password %>" class="form__input" />
+        </div>
+        <input class="checkbox" type="checkbox" onclick="myFunction()">Show Password
+<% } %>
+
+      <br>  <button type="submit" class="btn btn-danger">Edit</button><input class="btn_edit" type="button" onclick="location.href='/bootcamp';" value="Cancel" />
+    </form>
+
+
+    </div>
+    <script>
+    function myFunction() {
+        var x = document.getElementById("myPass");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    </script>
+    <footer>
+      <% include ./partials/footer %>
+    </footer>

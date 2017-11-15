@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Records</title>
+
+    <% include ./partials/head %>
+    <link href="css/records.css" rel="stylesheet" type="text/css">
+
+</head>
+  <body>
+<header>
+    <% include ./partials/header %>
+</header>
+
+  <div class="header">
+      <span class="btn btn-secondary style="cursor:default""  data-toggle="dropdown0" >
+      <h3>Report</h3>
+      </span>
+  </div>
+  <div class="datetime">
+    <h4>
+      Date:______ Time:______
+      BootCamp:
+
+    </h4>
+  </div>
+
+  <div class="table1-place">
+    <div class="table1-container">
+      <table class="table table1-students">
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>SignIn Time</th>
+          </tr>
+          <% for(i=0 ; i < data.length ; i++) {
+            var date = data[i].sign_in_date %>
+          <tr>
+            <td><%= data[i].stu_name %></td>
+            <td><%= date.toLocaleTimeString() %></td>
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<footer>
+  <% include ./partials/footer %>
+</footer>
+
+</body>
