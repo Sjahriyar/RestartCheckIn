@@ -68,6 +68,7 @@ app.use('/bootcamp',urlencodedParser, authenticate, require('./controllers/bootc
 app.use('/students',urlencodedParser, authenticate, require('./controllers/students'))
 app.use('/records',urlencodedParser, authenticate, require('./controllers/records'))
 app.use('/show',urlencodedParser, authenticate, require('./controllers/records'))
+app.use('/reports',urlencodedParser, authenticate, require('./controllers/reports'))
 app.use('/seestuds',urlencodedParser, authenticate, require('./controllers/see_students'))
 app.use('/checkIn',urlencodedParser, require('./controllers/current_checked_in'))
 
