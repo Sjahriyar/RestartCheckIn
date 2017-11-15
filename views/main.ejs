@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<% include ./partials/head %>
+
+</head>
+<body class="container_main" onload="document.f1.cardid.focus();">
+
+	<header>
+		<% include ./partials/header %>
+	</header>
+
+
+  <main>
+		<div class="row">
+
+
+				<div class="jumbotron" align="center">
+
+<h3>Check in</h3>
+<form name="f1" method="POST" action="../main/check" >
+<table class="table table-hover">
+
+<tbody>
+
+
+<!--  TR -->
+<tr>
+<td>Card id</td>
+<td>
+<input type="password" name="cardid" class="form-control form-control-sm"  >
+
+</td>
+</tr>
+<!--//  TR -->
+
+<!--  TR -->
+<tr>
+
+<td  align="center">
+
+</td>
+<td  align="center">
+<input type="submit" name="Check" value="Save" id="save" class="btn btn-primary">
+</td>
+</tr>
+<!--//  TR -->
+</tbody>
+</table>
+</form>
+				</div>
+
+
+
+		</div>
+	</main>
+
+
+
+	<footer>
+		<% include ./partials/footer %>
+	</footer>
+
+</body>

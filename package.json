@@ -30,17 +30,21 @@
     "body-parser": "^1.18.2",
     "connect-flash": "^0.1.1",
     "cors": "^2.8.4",
-    "create-react-app": "^1.4.3",
+    "date-format": "^1.2.0",
+    "date-utils": "^1.2.21",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-flash": "0.0.2",
     "express-messages": "^1.0.1",
     "express-myconnection": "^1.0.4",
-    "express-session": "^1.15.6",
     "express-sessions": "^1.0.6",
     "express-validator": "^4.3.0",
+    "formidable": "^1.1.1",
     "mysql": "^2.15.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "slack-node": "^0.1.8"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
