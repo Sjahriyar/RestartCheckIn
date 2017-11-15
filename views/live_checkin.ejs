@@ -22,12 +22,9 @@
 
 
           <ul class="nav navbar-nav">
-              <li><a href="/bootcamp">Bootcamp</a></li>
-              <li><a href="/students">Students</a></li>
-              <li><a href="/seestuds">View Students</a></li>
-              <li><a href="/records">Report</a></li>
-              <li><a href="/checkIn">Live Check-in</a></li>
-              <li class="logout"><a href="/bootcamp/signout">Log out</a></li>
+              <li><a href="/admin">Log in</a></li>
+              <li><a href="/main">Check in System</a></li>
+              <li><a href="/students">About</a></li>
           </ul>
       </div>
 
@@ -37,7 +34,7 @@
 </header>
 
     <div class="container_shahriar">
-    <p id="today">Date:</p>
+    <p id="today"></p>
       <section>
   <!--for demo wrap-->
   <h1 class="liveh1">Live Check-In</h1>
@@ -59,8 +56,8 @@
           var date = grab[i].sign_in_date %>
         <tr>
           <td><%= grab[i].stu_name %></td>
-          <td><%= date.toDateString() %></td>
-          <td><%= grab[i].stu_photo_name %></td>
+          <td><%= date.toLocaleTimeString() %></td>
+          <td><img class="photo" src="/uploads/<%= grab[i].stu_photo_name %>" alt=""></td>
         </tr><% } %>
       </tbody>
     </table>
@@ -72,7 +69,11 @@
 <script>
 setTimeout(function() {
   location.reload();
-}, 5000);
+<<<<<<< HEAD
+}, 500000);
+=======
+}, 10000);
+>>>>>>> origin/Shahriyar
 </script>
     <footer>
       <% include ./partials/footer %>
