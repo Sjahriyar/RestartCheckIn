@@ -20,7 +20,7 @@ var weekday = new Array(7);
   n =  new Date();
   y = n.getFullYear();
   m = n.getMonth() + 1;
-  d = n.getDay();
+  d = n.getDate();
   w = weekday[n.getDay()];
   document.getElementById("today").innerHTML = "Today is " + w + ":<br />" + "<span class='datenums'>" + m + " / " + d + " / " + y +"</span>";
 
