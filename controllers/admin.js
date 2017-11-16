@@ -29,7 +29,7 @@ router.get('/profile/:id',(req,res)=>{
   }
 })
 
-router.post('/profile/edit_admin/:id',(req,res)=>{
+router.post('/edit/:id',(req,res)=>{
   req.getConnection(function(err, connection) {
     if (err) return next(err);
 

@@ -23,4 +23,5 @@ var weekday = new Array(7);
   d = n.getDay();
   w = weekday[n.getDay()];
   document.getElementById("today").innerHTML = "Today is " + w + ":<br />" + "<span class='datenums'>" + m + " / " + d + " / " + y +"</span>";
+
    });

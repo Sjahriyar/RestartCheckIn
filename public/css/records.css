@@ -1,74 +1,131 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-/*css for tables*/
-.table1-place {
-  height: auto;
-  width: 70%;
-  margin-top: 30px;
-}
+table#acrylic {
+            border-collapse: separate;
+            background: rgba(189, 178, 178, 0.2);
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            margin: 20px auto;
+            -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
 
-.container1-table {
-  align-content: center;
-  max-width: 50%;
-  height: auto;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-}
-/*css for report page*/
+        #acrylic thead {
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .table>thead>tr>th {
+            vertical-align: bottom;
+            border-bottom: 0px solid #000;
+        }
+        #acrylic thead th {
+            font-size: 16px;
+            font-weight: 400;
+            color: #fff;
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+            text-align: left;
+            padding: 10px;
+            background-size: 100%;
+            background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgb(34, 34, 34)), color-stop(100%, rgb(34, 34, 34) ));
+            background-image: -moz-linear-gradient(rgb(34, 34, 34), rgb(34, 34, 34));
+            background-image: -webkit-linear-gradient(rgb(34, 34, 34), rgb(34, 34, 34));
+            background-image: linear-gradient(rgb(34, 34, 34), rgb(34, 34, 34));
 
-.container1-table {
-	max-width:80%;
-	width:100%;
-	margin:0 auto;
-	position:relative;
-}
+        }
 
-.student{
-  font-size: 25px;
-  padding: 10px;
-}
+        #acrylic thead th:first-child {
+            -moz-border-top-right-radius: 5px;
+            -webkit-border-top-left-radius: 5px;
+            border-top-left-radius: 5px;
+        }
 
-.stu_info{
-  display: inline-block;
-  font-size: 15px;
-  align-content: center;
-  text-align: center;
-  height: auto;
-  padding-right: 15px;
-  padding-left: 15px;
+        #acrylic thead th:last-child {
+            -moz-border-top-right-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+        #acrylic tbody tr td {
+            font-family: $font-family;
+            font-weight: 600;
+            color: #282828;
+            font-size: 14px;
+            padding: 6px 6px 6px 6px;
 
-}
-.form1 {
-  font-size: 15px;
-  align-content: center;
-  max-width: 100%;
-  height: auto;
-  padding-right: 15px;
-  padding-left: 190px;
-  margin-left: 120px;
+        }
+        tbody tr:nth-child(1n):hover {
+            background: rgba(189, 178, 178, 0.1);
+        }
+        tbody tr:nth-child(2n) {
+            background: rgba(189, 178, 178, 0.3);
+        }
+        tbody tr:nth-child(2n):hover {
+            background: rgba(189, 178, 178, 0.1);
+        }
 
-}
+        #acrylic tbody tr:last-child td {
+            border-bottom: none;
+        }
 
-#submit {
-    display: inline-block;
-    width: 70px;
-    padding: 5px;
-    font-family: $font-family;
-    -webkit-appearance: none;
-    outline: 0;
-    border: 2%;
-    background: #4f4c4a;
-    transition: 0.3s;
+        tbody tr:last-child td:first-child {
+            -moz-border-bottom-right-radius: 5px;
+            -webkit-border-bottom-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
 
+        tbody tr:last-child td:last-child {
+            -moz-border-bottom-right-radius: 5px;
+            -webkit-border-bottom-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+      tbody:hover > tr td {
+            filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50);
+            opacity: 0.5;
+        }
+        tbody:hover > tr:hover td {
+            text-shadow: none;
+            color: #2d2d2d;
+            filter: progid: DXImageTransform.Microsoft.Alpha(enabled=false);
+            opacity: 3;
+            transition: 0.3s all;
+        }
+
+.search
+{
+    margin-top: 30px;
+    color: #af9191;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed #d2bebe;
+    width: 275px;
+    outline: none;
+    padding: 0px 0px 0px 0px;
+    font-style: italic;
 }
-.header{
-  cursor: default !important;
+.table_font{
+  font-weight: bold;
+  font-size: 14pt;
 }
+.search:hover
+{
+    border-bottom: 1px dashed white;
+}
+.search::-webkit-input-placeholder {
+					color: #d2bebe !important;
+					}
+
+					.search:-moz-placeholder { /* Firefox 18- */
+					color: #d2bebe !important;
+					}
+
+					.search::-moz-placeholder {  /* Firefox 19+ */
+					color: #d2bebe !important;
+					}
+
+					.search:-ms-input-placeholder {
+					color: #d2bebe !important;
+					}
