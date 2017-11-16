@@ -1,10 +1,245 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>Students Page</h1>
-  </body>
-</html>
+
+<html lang="en">
+<head>
+	<% include ./partials/head %>
+
+</head>
+<body class="container_main" >
+
+	<header>
+		<% include ./partials/header %>
+	</header>
+
+
+  <main>
+		<div class="row">
+
+
+				<div class="jumbotron" align="center">
+					<h4> <%=message%>
+
+						<%if(currentuser){%>
+						<br />
+
+						Do you want to add Photo for <%=currentuser[0].stu_name%>
+						<li><a href="/upload/<%= currentuser[0].stu_id %>" >Upload photo</a></li>
+
+						<%}%>
+
+
+					 </h4>
+
+					<h3>Register new Student</h3>
+<form name="f1" method="POST" action="../students/add" >
+					<table class="table table-hover">
+
+  <tbody>
+<!--  TR -->
+    <tr>
+      <td>Bootcamp</td>
+      <td>
+      	<select name="slelectbootcamp" >
+      		<option value="">Select bootcamp name</option>
+          <%result.forEach(function(res){%>
+          <option value="<%=res.bootcamp_id%>"> <%=res.bootcamp_name%> </option>
+          <%});%>
+        </select>
+				<% if(errors){ %>
+        <% errors.forEach(function(err){
+          if(err.param == "slelectbootcamp"){
+					 %>
+					   <ul>
+            <font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+        <%}} );}; %>
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Student name</td>
+      <td>
+      	<input type="text" name="stu_name" class="form-control form-control-sm" >
+				<% if(errors){ %>
+        <% errors.forEach(function(err){
+          if(err.param == "stu_name"){
+					 %>
+					   <ul>
+            <font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+        <%}} );}; %>
+
+
+
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Student birth date</td>
+      <td>
+      	<input type="date" name="stu_birth" class="form-control form-control-sm" >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_birth"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
+
+
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Student nationality</td>
+      <td>
+				<select name="stu_nath" >
+      		<option value="">Select nationality</option>
+          <%result_country.forEach(function(res){%>
+          <option value="<%=res.num_code%>"> <%=res.nationality%> </option>
+          <%});%>
+        </select>
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_nath"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
+
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Phone #</td>
+      <td>
+      	<input type="text" name="stu_phon" class="form-control form-control-sm" >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_phon"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>E-mail</td>
+      <td>
+      	<input type="text" name="stu_email" class="form-control form-control-sm" >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_email"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Post code</td>
+      <td>
+
+      	<input type="text" name="zip" size="6" class="form-control"  >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "zip"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Address</td>
+      <td>
+      	<input type="text" name="stu_address" class="form-control form-control-sm" >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_address"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>City</td>
+      <td>
+      	<input type="text"  name="stu_city" class="form-control form-control-sm" >
+				<% if(errors){ %>
+				<% errors.forEach(function(err){
+					if(err.param == "stu_city"){
+					 %>
+						 <ul>
+						<font color='red'><li> <%= err.msg %> </li></font>
+						</ul>
+				<%}} );}; %>
+      	 </td>
+    </tr>
+<!--//  TR -->
+
+<!--  TR -->
+    <tr>
+      <td>Card id #</td>
+      <td>
+      	<input type="text"  name="stu_card" class="form-control form-control-sm" >
+				</td>
+    </tr>
+<!--//  TR -->
+
+
+<!--  TR -->
+    <tr>
+
+			<td  align="center">
+
+  	 </td>
+		 <td  align="center">
+			 <input type="submit" name="saveme" value="Save student"  class="btn btn-primary">
+		</td>
+    </tr>
+<!--//  TR -->
+  </tbody>
+</table>
+</form>
+				</div>
+
+
+
+		</div>
+	</main>
+
+
+
+	<footer>
+		<% include ./partials/footer %>
+	</footer>
+
+</body>
