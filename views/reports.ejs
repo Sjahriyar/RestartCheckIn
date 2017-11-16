@@ -14,39 +14,51 @@
     <% include ./partials/header %>
 </header>
 
-  <div class="header">
-      <span class="btn btn-secondary style="cursor:default""  data-toggle="dropdown0" >
-      <h3>Report</h3>
-      </span>
-  </div>
-  <div class="datetime">
-    <h4>
-      Date:______ Time:______
-      BootCamp:
+<!-- from here -->
 
-    </h4>
-  </div>
+<div class="container">
+  <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for names..">
+        <div class="wrapper">
+					<table class="table table-hover" id="acrylic">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Check-in Time</th>
+							</tr>
+						</thead>
+						<tbody >
+              <% for(i=0 ; i < data.length ; i++) {
+                var date = data[i].sign_in_date %>
+							<tr>
+								<td><%= data[i].stu_name %></td>
+								<td><%= date.toLocaleTimeString() %></td><%}%>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 
-  <div class="table1-place">
-    <div class="table1-container">
-      <table class="table table1-students">
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th>SignIn Time</th>
-          </tr>
-          <% for(i=0 ; i < data.length ; i++) {
-            var date = data[i].sign_in_date %>
-          <tr>
-            <td><%= data[i].stu_name %></td>
-            <td><%= date.toLocaleTimeString() %></td>
-          </tr>
-          <%}%>
-        </tbody>
-      </table>
-    </div>
-  </div>
+      <script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("acrylic");
+  tr = table.getElementsByTagName("tr");
 
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 <footer>
   <% include ./partials/footer %>
 </footer>
