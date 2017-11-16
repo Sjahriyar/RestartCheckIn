@@ -14,10 +14,22 @@ table{
 img:hover{
   filter: none;
   -webkit-filter: none;
+  width: 80px;
+  height: 80px;
 }
 img{
   filter: grayscale(1);
     -webkit-filter: grayscale(1);
+    height: 200px;
+    width: 200px;
+    -webkit-transition: all 1s ease;
+       -moz-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+            transition: all 1s ease;
+}
+
+.zoomin img:hover {
+
 }
 .photo{
 
