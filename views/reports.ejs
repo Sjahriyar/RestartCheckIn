@@ -23,7 +23,9 @@
 						<thead>
 							<tr>
 								<th>Name</th>
+
 								<th>Check-in Time</th>
+                <th>Date</th>
 							</tr>
 						</thead>
 						<tbody >
@@ -31,7 +33,8 @@
                 var date = data[i].sign_in_date %>
 							<tr>
 								<td><%= data[i].stu_name %></td>
-								<td><%= date.toLocaleTimeString() %></td><%}%>
+								<td><%= date.toLocaleTimeString() %></td>
+                <td><%= date.toDateString() %></td><%}%>
 							</tr>
 						</tbody>
 					</table>

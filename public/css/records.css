@@ -1,7 +1,7 @@
 
 table#acrylic {
             border-collapse: separate;
-            background: #fff;
+            background: rgba(189, 178, 178, 0.2);
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
             border-radius: 5px;
@@ -17,7 +17,10 @@ table#acrylic {
             -webkit-border-radius: 5px;
             border-radius: 5px;
         }
-
+        .table>thead>tr>th {
+            vertical-align: bottom;
+            border-bottom: 0px solid #000;
+        }
         #acrylic thead th {
             font-size: 16px;
             font-weight: 400;
@@ -48,43 +51,47 @@ table#acrylic {
         #acrylic tbody tr td {
             font-family: $font-family;
             font-weight: 600;
-            color: #5f6062;
+            color: #282828;
             font-size: 14px;
-            padding: 20px 20px 20px 20px;
-            border-bottom: 1px solid #e0e0e0;
-        }
+            padding: 6px 6px 6px 6px;
 
-        #acrylic tbody tr:nth-child(2n) {
-            background: #f0f3f5;
+        }
+        tbody tr:nth-child(1n):hover {
+            background: rgba(189, 178, 178, 0.1);
+        }
+        tbody tr:nth-child(2n) {
+            background: rgba(189, 178, 178, 0.3);
+        }
+        tbody tr:nth-child(2n):hover {
+            background: rgba(189, 178, 178, 0.1);
         }
 
         #acrylic tbody tr:last-child td {
             border-bottom: none;
         }
 
-        #acrylic tbody tr:last-child td:first-child {
+        tbody tr:last-child td:first-child {
             -moz-border-bottom-right-radius: 5px;
             -webkit-border-bottom-left-radius: 5px;
             border-bottom-left-radius: 5px;
         }
 
-        #acrylic tbody tr:last-child td:last-child {
+        tbody tr:last-child td:last-child {
             -moz-border-bottom-right-radius: 5px;
             -webkit-border-bottom-right-radius: 5px;
             border-bottom-right-radius: 5px;
         }
 
-        #acrylic tbody:hover > tr td {
+      tbody:hover > tr td {
             filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50);
             opacity: 0.5;
         }
-
-        #acrylic tbody:hover > tr:hover td {
+        tbody:hover > tr:hover td {
             text-shadow: none;
             color: #2d2d2d;
             filter: progid: DXImageTransform.Microsoft.Alpha(enabled=false);
-            opacity: 1;
-            transition: 0.2s all;
+            opacity: 3;
+            transition: 0.3s all;
         }
 
 .search
