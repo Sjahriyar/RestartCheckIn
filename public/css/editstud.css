@@ -31,3 +31,21 @@
   max-width: 30%;
   text-align: left;
 }
+
+.table-students {
+  color: black !important;
+}
+a:link {
+  color: red !important;
+}
+a {
+  color: #581e1e;
+}
+a:hover {
+  color: #ce4c3f;
+}
+.jqspan {
+  color: white;
+  display: table;
+  position: absolute;
+}
