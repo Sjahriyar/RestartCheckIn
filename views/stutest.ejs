@@ -3,12 +3,11 @@
   <head>
       <% include ./partials/head %>
   </head>
+  <link rel="stylesheet" href="./css/editstud.css">
   <body>
    <header>
        <% include ./partials/header %>
    </header>
-
-
 
    <div class="container boot">
 
@@ -21,7 +20,7 @@
                   <th>City</th>
                   <th>Phone</th>
                   <th>Edit</th>
-                  <th>Reports</th>
+                  <th>Delete</th>
                 </tr>
                 <% for(var i=0; i< data.length; i++) { %>
                 <tr>
@@ -30,8 +29,11 @@
                     <td><%= data[i].city %></td>
                     <td><%= data[i].phone_num %></td>
                     <td><a href="/seestuds/edit/<%= data[i].stu_id %>">Edit</a></td>
-                    <td><a href="/records/view/<%= data[i].stu_id %>">View</a></td>
-                  <% } %>
+
+                    <form method="POST" action="/seestuds/delete/<%= data[i].stu_id %>" >
+                    <td>  <input type="submit" name="deleteme" value="Delete"  class="btn btn-primary"/></td></form>
+                    <% } %>
+
                 </tr>
                </tbody>
              </table>

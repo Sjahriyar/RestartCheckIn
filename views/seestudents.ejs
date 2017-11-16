@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
+
   <head>
       <% include ./partials/head %>
   </head>
   <body>
    <header>
      <link rel="stylesheet" href="./css/editstud.css">
-      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
        <% include ./partials/header %>
    </header>
    <div class="container boot">
@@ -28,17 +26,9 @@
     </table>
       </div>
     </div>
-    <script>
-$("span.link").hover(
-  function() {
-    $( this ).append( $( "<span class='jqspan label label-danger'> View Students </span>" ) ).fadeIn("slow");
-  }, function() {
-    $( this ).find( "span.jqspan:last" ).remove();
-  }
-);
-</script>
+
+
   </body>
   <footer>
     <% include ./partials/footer %>
   </footer>
-</html>
