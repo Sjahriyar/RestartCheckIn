@@ -3,16 +3,16 @@
   <head>
       <% include ./partials/head %>
   </head>
-  <link rel="stylesheet" href="./css/editstud.css">
+  <link rel="stylesheet" href="/css/editstud.css">
   <body>
    <header>
        <% include ./partials/header %>
    </header>
 
-   <div class="container boot">
-
-      <div class="jumbotron row">
-             <table class="table table-students">
+   <div class="container">
+     <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for names..">
+           <div class="wrapper">
+            <table class="table table-hover" id="acrylic">
                <tbody>
                 <tr>
                   <th>Name</th>
@@ -21,6 +21,7 @@
                   <th>Phone</th>
                   <th>Edit</th>
                   <th>Delete</th>
+                  <th>Stop Student</th>
                 </tr>
                 <% for(var i=0; i< data.length; i++) { %>
                 <tr>
@@ -30,8 +31,10 @@
                     <td><%= data[i].phone_num %></td>
                     <td><a href="/seestuds/edit/<%= data[i].stu_id %>">Edit</a></td>
 
-                    <form method="POST" action="/seestuds/delete/<%= data[i].stu_id %>" >
-                    <td>  <input type="submit" name="deleteme" value="Delete"  class="btn btn-primary"/></td></form>
+                    <form method="POST" id="submitMe" action="/seestuds/delete/<%= data[i].stu_id %>" >
+                    <td> <a href="javascript:{}" class="delete" onclick="document.getElementById('submitMe').submit();">Delete</a></td></form>
+                    <form method="POST" id="submitMe" action="/seestuds/stop/<%= data[i].stu_id %>" >
+                    <td> <a href="javascript:{}" class="delete" onclick="document.getElementById('submitMe').submit();">Stop</a></td></form>
                     <% } %>
 
                 </tr>
@@ -40,6 +43,27 @@
            </div>
          </div>
       </div>
+      <script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("acrylic");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
   </body>
   <footer>
     <% include ./partials/footer %>

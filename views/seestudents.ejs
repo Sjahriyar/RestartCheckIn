@@ -5,12 +5,13 @@
   <body>
    <header>
      <link rel="stylesheet" href="./css/editstud.css">
+     <link href="css/records.css" rel="stylesheet" type="text/css">
        <% include ./partials/header %>
    </header>
-   <div class="container boot">
-
-   <div class="jumbotron row">
-    <table class="table table-students">
+   <div class="container">
+     <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for Bootcamp..">
+   <div class="wrapper">
+    <table class="table table-hover" id="acrylic">
       <tbody>
        <tr >
          <th class="table-students"> Bootcamp Name: </th>
@@ -19,8 +20,8 @@
        <% for(i=0 ; i < result_bootcamps.length ; i++){ var date = result_bootcamps[i].start_date %>
        <tr>
            <td> <a style="text-decoration:none" href="/seestuds/stu/<%= result_bootcamps[i].bootcamp_id %>">
-            <span class="link"> <strong> <%= result_bootcamps[i].bootcamp_name %></strong> </span> </a></td>
-           <td><span>    <%= date.toDateString() %></span></td>  <% } %>
+            <span class="link"> <strong class="black"> <%= result_bootcamps[i].bootcamp_name %></strong> </span> </a></td>
+           <td><%= date.toDateString() %></td>  <% } %>
        </tr>
       </tbody>
     </table>
@@ -29,6 +30,27 @@
 
 
   </body>
+  <script>
+function myFunction() {
+var input, filter, table, tr, td, i;
+input = document.getElementById("myInput");
+filter = input.value.toUpperCase();
+table = document.getElementById("acrylic");
+tr = table.getElementsByTagName("tr");
+
+// Loop through all table rows, and hide those who don't match the search query
+for (i = 0; i < tr.length; i++) {
+td = tr[i].getElementsByTagName("td")[0];
+if (td) {
+  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+    tr[i].style.display = "";
+  } else {
+    tr[i].style.display = "none";
+  }
+}
+}
+}
+</script>
   <footer>
     <% include ./partials/footer %>
   </footer>

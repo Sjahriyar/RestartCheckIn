@@ -12,18 +12,22 @@
 		<% include ./partials/header %>
 	</header
   <main>
-		<div class="container boot">
-				<div class="jumbotron" align="center">
-					<div class="container-table"><% for (i=0; i< result.length; i++) { %>
-					<h3>Edit <%=result.stu_name%> Information%></h3>
+		<div class="container">
+			<% for (i=0; i< result.length; i++) { %>
+		<h3>Edit <%=result.stu_name%> Information%></h3>
+			<!-- <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for names.."> -->
+						<div class="wrapper">
+
+
 <form name="f1" method="POST" action="/seestuds/edit/<%= result[i].stu_id %>" >
-					<table class="table table-hover">
+					<table class="table table-hover" id="acrylic">
   <tbody>
 <!--  TR -->
     <tr>
       <td>Name</td>
       <td>
-      	<input type="text" name="stu_name" class="form-control form-control-sm" value="<%=result[i].stu_name %>" >
+      	<input type="text" name="stu_name" class="form-control form-control-sm" value="<%=result[i].stu_name %>" oninvalid="this.setCustomValidity('Name is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -32,7 +36,8 @@
     <tr>
       <td>Birth date</td>
       <td>
-      	<input type="date" name="stu_birth" class="form-control form-control-sm"  value="<%=result[i].stu_birth_date %>">
+      	<input type="date" name="stu_birth" class="form-control form-control-sm"  value="<%=result[i].stu_birth_date %>" oninvalid="this.setCustomValidity('date is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -56,7 +61,8 @@
     <tr>
       <td>Phone</td>
       <td>
-      	<input type="text" name="stu_phon" class="form-control form-control-sm" value="<%=result[i].phone_num %>">
+      	<input type="text" name="stu_phon" class="form-control form-control-sm" value="<%=result[i].phone_num %>" oninvalid="this.setCustomValidity('Phone is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -65,7 +71,8 @@
     <tr>
       <td>E-mail</td>
       <td>
-      	<input type="text" name="stu_email" class="form-control form-control-sm" value="<%=result[i].email %>">
+      	<input type="text" name="stu_email" class="form-control form-control-sm" value="<%=result[i].email %>" oninvalid="this.setCustomValidity('Email is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -75,7 +82,8 @@
       <td>Post code</td>
       <td>
 
-      	<input type="text" name="zip" size="6" class="form-control" value="<%=result[i].postcode %>" >
+      	<input type="text" name="zip" size="6" class="form-control" value="<%=result[i].postcode %>" oninvalid="this.setCustomValidity('Post is required')"
+oninput="setCustomValidity('')"/ >
       	 </td>
     </tr>
 <!--//  TR -->
@@ -84,7 +92,8 @@
     <tr>
       <td>Address</td>
       <td>
-      	<input type="text" name="stu_address" class="form-control form-control-sm" value="<%=result[i].address %>">
+      	<input type="text" name="stu_address" class="form-control form-control-sm" value="<%=result[i].address %>" oninvalid="this.setCustomValidity('address is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -93,7 +102,8 @@
     <tr>
       <td>City</td>
       <td>
-      	<input type="text" name="stu_city" class="form-control form-control-sm" value="<%=result[i].city %>">
+      	<input type="text" name="stu_city" class="form-control form-control-sm" value="<%=result[i].city %>" oninvalid="this.setCustomValidity('City is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -102,7 +112,8 @@
     <tr>
       <td>Card id #</td>
       <td>
-      	<input type="text" name="stu_card" class="form-control form-control-sm"  value="<%=result[i].card_id %>" >
+      	<input type="text" name="stu_card" class="form-control form-control-sm"  value="<%=result[i].card_id %>"  oninvalid="this.setCustomValidity('id is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->

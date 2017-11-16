@@ -35,17 +35,20 @@
 .table-students {
   color: black !important;
 }
-a:link {
-  color: red !important;
-}
-a {
-  color: #581e1e;
-}
-a:hover {
-  color: #ce4c3f;
-}
+
+
 .jqspan {
   color: white;
   display: table;
   position: absolute;
+}
+a.delete:hover {
+  color: red;
+  background-color: #e8c1c1 ;
+}
+a.delete {
+  color: #ce4c3f;
+}
+.black {
+  color: black;
 }
