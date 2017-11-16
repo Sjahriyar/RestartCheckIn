@@ -1,20 +1,9 @@
 const express = require('express')
-const session = require('express-session')
 const router = express.Router()
-
-var expressValidator = require('express-validator');
-var mysql = require('mysql');
-var dateFormat = require('dateformat');
 var now = new Date();
 var rp = require('request-promise');
 var Slack = require('slack-node');
-
-
-// var express = require('express')
 var request = require('request')
-var bodyParser = require('body-parser')
-var app2 = express()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 
@@ -143,11 +132,6 @@ datenow2=dateFormat(now, "yyyy-mm-dd HH:mm:ss");
    });
    // }
    //Logic sign_alarm
-
-
-
-
-
   });
 }
 

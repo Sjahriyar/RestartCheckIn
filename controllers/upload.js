@@ -7,7 +7,6 @@ const router = express.Router()
 var mysql = require('mysql');
 
 router.get('/:id', (req,res)=>{
-console.log("AAAAAAAAAa      "+req.params.id);
   res.render('upload',{id: req.params.id})
 
 });
@@ -27,7 +26,7 @@ router.get('/studentsAfterrImg', (req,res)=>{
 
 
 
-router.post('/upload/:id', (req,res)=>{
+router.post('/upload', (req,res)=>{
 
   req.getConnection(function(err, connection) {
     if (err) return next(err);
@@ -44,7 +43,6 @@ router.post('/upload/:id', (req,res)=>{
         var newpath = './public/uploads/' + files.upload.name;
 
 //Update record
-// console.log("xxxxxxxxxAAAZZZ   "+req.params.id);
 var sql = "update  bootcamp_students set stu_photo_name='" +files.upload.name+ "' where stu_id=" +req.params.id+ " ";
 connection.query(sql, function (err, result) {
  if (err) throw err;
@@ -60,9 +58,7 @@ connection.query(sql, function (err, result) {
       });
 
     });
-// console.log("A0   "+me);
     myPro.then( me => {
-       console.log("A1   "+me);
        req.session.phname=me;
       //
       res.end();

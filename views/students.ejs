@@ -5,7 +5,7 @@
 	<% include ./partials/head %>
 
 </head>
-<body class="container_main" >
+<body class="container" >
 
 	<header>
 		<% include ./partials/header %>
@@ -45,14 +45,6 @@
           <option value="<%=res.bootcamp_id%>"> <%=res.bootcamp_name%> </option>
           <%});%>
         </select>
-				<% if(errors){ %>
-        <% errors.forEach(function(err){
-          if(err.param == "slelectbootcamp"){
-					 %>
-					   <ul>
-            <font color='red'><li> <%= err.msg %> </li></font>
-						</ul>
-        <%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -61,18 +53,8 @@
     <tr>
       <td>Student name</td>
       <td>
-      	<input type="text" name="stu_name" class="form-control form-control-sm" >
-				<% if(errors){ %>
-        <% errors.forEach(function(err){
-          if(err.param == "stu_name"){
-					 %>
-					   <ul>
-            <font color='red'><li> <%= err.msg %> </li></font>
-						</ul>
-        <%}} );}; %>
-
-
-
+      	<input type="text" name="stu_name" class="form-control form-control-sm" required="" oninvalid="this.setCustomValidity('Name is required')"
+oninput="setCustomValidity('')">
       	 </td>
     </tr>
 <!--//  TR -->
@@ -82,16 +64,6 @@
       <td>Student birth date</td>
       <td>
       	<input type="date" name="stu_birth" class="form-control form-control-sm" >
-				<% if(errors){ %>
-				<% errors.forEach(function(err){
-					if(err.param == "stu_birth"){
-					 %>
-						 <ul>
-						<font color='red'><li> <%= err.msg %> </li></font>
-						</ul>
-				<%}} );}; %>
-
-
       	 </td>
     </tr>
 <!--//  TR -->
@@ -106,15 +78,6 @@
           <option value="<%=res.num_code%>"> <%=res.nationality%> </option>
           <%});%>
         </select>
-				<% if(errors){ %>
-				<% errors.forEach(function(err){
-					if(err.param == "stu_nath"){
-					 %>
-						 <ul>
-						<font color='red'><li> <%= err.msg %> </li></font>
-						</ul>
-				<%}} );}; %>
-
       	 </td>
     </tr>
 <!--//  TR -->
@@ -124,14 +87,6 @@
       <td>Phone #</td>
       <td>
       	<input type="text" name="stu_phon" class="form-control form-control-sm" >
-				<% if(errors){ %>
-				<% errors.forEach(function(err){
-					if(err.param == "stu_phon"){
-					 %>
-						 <ul>
-						<font color='red'><li> <%= err.msg %> </li></font>
-						</ul>
-				<%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -140,15 +95,8 @@
     <tr>
       <td>E-mail</td>
       <td>
-      	<input type="text" name="stu_email" class="form-control form-control-sm" >
-				<% if(errors){ %>
-				<% errors.forEach(function(err){
-					if(err.param == "stu_email"){
-					 %>
-						 <ul>
-						<font color='red'><li> <%= err.msg %> </li></font>
-						</ul>
-				<%}} );}; %>
+      	<input type="text" name="stu_email" class="form-control form-control-sm" required="" oninvalid="this.setCustomValidity('Name is required')"
+oninput="setCustomValidity('')">
       	 </td>
     </tr>
 <!--//  TR -->
@@ -159,14 +107,6 @@
       <td>
 
       	<input type="text" name="zip" size="6" class="form-control"  >
-				<% if(errors){ %>
-				<% errors.forEach(function(err){
-					if(err.param == "zip"){
-					 %>
-						 <ul>
-						<font color='red'><li> <%= err.msg %> </li></font>
-						</ul>
-				<%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -176,14 +116,6 @@
       <td>Address</td>
       <td>
       	<input type="text" name="stu_address" class="form-control form-control-sm" >
-				<% if(errors){ %>
-				<% errors.forEach(function(err){
-					if(err.param == "stu_address"){
-					 %>
-						 <ul>
-						<font color='red'><li> <%= err.msg %> </li></font>
-						</ul>
-				<%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -193,14 +125,6 @@
       <td>City</td>
       <td>
       	<input type="text"  name="stu_city" class="form-control form-control-sm" >
-				<% if(errors){ %>
-				<% errors.forEach(function(err){
-					if(err.param == "stu_city"){
-					 %>
-						 <ul>
-						<font color='red'><li> <%= err.msg %> </li></font>
-						</ul>
-				<%}} );}; %>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -209,11 +133,19 @@
     <tr>
       <td>Card id #</td>
       <td>
-      	<input type="text"  name="stu_card" class="form-control form-control-sm" >
+      	<input type="text"  name="stu_card" class="form-control form-control-sm" required="" oninvalid="this.setCustomValidity('Card number is required')"
+oninput="setCustomValidity('')">
 				</td>
     </tr>
 <!--//  TR -->
-
+<tr>
+	<td>
+		<form action="/upload/upload" enctype="multipart/form-data" method="post">
+			<input type="file" name="upload">
+			<input type="submit" value="Upload">
+		</form>
+	</td>
+</tr>
 
 <!--  TR -->
     <tr>
