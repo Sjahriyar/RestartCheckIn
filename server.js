@@ -46,7 +46,7 @@ var mysql = require('mysql'), // node-mysql module
     dbOptions = {
       host: 'localhost',
       user: 'root',
-      password: 'root',
+      password: '',
       port: 3306,
       database: 'checking_system'
     }
