@@ -14,8 +14,9 @@
       <div class="navbar-header">
 
 
-  <a class="dropdown navbar-brand dropdown-toggle" data-toggle="dropdown">Welcome <%= user_session %>
-  </a>
+        <a  href="#">
+            <span class="navbar-brand">Welcome</span>
+        </a>
   <ul class="dropdown-menu">
   <li><a href="/profile/1">Edit your profile</a></li>
   </ul>
@@ -38,6 +39,13 @@
         <input style="opacity:0;" type="text" name="cardid" value="">
       </form>
     <p id="today"></p>
+    <p id="welcome_msg"><%= msg[0].check_message %></p>
+      <%if (msg[0].check_message)  { %>
+      <audio src="<%= msg[0].sound %>.m4a" autoplay>
+      <p>If you are reading this, it is because your browser does not support the audio element.     </p>
+    </audio> <% } %>
+
+
       <section>
   <!--for demo wrap-->
   <h1 class="liveh1">Live Check-In</h1>

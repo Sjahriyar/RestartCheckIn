@@ -129,3 +129,62 @@ table#acrylic {
 					.search:-ms-input-placeholder {
 					color: #d2bebe !important;
 					}
+
+
+  .start_date
+    {
+      display: inline;
+        margin-top: 30px;
+        margin-right: 20px;
+        color: #af9191;
+        background: transparent;
+        border: none;
+        border-bottom: 1px dashed #d2bebe;
+        width: 150px;
+        outline: none;
+        padding: 0px 0px 0px 0px;
+        font-style: italic;
+    }
+          .start_date:hover
+          {
+              border-bottom: 1px dashed white;
+          }
+.start_date::-webkit-input-placeholder {
+        color: #d2bebe !important;
+        }
+
+        .start_date:-moz-placeholder { /* Firefox 18- */
+        color: #d2bebe !important;
+        }
+
+        .start_date::-moz-placeholder {  /* Firefox 19+ */
+        color: #d2bebe !important;
+        }
+
+        .start_date:-ms-input-placeholder {
+      color: #d2bebe !important;
+        }
+        .p_date{
+          margin-left: 30px;
+          display: inline;
+          color: white;
+        }
+.options{
+
+  display: inline-block;
+}
+.filter{
+  background-color: rgb(34, 34, 34);
+  width: 80px;
+  padding: 4px 4px 4px 4px;
+  border-color: rgb(34, 34, 34);
+  color: #dedede;
+}
+.filter:hover{
+  color: white;
+}
+select{
+  background:#222222;
+  color: #dedede;
+  
+}
