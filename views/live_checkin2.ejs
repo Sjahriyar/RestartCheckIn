@@ -39,6 +39,11 @@
 
     <div class="container_shahriar">
     <p id="today"></p>
+    <p id="welcome_msg"><%= msg[0].check_message %></p>
+      <%if (msg[0].check_message)  { %>
+      <audio src="<%= msg[0].sound %>.m4a" autoplay>
+      <p>If you are reading this, it is because your browser does not support the audio element.     </p>
+    </audio> <% } %>
       <section>
   <!--for demo wrap-->
   <h1 class="liveh1">Live Check-In</h1>

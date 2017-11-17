@@ -1,10 +1,21 @@
 const express = require('express')
+const session = require('express-session')
 const router = express.Router()
+
+var expressValidator = require('express-validator');
+var mysql = require('mysql');
+var dateFormat = require('dateformat');
 var now = new Date();
 var rp = require('request-promise');
 var Slack = require('slack-node');
+
+
+// var express = require('express')
 var request = require('request')
-var dateFormat = require('dateformat');
+var bodyParser = require('body-parser')
+var app2 = express()
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 
 
 router.get('/', (req,res)=>{
@@ -132,14 +143,8 @@ datenow2=dateFormat(now, "yyyy-mm-dd HH:mm:ss");
    });
    // }
    //Logic sign_alarm
-
-
-
-
-
   });
 }
-
          });
        }
          });
@@ -182,7 +187,7 @@ router.post('/check', (req,res)=>{
 //Alarm_message
 if(result == ''){
   alarm_message="Sorry your id is not registerd in our system ... Please do contact with the administrator";
-        var sql = "update check_ok set check_ok=2 , check_message='" +alarm_message+ "'";
+        var sql = "update check_ok set check_ok=2 , check_message='" +alarm_message+ "' ,sound='3'";
                         connection.query(sql, function (err, resultx) {
                           if (err) throw err;
         });
@@ -206,7 +211,7 @@ if(result == ''){
                       //Alarm_message
                       if(result3 != ''){
                         alarm_message="You are already checked in today ... Thank you";
-                              var sql = "update check_ok set check_ok=2 , check_message='" +alarm_message+ "'";
+                              var sql = "update check_ok set check_ok=2 , check_message='" +alarm_message+ "' ,sound='2' ";
                               connection.query(sql, function (err, resultx) {
                               if (err) throw err;
                               });
@@ -223,11 +228,14 @@ if ((dateFormat(datenow2, "HH") >=9 && dateFormat(datenow2, "mm") >0) || (dateFo
 {
  sign_alarm=1;
 }
+sound_file="1";
                         if(sign_alarm == 0){
+
                         alarm_message="Thank you for check in "+result[0].stu_name+" Happy coading";
                       }
                       else {
                         alarm_message="Thank you for check in "+result[0].stu_name+" Happy coading ... Notice there is a notification message sent now to the slack ... Please check it";
+sound_file="4";
                       }
 
 // Check if there is an exexuse condition
@@ -235,6 +243,7 @@ connection.query("SELECT * FROM execuse_condithion where stu_id=" +result[0].stu
      if (err) throw err;
                         if (rsx!='')
                         {
+                          sound_file="1";
                          sign_alarm=0;
                          alarm_message="Thank you for check in "+result[0].stu_name+" Happy coading";
                          connection.query("update sign_in_tabel set sign_alarm=" + sign_alarm + ",check_message='" + alarm_message + "' where stu_id=" +result[0].stu_id+ " and date(sign_in_date)= '" +  dateFormat(now, 'yyyy-mm-dd')  + "' ", function (err, result3, fields) {
@@ -250,7 +259,8 @@ var sql = "INSERT INTO sign_in_tabel (stu_id,bootcamp_id,card_id,sign_in_date,si
 
                   //Alarm_message
                   if(result0 != ''){
-                      var sql = "update check_ok set check_ok=1 , check_message='" +alarm_message+ "'";
+
+                      var sql = "update check_ok set check_ok=1 , check_message='" +alarm_message+ "', sound='" +sound_file+ "'";
                       connection.query(sql, function (err, resultx) {
                       if (err) throw err;
                           });
@@ -266,6 +276,8 @@ connection.query("SELECT * FROM sign_in_tabel where stu_id=" +result[0].stu_id+ 
      if(result4 != ''){
 i=0;
 j=0;
+alarm_message_slack="";
+
   connection.query("SELECT * FROM sign_in_tabel where stu_id=" +result[0].stu_id+ " and sign_id< " +result4[0].sign_id+ " order by sign_id desc", function (err, rc, fields) {
        if (err) throw err;
        if(rc != ''){
@@ -282,19 +294,36 @@ j=0;
              return;
            }
   });
+  if(i==0)
+  {
+    alarm_message_slack="Notice "+result[0].stu_name+" : You are in cool down period ... *** Restart Network Notification *** "
+i=1;
+  }
+  if(i==1)  alarm_message_slack="Notice "+result[0].stu_name+" : Please wash dishes ... *** Restart Network Notification *** "
 
-if(i==0)  alarm_message_slack="Notice "+result[0].stu_name+" : You are in cool down period ... *** Restart Network Notification *** "
+  if(i==2)  alarm_message_slack="Notice "+result[0].stu_name+" : Sorry to tell you that you are now out from the program ... *** Restart Network Notification *** "
 
-if(i==1)  alarm_message_slack="Notice "+result[0].stu_name+" : Please wash dishes ... *** Restart Network Notification *** "
 
-if(i==2)  alarm_message_slack="Notice "+result[0].stu_name+" : Sorry to tell you that you are now out from the program ... *** Restart Network Notification *** "
 
+             connection.query("update sign_in_tabel set sign_alarm=" + i + ",check_message='" + alarm_message_slack + "', sent_slack=1 where stu_id=" +result[0].stu_id+ " and date(sign_in_date)= '" +  dateFormat(now, 'yyyy-mm-dd')  + "' ", function (err, result3, fields) {
+                  if (err) throw err;
+              });
+}
+
+else{
+if(i==0)  {
+  alarm_message_slack="Notice "+result[0].stu_name+" : You are in cool down period ... *** Restart Network Notification *** "
+i=1;
+}
            connection.query("update sign_in_tabel set sign_alarm=" + i + ",check_message='" + alarm_message_slack + "', sent_slack=1 where stu_id=" +result[0].stu_id+ " and date(sign_in_date)= '" +  dateFormat(now, 'yyyy-mm-dd')  + "' ", function (err, result3, fields) {
                 if (err) throw err;
             });
+}
 
 // Send slack Alarm_message
 webhookUri =result2[0].slack_link;
+// console.log(alarm_message_slack);
+
 slack = new Slack();
 slack.setWebhook(webhookUri);
 
@@ -307,9 +336,9 @@ slack.webhook({
 });
 
 // Send slack Alarm_message
-}
 
 });
+
 
 }
 });
