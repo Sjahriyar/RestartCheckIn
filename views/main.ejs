@@ -3,10 +3,12 @@
 <html lang="en">
 <head>
 	<% include ./partials/head %>
-<meta http-equiv="refresh" content="5000">
+	<%if (refresh_endtime>=0 ){%>
+<meta http-equiv="refresh" content="<%=refresh_endtime*60%>">
+  <%}%>
+
 </head>
 <body class="container_main" onload="document.f1.cardid.focus();">
-
 	<header>
 		<% include ./partials/header %>
 	</header>
@@ -18,7 +20,7 @@
 
 				<div class="jumbotron" align="center">
 
-<h3>Check in</h3>
+<h3>Check in <%=refresh_endtime%></h3>
 <form name="f1" method="POST" action="../main/check" >
 <table class="table table-hover">
 
