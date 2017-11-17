@@ -42,9 +42,8 @@
   display: table;
   position: absolute;
 }
-a.delete:hover {
-  color: red;
-  background-color: #e8c1c1 ;
+.centering{
+text-align: center;
 }
 a.delete {
   color: #ce4c3f;

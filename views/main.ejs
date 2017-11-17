@@ -4,6 +4,7 @@
 <head>
 	<% include ./partials/head %>
 	<%if (refresh_endtime>=0 ){%>
+
 <meta http-equiv="refresh" content="<%=refresh_endtime*60%>">
   <%}%>
 
@@ -12,10 +13,11 @@
 	<header>
 		<% include ./partials/header %>
 	</header>
+	<div class="container">
 
 
   <main>
-		<div class="row">
+		<div class="wrapper">
 
 
 				<div class="jumbotron" align="center">
@@ -44,7 +46,7 @@
 
 </td>
 <td  align="center">
-<input type="submit" name="Check" value="Save" id="save" class="btn btn-primary">
+<input type="submit" name="Check" value="Save" id="save" class="btn btn-warning">
 </td>
 </tr>
 <!--//  TR -->
@@ -52,6 +54,7 @@
 </table>
 </form>
 				</div>
+			</div>
 
 
 

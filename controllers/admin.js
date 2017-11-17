@@ -9,6 +9,7 @@ router.get('/', (req,res)=>{
   res.render('index')
 })
 
+
 //Render Admin Profile Edit
 router.get('/profile/:id',(req,res)=>{
   if (!req.session.admin) {

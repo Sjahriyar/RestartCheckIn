@@ -331,6 +331,8 @@ slack.webhook({
   res.render('main',{refresh_endtime: refresh_endtime})
 res.end();
 });
-
+router.get('/about', (req,res)=>{
+  res.render('about')
+})
 
 module.exports = router

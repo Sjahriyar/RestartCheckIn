@@ -48,7 +48,7 @@ router.post('/edit/:id', (req,res)=>{
   req.getConnection(function(err, connection) {
     if (err) return next(err);
     if(req.body.updateme != ''){
-    let sql = `UPDATE bootcamp_students SET stu_name= '${req.body.stu_name}', stu_birth_date = '${req.body.stu_birth}'  WHERE stu_id = ${req.params.id}`
+    let sql = `UPDATE bootcamp_students SET stu_name= '${req.body.stu_name}'  WHERE stu_id = ${req.params.id}`
      connection.query(sql, function (err, result) {
     if (err) throw err;
     connection.query("SELECT * FROM bootcamp_name", function (err, result, fields) {
