@@ -9,10 +9,10 @@
        <% include ./partials/header %>
    </header>
 
-   <div class="container">
-     <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for names..">
-           <div class="wrapper">
-            <table class="table table-hover" id="acrylic">
+   <div class="container boot">
+      <div class="jumbotron row">
+        <%- messages('messages', locals) %>
+             <table class="table table-students">
                <tbody>
                 <tr>
                   <th>Name</th>

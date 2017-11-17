@@ -26,7 +26,7 @@ router.get('/studentsAfterrImg', (req,res)=>{
 
 
 
-router.post('/upload', (req,res)=>{
+router.post('/upload/:id', (req,res)=>{
 
   req.getConnection(function(err, connection) {
     if (err) return next(err);

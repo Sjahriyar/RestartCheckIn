@@ -55,14 +55,17 @@ router.post('/edit/:id', (req,res)=>{
          if (err) throw err;
     connection.query("SELECT * FROM countries", function (err2, result_country, fields) {
               if (err2) throw err2;
-   req.flash('info', `edit done`)
-   res.render('rfid');
+    req.flash('info', `Student is Edited!`)
+   res.redirect('/seestuds/edit/'+req.params.id);
+
              });
           });
         })
       }
      });
   });
+
+  //Delete Student
   router.post('/delete/:id', (req,res)=>{
     req.getConnection(function(err, connection) {
       if (err) return next(err);

@@ -132,6 +132,11 @@ datenow2=dateFormat(now, "yyyy-mm-dd HH:mm:ss");
    });
    // }
    //Logic sign_alarm
+
+
+
+
+
   });
 }
 
