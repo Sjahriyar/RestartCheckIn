@@ -14,6 +14,7 @@
   <main>
 		<div class="container boot">
 				<div class="jumbotron" align="center">
+					<%- messages('messages', locals) %>
 					<div class="container-table"><% for (i=0; i< result.length; i++) { %>
 					<h3>Edit <%=result.stu_name%> Information%></h3>
 <form name="f1" method="POST" action="/seestuds/edit/<%= result[i].stu_id %>" >

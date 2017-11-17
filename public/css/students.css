@@ -1,0 +1,89 @@
+
+table#acrylic {
+            border-collapse: separate;
+            background: rgba(189, 178, 178, 0.9);
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            margin: 20px auto;
+            -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            width: 550px;
+        }
+.input_fields{
+  width: 350px;
+}
+.btn_stu{
+  background-color: #515151;
+  padding: 7px 7px 7px 7px;
+  color: #d1d1d1;
+  border-radius: 5px;
+  border-color: #515151;
+  margin-left: 210px;
+}
+.btn_stu:hover{
+
+  color: #ededed;
+}
+.alink{
+  color: #e2ac48;
+}
+.message_success{
+  color: white;
+  text-align: center;
+}
+        #acrylic thead {
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .table>thead>tr>th {
+            vertical-align: bottom;
+            border-bottom: 0px solid #000;
+            padding-left: 200px;
+
+        }
+        #acrylic thead th {
+            font-size: 16px;
+            font-weight: 400;
+            color: #fff;
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+            text-align: left;
+            padding: 10px;
+            background-size: 100%;
+            background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgb(34, 34, 34)), color-stop(100%, rgb(34, 34, 34) ));
+            background-image: -moz-linear-gradient(rgb(34, 34, 34), rgb(34, 34, 34));
+            background-image: -webkit-linear-gradient(rgb(34, 34, 34), rgb(34, 34, 34));
+            background-image: linear-gradient(rgb(34, 34, 34), rgb(34, 34, 34));
+
+        }
+
+        #acrylic thead th:first-child {
+            -moz-border-top-right-radius: 5px;
+            -webkit-border-top-left-radius: 5px;
+            border-top-left-radius: 5px;
+        }
+
+        #acrylic thead th:last-child {
+            -moz-border-top-right-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+        #acrylic tbody tr td {
+            font-family: $font-family;
+            font-weight: 600;
+            color: #282828;
+            font-size: 14px;
+            padding: 6px 6px 6px 6px;
+
+        }
+
+        tbody tr:nth-child(1n):hover {
+            background: rgba(189, 178, 178, 0.0);
+        }
+        tbody tr:nth-child(2n) {
+            background: rgba(189, 178, 178);
+        }

@@ -67,7 +67,8 @@ var errors = req.validationErrors();
 
       // console.log(errors);
       // res.end();
-      res.render('students',{
+      req.flash('info','Student successfully added.')
+      res.redirect('back',{
           errors: errors,
           message: '',
           result: result,
