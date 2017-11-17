@@ -4,7 +4,7 @@ var now = new Date();
 var rp = require('request-promise');
 var Slack = require('slack-node');
 var request = require('request')
-var dateFormat = require('dateformat')
+var dateFormat = require('dateformat');
 
 
 router.get('/', (req,res)=>{
