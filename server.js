@@ -8,7 +8,7 @@ const express = require('express'),
       expressValidator = require('express-validator'),
       formidable = require('formidable'),
       http = require('http'),
-      
+
       fs = require('fs'),
       app = express();
 
@@ -47,7 +47,7 @@ var mysql = require('mysql'), // node-mysql module
     dbOptions = {
       host: 'localhost',
       user: 'root',
-      password: '',
+      password: 'root',
       port: 3306,
       database: 'checking_system'
     }

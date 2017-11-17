@@ -26,6 +26,9 @@ router.get('/live2',(req,res)=>{
          if (err) throw err;
          connection.query(`SELECT * FROM check_ok`, function (err, msg, fields) {
          res.render('live_checkin2', {grab: result, msg: msg})
+         connection.query(`UPDATE check_ok SET check_message = '',sound=''`, function (err, msg, fields) {
+              if (err) throw err;
+            })
        })
       })
     })
