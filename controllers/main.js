@@ -1,20 +1,10 @@
 const express = require('express')
 const session = require('express-session')
 const router = express.Router()
-
-var expressValidator = require('express-validator');
-var mysql = require('mysql');
 var dateFormat = require('dateformat');
 var now = new Date();
 var rp = require('request-promise');
 var Slack = require('slack-node');
-
-
-// var express = require('express')
-var request = require('request')
-var bodyParser = require('body-parser')
-var app2 = express()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 
@@ -35,7 +25,7 @@ if(9-current_hour==0 && 30-current_min>=0)
 refresh_endtime=   30-current_min
 }
   //XX Calculate auto refresh time to send auto message for students after 9:00 am
-  res.render('main',{refresh_endtime: refresh_endtime})
+  res.render('live_checkin',{refresh_endtime: refresh_endtime})
 });
 
 
@@ -158,7 +148,7 @@ datenow2=dateFormat(now, "yyyy-mm-dd HH:mm:ss");
 
 
   //XX Calculate auto refresh time to send auto message for students after 9:00 am
-  res.render('main',{refresh_endtime: refresh_endtime})
+  res.render('live_checkin',{refresh_endtime: refresh_endtime})
 });
 
 
@@ -186,7 +176,7 @@ router.post('/check', (req,res)=>{
         if (err) throw err;
 //Alarm_message
 if(result == ''){
-  alarm_message="Sorry your id is not registerd in our system ... Please do contact with the administrator";
+  alarm_message="Sorry your id is not registerd in our system ... Please contact administrators";
         var sql = "update check_ok set check_ok=2 , check_message='" +alarm_message+ "' ,sound='3'";
                         connection.query(sql, function (err, resultx) {
                           if (err) throw err;
@@ -231,10 +221,10 @@ if ((dateFormat(datenow2, "HH") >=9 && dateFormat(datenow2, "mm") >0) || (dateFo
 sound_file="1";
                         if(sign_alarm == 0){
 
-                        alarm_message="Thank you for check in "+result[0].stu_name+" Happy coading";
+                        alarm_message="Thank you for check in "+result[0].stu_name+" Happy coding";
                       }
                       else {
-                        alarm_message="Thank you for check in "+result[0].stu_name+" Happy coading ... Notice there is a notification message sent now to the slack ... Please check it";
+                        alarm_message="Thank you for check in "+result[0].stu_name+" Notice there is a notification message sent now to your slack ... Please check it! And  ...HAPPY CODING... ";
 sound_file="4";
                       }
 
@@ -245,7 +235,7 @@ connection.query("SELECT * FROM execuse_condithion where stu_id=" +result[0].stu
                         {
                           sound_file="1";
                          sign_alarm=0;
-                         alarm_message="Thank you for check in "+result[0].stu_name+" Happy coading";
+                         alarm_message="Thank you for check in "+result[0].stu_name+" Happy coding";
                          connection.query("update sign_in_tabel set sign_alarm=" + sign_alarm + ",check_message='" + alarm_message + "' where stu_id=" +result[0].stu_id+ " and date(sign_in_date)= '" +  dateFormat(now, 'yyyy-mm-dd')  + "' ", function (err, result3, fields) {
                               if (err) throw err;
                           });
@@ -357,11 +347,9 @@ slack.webhook({
 }
 });
 });
-  res.render('main',{refresh_endtime: refresh_endtime})
+res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+res.redirect('back');
 res.end();
 });
-router.get('/about', (req,res)=>{
-  res.render('about')
-})
 
 module.exports = router

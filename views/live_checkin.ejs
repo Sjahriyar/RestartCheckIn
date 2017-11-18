@@ -7,7 +7,10 @@
 </head>
   <body>
 <header>
-
+<% if (user_session) { %>
+  <% include ./partials/header %>
+<% }
+ else { %>
   <nav class="navbar navbar-inverse bg-inverse" role="navigation">
   <div class="container-fluid">
 
@@ -31,7 +34,7 @@
 
   </div>
   </nav>
-
+<% } %>
 </header>
 
     <div class="container_shahriar">
@@ -77,11 +80,10 @@
 
 </div>
     </div>
-<script>
-setTimeout(function() {
-  location.reload();
-}, 10000);
-</script>
+    <form name="f1" method="POST" action="/main/check" >
+      <input style="opacity: 0;" type="password" name="cardid" class="form-control form-control-sm" autofocus >
+      <input style="opacity: 0;" type="submit" name="Check" value="Save">
+      </form>
     <footer>
       <% include ./partials/footer %>
     </footer>

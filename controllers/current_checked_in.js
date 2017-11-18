@@ -34,20 +34,4 @@ router.get('/live2',(req,res)=>{
     })
 })
 
-router.get('/rfid',(req,res)=>{
-  res.render('rfid')
-})
-router.post('/rfid', (req,res)=>{
-  req.getConnection(function(err, connection) {
-    if (err) return next(err);
-
-    var post  = {card_id: req.body.rfid};
-    var query = connection.query('INSERT INTO sign_in_tabel SET ?', post, function (error, results, fields) {
-    if (error) throw error;
-    res.redirect('back')
-      })
-
-    });
-})
-
 module.exports = router
