@@ -1,12 +1,12 @@
 .table-place {
   height: auto;
-  width: 70%;
+  width: 80%;
   margin-top: 30px;
 }
 
 .container-table {
   align-content: center;
-  max-width: 70%;
+  max-width: 80%;
   height: auto;
   padding-right: 15px;
   padding-left: 15px;
@@ -46,8 +46,15 @@
 text-align: center;
 }
 a.delete {
-  color: #ce4c3f;
+  color: #86372f;
+}
+a.delete:hover {
+  text-decoration: none;
+  color: #a91506;
 }
 .black {
   color: black;
+}
+.edit_link:hover{
+  text-decoration: none;
 }

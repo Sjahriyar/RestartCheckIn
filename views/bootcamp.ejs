@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-
 <head>
+
     <% include ./partials/head %>
 </head>
-  <body>
 <header>
+
     <% include ./partials/header %>
 </header>
 
@@ -45,12 +43,22 @@ oninput="setCustomValidity('')"/>
           </div>
           <hr>
           <div class="form__group">
+            <p>Bootcamp Photo</p>
+            <%= typeof msg != 'undefined' ? msg : '' %>
 
-            <input type="file" name="userFile" />
-          <button class="btn">Add new Bootcamp</button>
+          </div>
+            <button class="btn">Add new Bootcamp</button>
+      </form>
+      <div id="targetLayer">
+
+      </div>
+      <form id="uploadForm" action="/bootcamp/upload/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="BootcampIMG" />
+        <input type="submit" value="Upload">
       </form>
 
 
+    </div>
     </div>
 
     <footer>

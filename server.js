@@ -8,7 +8,6 @@ const express = require('express'),
       expressValidator = require('express-validator'),
       formidable = require('formidable'),
       http = require('http'),
-
       fs = require('fs'),
       app = express();
 
@@ -59,6 +58,8 @@ app.use(cors({
     methods:['GET','POST', 'DELETE', 'PUT'],
     credentials: true // enable set cookie
 }));
+
+//MySQL Connection
 app.use(myConnection(mysql, dbOptions, 'single'))
 app.use(session({
   secret: 'Oh it is sO Secure',
@@ -83,7 +84,6 @@ app.use(function (req, res, next) {
 
 //Authentication Control check if user is logged in, grant access to other pages
 var authenticate = function (req, res, next) {
-
   if (req.session.admin) {
     next();
   }
@@ -91,17 +91,19 @@ var authenticate = function (req, res, next) {
     res.redirect('/')
   }
 }
+
 //Routes
-app.use('/',urlencodedParser, require('./controllers/current_checked_in'))
-app.use('/bootcamp',urlencodedParser, authenticate, require('./controllers/bootcamp'))
-app.use('/students',urlencodedParser, authenticate, require('./controllers/students'))
-app.use('/records',urlencodedParser, authenticate, require('./controllers/records'))
-app.use('/show',urlencodedParser, authenticate, require('./controllers/records'))
-app.use('/reports',urlencodedParser, authenticate, require('./controllers/reports'))
+app.use('/',        urlencodedParser,               require('./controllers/current_checked_in'))
+app.use('/show',    urlencodedParser, authenticate, require('./controllers/records'))
+app.use('/main',    urlencodedParser,               require('./controllers/main'))
+app.use('/admin',   urlencodedParser,               require('./controllers/admin'))
+app.use('/upload',  urlencodedParser, authenticate, require('./controllers/upload'))
+app.use('/reports', urlencodedParser, authenticate, require('./controllers/reports'))
+app.use('/records', urlencodedParser, authenticate, require('./controllers/records'))
 app.use('/seestuds',urlencodedParser, authenticate, require('./controllers/see_students'))
-app.use('/admin',urlencodedParser, require('./controllers/admin'))
-app.use('/main',urlencodedParser, require('./controllers/main'))
-app.use('/upload',urlencodedParser, authenticate,require('./controllers/upload'))
+app.use('/students',urlencodedParser, authenticate, require('./controllers/students'))
+app.use('/bootcamp',urlencodedParser, authenticate, require('./controllers/bootcamp'))
+
 
 //Server Listen to port
 app.listen(process.env.PORT || 4500, ()=>{

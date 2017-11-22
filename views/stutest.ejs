@@ -31,7 +31,7 @@
                     <td><%= data[i].email %></td>
                     <td><%= data[i].city %></td>
                     <td><%= data[i].phone_num %></td>
-                    <td><a href="/seestuds/edit/<%= data[i].stu_id %>">&nbsp;Edit</a></td>
+                    <td><a class="edit_link" href="/seestuds/edit/<%= data[i].stu_id %>">&nbsp;Edit</a></td>
                     <form method="POST" id="submitMe" action="/seestuds/delete/<%= data[i].stu_id %>" >
                     <td> <a href="javascript:{}" class="delete" onclick="document.getElementById('submitMe').submit();">&nbsp;Delete</a></td></form>
                     <form method="POST" id="submitMe" action="/seestuds/stop/<%= data[i].stu_id %>" >

@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const multer = require('multer')
 const { check, validationResult } = require('express-validator/check')
 const { matchedData, sanitize } = require('express-validator/filter')
-
+// var upload = multer({ dest: "../public/uploads/bootcamps" })
 //Show the form
 router.get('/', (req,res)=>{
 
@@ -62,7 +63,15 @@ router.post('/', (req,res)=>{
 
         });
     })
+//Upload Bootcamp Image
+// router.post('/upload', multer({ dest: './public/uploads/bootcamps'}).single('BootcampIMG'), function(req,res){
+//   filename: function (req, file, cb) {
+//       cb(null, file.fieldname + '-' + Date.now())
+//     }
+//
+// })
 
+//SIGN OUT
 router.get('/signout',(req,res)=>{
       req.session.destroy();
       res.redirect('/');
