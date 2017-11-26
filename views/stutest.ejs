@@ -1,45 +1,70 @@
-<!DOCTYPE html>
-<html>
+
   <head>
       <% include ./partials/head %>
   </head>
+  <header>
+    <link rel="stylesheet" href="/css/editstud.css" type="text/css">
+    <link href="/css/students.css" rel="stylesheet" type="text/css">
+    <!-- <link href="/css/extra.css" rel="stylesheet" type="text/css"> -->
+      <% include ./partials/header %>
+  </header>
   <body>
-   <header>
-       <% include ./partials/header %>
-   </header>
-
-
-
-   <div class="container boot">
-
-      <div class="jumbotron row">
-             <table class="table table-students">
-               <tbody>
-                <tr>
+        <%- messages('messages', locals) %>
+      <div class="container">
+         <div class="wrapper">
+        <table class="table table-hover" id="acrylic">
+           <thead>
+               <tr>
                   <th>Name</th>
                   <th>E-mail</th>
                   <th>City</th>
                   <th>Phone</th>
                   <th>Edit</th>
-                  <th>Reports</th>
+                  <th>Delete</th>
+                  <th>Stop</th>
                 </tr>
+            </thead>
+              <tbody>
                 <% for(var i=0; i< data.length; i++) { %>
                 <tr>
                     <td><%= data[i].stu_name %></td>
                     <td><%= data[i].email %></td>
                     <td><%= data[i].city %></td>
                     <td><%= data[i].phone_num %></td>
-                    <td><a href="/seestuds/edit/<%= data[i].stu_id %>">Edit</a></td>
-                    <td><a href="/records/view/<%= data[i].stu_id %>">View</a></td>
-                  <% } %>
+                    <td><a class="edit_link" href="/seestuds/edit/<%= data[i].stu_id %>">&nbsp;Edit</a></td>
+                    <form method="POST" id="submitMe" action="/seestuds/delete/<%= data[i].stu_id %>" >
+                    <td> <a href="javascript:{}" class="delete" onclick="document.getElementById('submitMe').submit();">&nbsp;Delete</a></td></form>
+                    <form method="POST" id="submitMe" action="/seestuds/stop/<%= data[i].stu_id %>" >
+                    <td> <a href="javascript:{}" class="delete" onclick="document.getElementById('submitMe').submit();">&nbsp;  Stop</a></td></form>
+                    <% } %>
                 </tr>
                </tbody>
              </table>
-           </div>
          </div>
-      </div>
-  </body>
+       </div>
+     </body>
+       <script>
+ function myFunction() {
+   var input, filter, table, tr, td, i;
+   input = document.getElementById("myInput");
+   filter = input.value.toUpperCase();
+   table = document.getElementById("acrylic");
+   tr = table.getElementsByTagName("tr");
+
+   // Loop through all table rows, and hide those who don't match the search query
+   for (i = 0; i < tr.length; i++) {
+     td = tr[i].getElementsByTagName("td")[0];
+     if (td) {
+       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+         tr[i].style.display = "";
+       } else {
+         tr[i].style.display = "none";
+       }
+     }
+   }
+ }
+ </script>
+
   <footer>
     <% include ./partials/footer %>
   </footer>
-</html>

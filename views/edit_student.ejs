@@ -1,30 +1,39 @@
-<!DOCTYPE html>
-
-<html lang="en">
 <head>
 	<% include ./partials/head %>
 	<link rel="stylesheet" href="css/editstud.css" type="text/css">
+	<link href="/css/students.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 
 	<header>
+
 		<% include ./partials/header %>
-	</header
-  <main>
-		<div class="container boot">
-				<div class="jumbotron" align="center">
-					<div class="container-table">
-					<h3>Edit <%=result.stu_name%> Information</h3>
-          <% for (i=0; i< result.length; i++) { %>
-<form name="f1" method="POST" action="../editstud/edit/<%= result[i].stu_id %>" >
-					<table class="table table-hover">
-  <tbody>
+	</header>
+	<div class="container">
+
+
+  <main><% for (i=0; i< result.length; i++) { %>
+		<div class="wrapper">
+							<%- messages('messages', locals) %>
+<form name="f1" method="POST" action="/seestuds/edit/<%= result[i].stu_id %>" >
+					<table class="table table-hover" id="acrylic">
+
+		<thead><tr>
+			<th>Edit <%=result.stu_name%> Information%>
+				<th></th>
+	 	  </th>
+		</tr>
+
+		</thead>
+		<tbody>
+
 <!--  TR -->
     <tr>
       <td>Name</td>
       <td>
-      	<input type="text" name="stu_name" class="form-control form-control-sm" value="<%=result[i].stu_name %>" >
+      	<input type="text" name="stu_name" class="input_fields" value="<%=result[i].stu_name %>" oninvalid="this.setCustomValidity('Name is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -33,7 +42,8 @@
     <tr>
       <td>Birth date</td>
       <td>
-      	<input type="date" name="stu_birth" class="form-control form-control-sm"  value="<%=result[i].stu_birth_date %>">
+      	<input type="text" name="stu_birth" class="input_fields"  value="1997 05 04" oninvalid="this.setCustomValidity('date is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -43,9 +53,9 @@
       <td>Nationality</td>
       <td>
 				<select name="stu_nath" >
-      		<option value="">Select nationality</option>
+      		<option>Select nationality</option>
           <%result_country.forEach(function(res){%>
-          <option value="<%=res.num_code%>"> <%=res.nationality%> </option>
+          <option value="<%=res.num_code%>" <%if(result[i].nath_id == res.num_code){ %> selected <%}%> > <%=res.nationality%> </option>
           <%});%>
         </select>
 
@@ -57,7 +67,8 @@
     <tr>
       <td>Phone</td>
       <td>
-      	<input type="text" name="stu_phon" class="form-control form-control-sm" value="<%=result[i].phone_num %>">
+      	<input type="text" name="stu_phon" class="input_fields" value="<%=result[i].phone_num %>" oninvalid="this.setCustomValidity('Phone is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -66,7 +77,8 @@
     <tr>
       <td>E-mail</td>
       <td>
-      	<input type="text" name="stu_email" class="form-control form-control-sm" value="<%=result[i].email %>">
+      	<input type="text" name="stu_email" class="input_fields" value="<%=result[i].email %>" oninvalid="this.setCustomValidity('Email is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -76,7 +88,8 @@
       <td>Post code</td>
       <td>
 
-      	<input type="text" name="zip" size="6" class="form-control" value="<%=result[i].postcode %>" >
+      	<input type="text" name="zip" size="6" class="form-control" value="<%=result[i].postcode %>" oninvalid="this.setCustomValidity('Post is required')"
+oninput="setCustomValidity('')"/ >
       	 </td>
     </tr>
 <!--//  TR -->
@@ -85,7 +98,8 @@
     <tr>
       <td>Address</td>
       <td>
-      	<input type="text" name="stu_address" class="form-control form-control-sm" value="<%=result[i].address %>">
+      	<input type="text" name="stu_address" class="input_fields" value="<%=result[i].address %>" oninvalid="this.setCustomValidity('address is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -94,7 +108,8 @@
     <tr>
       <td>City</td>
       <td>
-      	<input type="text" name="stu_city" class="form-control form-control-sm" value="<%=result[i].city %>">
+      	<input type="text" name="stu_city" class="input_fields" value="<%=result[i].city %>" oninvalid="this.setCustomValidity('City is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
@@ -103,34 +118,22 @@
     <tr>
       <td>Card id #</td>
       <td>
-      	<input type="text" name="stu_card" class="form-control form-control-sm"  value="<%=result[i].card_id %>" >
+      	<input type="text" name="stu_card" class="input_fields"  value="<%=result[i].card_id %>"  oninvalid="this.setCustomValidity('id is required')"
+oninput="setCustomValidity('')"/>
       	 </td>
     </tr>
 <!--//  TR -->
 
 <!--  TR -->
     <tr>
-      <td>Photo</td>
-      <td>
-      	<input type="text" name="stu_photo" class="form-control form-control-sm" >
-      	 </td>
-    </tr>
-<!--//  TR -->
-
-<!--  TR -->
-    <tr>
-
-			<td  align="center">
-
-  	 </td>
-		 <td  align="center">
-			 <input type="submit" name="saveme" value="Submit"  class="btn btn-primary">
+		 <td  align="center"><%}%>
+			 <input type="submit" name="updateme" value="Update"  class="btn_stu">
 		</td>
     </tr>
 <!--//  TR -->
   </tbody>
 </table>
-<%}%>
+
 </form>
 	</main>
 	</div>

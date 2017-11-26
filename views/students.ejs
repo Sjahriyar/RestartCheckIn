@@ -1,10 +1,160 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+
+<head>
+  <meta charset="utf-8">
+  <title>Register New Student</title>
+
+    <% include ./partials/head %>
+    <link href="/css/students.css" rel="stylesheet" type="text/css">
+
+</head>
   <body>
-    <h1>Students Page</h1>
-  </body>
-</html>
+<header>
+    <% include ./partials/header %>
+</header>
+
+<!-- from here -->
+
+<div class="container">
+  <h4 class="message_success"> <%=message%>
+    <%if(currentuser){%>
+    <br />
+    Do you want to add Photo for <%=currentuser[0].stu_name%>
+    <li><a class="alink" href="/upload/<%= currentuser[0].stu_id %>" >Upload photo</a></li>
+    <%}%>
+</h4>
+        <div class="wrapper">
+          <form name="f1" method="POST" action="../students/add" >
+					<table class="table table-hover" id="acrylic">
+						<thead>
+							<tr>
+								<th> </th>
+
+                <th> Register New Student </th>
+							</tr>
+						</thead>
+						<tbody >
+              <tr>
+                <td>Bootcamp</td>
+                <td>
+                	<select name="slelectbootcamp" >
+                		<option value="">Select bootcamp name</option>
+                    <%result.forEach(function(res){%>
+                    <option value="<%=res.bootcamp_id%>"> <%=res.bootcamp_name%> </option>
+                    <%});%>
+                  </select>
+                	 </td>
+              </tr>
+              <tr>
+                <td>Student name</td>
+                <td>
+                  <input type="text" name="stu_name" class="input_fields" required="" oninvalid="this.setCustomValidity('Name is required')"
+          oninput="setCustomValidity('')">
+                   </td>
+              </tr>
+          <!--//  TR -->
+
+          <!--  TR -->
+              <tr>
+                <td>Student birth date</td>
+                <td>
+                  <input type="date" name="stu_birth" class="input_fields" >
+                   </td>
+              </tr>
+          <!--//  TR -->
+
+          <!--  TR -->
+              <tr>
+                <td>Student nationality</td>
+                <td>
+                  <select class="input_fields" name="stu_nath" >
+                    <option value="">Select nationality</option>
+                    <%result_country.forEach(function(res){%>
+                    <option value="<%=res.num_code%>"> <%=res.nationality%> </option>
+                    <%});%>
+                  </select>
+                   </td>
+              </tr>
+          <!--//  TR -->
+
+          <!--  TR -->
+              <tr>
+                <td>Phone #</td>
+                <td>
+                  <input type="text" name="stu_phon" class="input_fields" >
+                   </td>
+              </tr>
+          <!--//  TR -->
+
+          <!--  TR -->
+              <tr>
+                <td>E-mail</td>
+                <td>
+                  <input type="text" name="stu_email" class="input_fields" required="" oninvalid="this.setCustomValidity('Name is required')"
+          oninput="setCustomValidity('')">
+                   </td>
+              </tr>
+          <!--//  TR -->
+
+          <!--  TR -->
+              <tr>
+                <td>Post code</td>
+                <td>
+
+                  <input type="text" name="zip" size="6" class="input_fields"  >
+                   </td>
+              </tr>
+          <!--//  TR -->
+
+          <!--  TR -->
+              <tr>
+                <td>Address</td>
+                <td>
+                  <input type="text" name="stu_address" class="input_fields" >
+                   </td>
+              </tr>
+          <!--//  TR -->
+
+          <!--  TR -->
+              <tr>
+                <td>City</td>
+                <td>
+                  <input type="text"  name="stu_city" class="input_fields" >
+                   </td>
+              </tr>
+          <!--//  TR -->
+
+          <!--  TR -->
+              <tr>
+                <td>Card id #</td>
+                <td>
+                  <input type="text"  name="stu_card" class="input_fields" required="" oninvalid="this.setCustomValidity('Card number is required')"
+          oninput="setCustomValidity('')">
+                  </td>
+              </tr>
+          <!--//  TR -->
+              <tr>
+
+                <td  align="center">
+
+               </td>
+               <td  align="center">
+                 <input type="submit" name="saveme" value="Save student"  class="btn_stu">
+              </td>
+              </tr>
+          <!--//  TR -->
+            </tbody>
+          </table>
+          </form>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+<footer>
+  <% include ./partials/footer %>
+</footer>
+
+</body>

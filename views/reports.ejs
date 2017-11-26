@@ -6,7 +6,7 @@
   <title>Records</title>
 
     <% include ./partials/head %>
-    <link href="css/records.css" rel="stylesheet" type="text/css">
+      <link href="css/records.css" rel="stylesheet" type="text/css">
 
 </head>
   <body>
@@ -16,8 +16,30 @@
 
 <!-- from here -->
 
-<div class="container">
-  <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for names..">
+
+  <div class="container">
+
+    <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for names..">
+<form action="reports" method="POST" name="f1">
+  <div class="options">
+  <select name="bootcamps" required >
+    <option class="drop_bt">Select Bootcamp</option>
+<% for(i=0 ; i < data_name.length ; i++){ %>
+    <option value="<%= data_name[i].bootcamp_id %>" ><%= data_name[i].bootcamp_name %></option>
+<% } %>
+  </select>
+<!-- date filter -->
+    <p class="p_date">
+      From:
+    </p>
+    <input class="start_date" type='date' id="1" name="start_date"  required />
+    <p class="p_date">
+      To:
+    </p>
+    <input class="start_date" type="date" id="2" name="end_date"    required />
+    <input type="submit" id="submit" name="submit" class="filter" value="Filter" />
+    </div>
+
         <div class="wrapper">
 					<table class="table table-hover" id="acrylic">
 						<thead>
@@ -30,9 +52,9 @@
 						</thead>
 						<tbody >
               <% for(i=0 ; i < data.length ; i++) {
-                var date = data[i].sign_in_date %>
+                var date = data[i].sd %>
 							<tr>
-								<td><%= data[i].stu_name %></td>
+								<td><%= data[i].sn %></td>
 								<td><%= date.toLocaleTimeString() %></td>
                 <td><%= date.toDateString() %></td><%}%>
 							</tr>
