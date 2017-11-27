@@ -1,24 +1,27 @@
 
 <nav class="navbar navbar-inverse bg-inverse" role="navigation">
 <div class="container-fluid">
-
-    <div class="navbar-header">
-
-
-<a class="dropdown navbar-brand dropdown-toggle" data-toggle="dropdown">Welcome <%= user_session %>
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  <div class="navbar-collapse collapse d-inline">
+    <a class="dropdown navbar-brand dropdown-toggle d-inline" data-toggle="dropdown">Welcome <%= user_session %>
 </a>
-<ul class="dropdown-menu">
+<ul class="dropdown-menu d-inline">
 <li><a href="admin/profile/1">Edit your profile</a></li>
 </ul>
-        <ul class="nav navbar-nav">
-            <li><a href="/">Live Check-in</a></li>
-            <li><a href="/bootcamp">Manage Bootcamps</a></li>
-            <li><a href="/seestuds">Manage Students</a></li>
-            <li><a href="/students">Add Student</a></li>
-            <li><a href="/reports">Reports</a></li>
-            <li class="logout"><a href="/bootcamp/signout">Log out</a></li>
+        <ul class="nav navbar-nav d-inline">
+            <li class="navbar-left"><a href="/">Live Check-in</a></li>
+            <li class="navbar-left"><a href="/bootcamp">Manage Bootcamps</a></li>
+            <li class="navbar-left"><a href="/seestuds">Manage Students</a></li>
+            <li class="navbar-left"><a href="/students">Add Student</a></li>
+            <li class="navbar-left"><a href="/reports">Reports</a></li>
+            <li class="logout navbar-right"><a href="/bootcamp/signout"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
         </ul>
     </div>
-
+</div>
 </div>
 </nav>
