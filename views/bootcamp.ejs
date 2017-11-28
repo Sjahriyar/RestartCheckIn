@@ -17,7 +17,7 @@
           </div>
         </div>
         <%- messages('messages', locals) %>
-      <form method="POST" action="/bootcamp" id="contact" class="form">
+      <form method="POST" action="/bootcamp" id="contact" class="form" enctype="multipart/form-data">
         <h4>Add New Bootcamp</h4>
         <hr />
 
@@ -38,29 +38,22 @@ oninput="setCustomValidity('')"/>
           </div>
 
           <div class="form__group">
-              <input type="url" name="slack_link" placeholder="Slack Link" class="form__input" required="" oninvalid="this.setCustomValidity('Use a valid url')"
+              <input type="url" name="slack_link" placeholder="Slack Link" class="form__input" oninvalid="this.setCustomValidity('Use a valid url')"
  oninput="setCustomValidity('')"/>
           </div>
+          <br>
+          <h4>Bootcamp Group Photo</h4>
+          <div class="form__group">
+              <input type="file" name="group_photo" />
+          </div>
+
           <hr>
           <div class="form__group">
-            <p>Bootcamp Photo</p>
-            <%= typeof msg != 'undefined' ? msg : '' %>
-
           </div>
             <button class="btn">Add new Bootcamp</button>
       </form>
-      <div id="targetLayer">
-
-      </div>
-      <form id="uploadForm" action="/bootcamp/upload/" method="POST" enctype="multipart/form-data">
-        <input type="file" name="BootcampIMG" />
-        <input type="submit" value="Upload">
-      </form>
-
-
     </div>
     </div>
-
     <footer>
       <% include ./partials/footer %>
     </footer>

@@ -12,32 +12,40 @@
     <div class="container_shahriar">
       <%- messages('messages', locals) %>
       <% for(i=0 ; i < data.length ; i++){ %>
+        <div class="forms">
+
+
       <form method="post" action="/bootcamp/editbtcmp/<%= data[i].bootcamp_id %>" id="contact" class="form">
         <h4>Edit Bootcamp</h4>
         <hr />
 
           <div class="form__group">
-
+            <div class="text-center">
+                <a href="/uploads/bootcamps/<%= data[i].group_photo %>"><img class="img-thumbnail btc_img" src="/uploads/bootcamps/<%= data[i].group_photo %>" alt="bootcamp_group_photo"></a>
+              </div><br>
               <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" value="<%= data[i].bootcamp_name %>" class="form__input" required/>
           </div>
 
           <div class="form__group">
-          <input type='date' name="start_date" value="<%= data[i].start_date %>" class="form__input" required/>
+          <input type='text' name="start_date" value="<%= data[i].start_date.toLocaleDateString() %>" class="form__input" required/>
           </div>
 
           <div class="form__group">
-              <input type="date" name="end_date" value="<%= data[i].end_date %>"  class="form__input" required/>
+              <input type="text" name="end_date" value="<%= data[i].end_date.toLocaleDateString() %>"  class="form__input" required/>
           </div>
 
           <div class="form__group">
               <input type="url" name="slack_link" value="<%= data[i].slack_link %>" placeholder="Slack Link" class="form__input" />
           </div>
-<% } %>
 
-          <button type="submit" class="btn_edit">Edit</button><input class="btn_edit" type="button" onclick="location.href='/bootcamp';" value="Back" />
+          <button type="submit" class="btn btn-info">Edit</button><input class="btn btn_back" type="button" onclick="location.href='/bootcamp';" value="Back" />
+          <form action="/bootcamp/delete/<%= data[i].bootcamp_id %>" method="post">
+            <input type="submit" value="Delete" class="btn btn_edit" />
+          </form>
       </form>
 
-
+      <% } %>
+      </div>
     </div>
 
     <footer>
