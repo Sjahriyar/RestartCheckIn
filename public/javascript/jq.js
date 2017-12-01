@@ -24,5 +24,9 @@ var weekday = new Array(7);
   w = weekday[n.getDay()];
   document.getElementById("today").innerHTML = "Today is " + w + ":<br />" + "<span class='datenums'>" + m + " / " + d + " / " + y +"</span>";
 
-
-   });
+  document.getElementById('delete').onclick = function () {
+      if (confirm('Press OK to Remove')) {
+          parent.location='/bootcamp/delete/<%= data[i].bootcamp_id %>';
+      }
+  };
+  });

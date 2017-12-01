@@ -3,6 +3,7 @@
 
 <head>
     <% include ./partials/head %>
+
 </head>
   <body>
 <header>
@@ -15,39 +16,51 @@
         <div class="forms">
 
 
-      <form method="post" action="/bootcamp/editbtcmp/<%= data[i].bootcamp_id %>" id="contact" class="form">
+      <form method="post" action="/bootcamp/editbtcmp/<%= data[i].bootcamp_id %>" id="contact" enctype="multipart/form-data" class="form">
         <h4>Edit Bootcamp</h4>
         <hr />
 
           <div class="form__group">
             <div class="text-center">
+
                 <a href="/uploads/bootcamps/<%= data[i].group_photo %>"><img class="img-thumbnail btc_img" src="/uploads/bootcamps/<%= data[i].group_photo %>" alt="bootcamp_group_photo"></a>
               </div><br>
               <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" value="<%= data[i].bootcamp_name %>" class="form__input" required/>
           </div>
 
           <div class="form__group">
-          <input type='text' name="start_date" value="<%= data[i].start_date.toLocaleDateString() %>" class="form__input" required/>
+          <input type='date' name="start_date" value="<%= data[i].start_date.toLocaleDateString() %>" class="form__input" required/>
           </div>
 
           <div class="form__group">
-              <input type="text" name="end_date" value="<%= data[i].end_date.toLocaleDateString() %>"  class="form__input" required/>
+              <input type="date" name="end_date" value="<%= data[i].end_date.toLocaleDateString() %>"  class="form__input" required/>
           </div>
 
           <div class="form__group">
               <input type="url" name="slack_link" value="<%= data[i].slack_link %>" placeholder="Slack Link" class="form__input" />
           </div>
-
+          <br>
+          <h4>Bootcamp Group Photo</h4>
+          <div class="form__group">
+              <input type="file" name="group_photo" />
+          </div>
           <button type="submit" class="btn btn-info">Edit</button><input class="btn btn_back" type="button" onclick="location.href='/bootcamp';" value="Back" />
-          <form action="/bootcamp/delete/<%= data[i].bootcamp_id %>" method="post">
-            <input type="submit" value="Delete" class="btn btn_edit" />
-          </form>
+
+            <a id="delete" href="/bootcamp/delete/<%= data[i].bootcamp_id %>" class="btn btn_edit">Delete</a>
       </form>
 
-      <% } %>
+
       </div>
     </div>
 
+<script>
+document.getElementById('delete').onclick = function () {
+    if (confirm('Press OK to Remove')) {
+        parent.location='/bootcamp/delete/<%= data[i].bootcamp_id %>';
+    }
+  }
+</script>
+<% } %>
     <footer>
       <% include ./partials/footer %>
     </footer>
