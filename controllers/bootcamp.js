@@ -62,7 +62,13 @@ router.get('/showbtcmp/:id', (req,res)=>{
 router.post('/', multer(multerConf).single('group_photo'), (req,res)=>{
     req.getConnection(function(err, connection) {
       if (err) return next(err);
-      let sql =  `INSERT INTO bootcamp_name (bootcamp_name, start_date, end_date, slack_link, group_photo) values('${req.body.bootcamp_name}','${req.body.start_date}','${req.body.end_date}','${req.body.slack_link}', '${req.file.filename}' )`
+      var phvar;
+      if(req.file == null){
+        phvar = 'no_photo.jpg';
+      }else{
+        phvar = req.file.filename;
+      }
+      let sql =  `INSERT INTO bootcamp_name (bootcamp_name, start_date, end_date, slack_link, group_photo) values('${req.body.bootcamp_name}','${req.body.start_date}','${req.body.end_date}','${req.body.slack_link}', '${phvar}' )`
       let query = connection.query(sql,(err)=>{
         if (err) throw err
         req.flash('success', `${req.body.bootcamp_name} is Successfully Registred`)
