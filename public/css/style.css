@@ -6,13 +6,16 @@
 }
 
 body {
-    font-family: $font-family;
-    font-size: $font-size;
-    background-size: 200% 100% !important;
-    animation: move 10s ease infinite;
-    transform: translate3d(0, 0, 0);
-    /*background: linear-gradient(45deg, #E74C3C 10%, #514f51 90%);*/
-    height: 100vh
+  font-family: $font-family;
+  font-size: $font-size;
+  /*background-size: 200% 100% !important;*/
+  /*animation: move 10s ease infinite;*/
+  transform: translate3d(0, 0, 0);
+
+  /*background: linear-gradient(45deg, #E74C3C 10%, #514f51 90%);*/
+
+
+  /*height: 100vh*/
 }
 
 footer{
@@ -33,7 +36,7 @@ footer{
     text-align: center;
     opacity: 0;
     transform: translate3d(0, 500px, 0);
-    animation: arrive 500ms ease-in-out 0.7s forwards;
+    /*animation: arrive 500ms ease-in-out 0.7s forwards;*/
 }
 
 .user__title {
@@ -48,12 +51,12 @@ footer{
     border-radius: 6px;
     overflow: hidden;
     opacity: 0;
-    transform: translate3d(0, 500px, 0);
-    animation: arrive 500ms ease-in-out 0.9s forwards;
+    /*transform: translate3d(0, 500px, 0);*/
+    /*animation: arrive 500ms ease-in-out 0.9s forwards;*/
 }
 
 .form--no {
-    animation: NO 1s ease-in-out;
+    /*animation: NO 1s ease-in-out;*/
     opacity: 1;
     transform: translate3d(0, 0, 0);
 }

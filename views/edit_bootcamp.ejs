@@ -2,16 +2,17 @@
 <html>
 
 <head>
-    <% include ./partials/head %>
+    <% include ./partials/head_s %>
 </head>
   <body>
 <header>
     <% include ./partials/header %>
 </header>
-
-    <div class="container">
+<body>
+    <div class="container_shahriar">
+      <%- messages('messages', locals) %>
       <% for(i=0 ; i < data.length ; i++){ %>
-      <form method="post" action="/editbtcmp/edit/<%= data[i].bootcamp_id %>" id="contact" class="form">
+      <form method="post" action="/bootcamp/editbtcmp/<%= data[i].bootcamp_id %>" id="contact" class="form">
         <h4>Edit Bootcamp</h4>
         <hr />
 
@@ -21,19 +22,25 @@
           </div>
 
           <div class="form__group">
-          <input type='text' name="start_date" value="<%= data[i].start_date %>" class="form__input" required/>
+          <input type='date' name="start_date" value="<%= data[i].start_date %>" class="form__input" required/>
           </div>
 
           <div class="form__group">
-              <input type="date" name="end_date" value="<%= data[i].end_date %>" placeholder="End Date" class="form__input" required/>
+              <input type="date" name="end_date" value="<%= data[i].end_date %>"  class="form__input" required/>
           </div>
 
           <div class="form__group">
               <input type="url" name="slack_link" value="<%= data[i].slack_link %>" placeholder="Slack Link" class="form__input" />
           </div>
+          <hr>
+
+
+          <div class="form__group">
+            <input type="checkbox" name="active" value="1" <% if(data[i].bootcamp_active == 1){ %> checked <%}%> >The active bootcamp
+          </div>
 <% } %>
 
-          <button type="submit" class="btn_edit">Edit</button><input class="btn_edit" type="button" onclick="location.href='/bootcamp';" value="Cancel" />
+          <button type="submit" class="btn_edit">Edit</button><input class="btn_edit" type="button" onclick="location.href='/bootcamp';" value="Back" />
       </form>
 
 
@@ -42,3 +49,4 @@
     <footer>
       <% include ./partials/footer %>
     </footer>
+  </body>

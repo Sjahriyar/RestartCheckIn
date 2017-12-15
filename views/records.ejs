@@ -1,10 +1,257 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+
+<head>
+  <meta charset="utf-8">
+  <title>Report & Charts</title>
+
+    <% include ./partials/head %>
+    <link href="css/records.css" rel="stylesheet" type="text/css">
+
+</head>
   <body>
-    <h1>Records Page by SHahriar</h1>
-  </body>
-</html>
+<header>
+    <% include ./partials/header %>
+    <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart']});
+      </script>
+</header>
+
+  <div class="container_records" align="center">
+  <form method="POST" action="/records/show" name="f1">
+    <table cellSpacing="2" cellPadding="2" class="table table-striped" border="0" width="100%" align="center">
+
+      <tr bgcolor="#EDEAEA">
+      <td align="center" colspan="4" bgcolor="#A6A7AA" ><font color="#FFF"><b>
+        Report & Charts
+      </b></font>
+      </td>
+      </tr>
+
+    <tr bgcolor="#EDEAEA">
+    <td align="center" colspan="4">
+      <select name="slelectbootcamp" onchange="document.f1.submit();" >
+        <option value="">Select bootcamp name</option>
+        <%bootcamp.forEach(function(res){%>
+        <option value="<%=res.bootcamp_id%>" <%if(stu!=''){%><%if(stu[0].bootcamp_id == res.bootcamp_id){%> selected <%};%><%};%> > <%=res.bootcamp_name%> </option>
+        <%});%>
+      </select>
+    </td>
+    </tr>
+
+    <tr bgcolor="#DDDBDB">
+    <td align="center" colspan="4">
+      <select name="slelectstu">
+
+
+        <%if(stu!=''){%>
+          <option value="0" <%if(selstu!=''){%><%if(selstu == '0'){%> selected <%};%><%};%>>Show all Students</option>
+        <%stu.forEach(function(res){%>
+        <option value="<%=res.stu_id%>" <%if(selstu!=''){%><%if(selstu == res.stu_id){%> selected <%};%><%};%>> <%=res.stu_name%> </option>
+        <%});%>
+        <%}else{%>
+  <option value="">Select Student</option>
+          <%};%>
+        </select>
+    </td>
+    </tr>
+
+    <tr bgcolor="#DDDBDB">
+    <td align="right">
+      From date
+    </td>
+    <td align="left">
+      <input type="date" name="fromdate" value="<%=currentdate%>" />
+    </td>
+    <td align="right">
+      To date
+    </td>
+    <td align="left">
+      <input type="date" name="todate" value="<%=todate%>" />
+
+           <%if(stu==''){%>
+           <input type="hidden" name="show_reports" Value="">
+            <input type="hidden" name="show_chart" Value="">
+            <input type="hidden" name="show_chart_delay" Value="">
+         <%};%>
+    </td>
+  </tr>
+  <%if(stu!=''){%>
+    <tr>
+<td colspan="4" align="center">
+    <input type="submit" name="show_reports" class="btn btn-primary" style="width:130px" Value="Show Details">
+    &nbsp;&nbsp;
+    <input type="submit" class="btn btn-info" style="width:180px" name="show_chart" Value="Draw Attendant Chart ">
+    &nbsp;&nbsp;
+    <input type="submit" class="btn btn-info" style="width:180px" name="show_chart_delay" Value="Draw Delay Chart ">
+  </td>
+  </tr>
+  <%};%>
+    </table>
+
+<%if(chart==''){%>
+    <table class="table table-striped" border="1">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th align="left">Student Name</th>
+
+          <%if(todate=='' && currentdate!=''){
+var dt = new Date(currentdate);
+            %>
+<th align="left">
+            <%=dt.getUTCDate();%>/<%=dt.getUTCMonth()+1;%>
+</th>
+        <%}%>
+
+          <%if(todate!=''){
+var dt = new Date(currentdate);
+var dt2 = new Date(todate);
+for(j=0;j<=dayloop;j++){
+            %>
+      <th align="left">
+            <%=dt.getUTCDate();%>/<%=dt.getUTCMonth()+1;%>
+            <%dt.setDate(dt.getDate()+1);;%>
+      </th>
+        <%}%>
+          <%}%>
+        </tr>
+      </thead>
+      <tbody>
+        <%if (stu2!='')  {i=0; %>
+        <%stu2.forEach(function(stu2){i=i+1;%>
+        <tr>
+          <th scope="row"><%=i%></th>
+          <td align="left">
+            <div class="images">
+            <img src="/uploads/<%= stu2.stu_photo_name %>" style="width:60px; height:60px;border-radius: 50%;">
+
+            </div>
+            <%= stu2.stu_name %>
+             </td>
+
+          <%if(todate=='' && currentdate!=''){
+          var dt = new Date(currentdate);
+            %>
+<td align="left">
+
+            <%if (sign!=''){%>
+              <%sign.forEach(function(res_sign){%>
+
+              <%
+              xd1=dt.getUTCDate()+'-'+dt.getUTCMonth()+1+'-'+dt.getUTCFullYear();
+              xd2=res_sign.sign_in_date.getUTCDate()+'-'+res_sign.sign_in_date.getUTCMonth()+1+'-'+res_sign.sign_in_date.getUTCFullYear();
+              if (res_sign.stu_id==stu2.stu_id && xd1==xd2 ){%>
+
+              <%=res_sign.sign_in_date.getUTCHours()+1%>:<%=res_sign.sign_in_date.getMinutes()%>
+            <!-- <%=dt.getUTCDate();%>/<%=dt.getUTCMonth()+1;%> -->
+            <%}else{%>
+
+
+            <%}%>
+            <%});%>
+
+            <%}else{%>
+
+                ---
+              <%}%>
+          </td>
+
+
+          <%}%>
+
+          <%if(todate!=''){
+        var dt = new Date(currentdate);
+        var dt2 = new Date(todate);
+        for(j=0;j<=dayloop;j++){
+            %>
+        <td align="left">
+
+          <%if (sign!=''){%>
+            <%sign.forEach(function(res_sign){%>
+
+            <%
+            xd1=dt.getUTCDate()+'-'+dt.getUTCMonth()+1+'-'+dt.getUTCFullYear();
+            xd2=res_sign.sign_in_date.getUTCDate()+'-'+res_sign.sign_in_date.getUTCMonth()+1+'-'+res_sign.sign_in_date.getUTCFullYear();
+            if (res_sign.stu_id==stu2.stu_id && xd1==xd2 ){%>
+            <%=res_sign.sign_in_date.getUTCHours()+1%>:<%=res_sign.sign_in_date.getMinutes()%>
+          <!-- <%=dt.getUTCDate();%>/<%=dt.getUTCMonth()+1;%> -->
+          <%}else{%>
+
+          <%}%>
+          <%});%>
+
+          <%}else{%>
+              ---
+            <%}%>
+
+
+            <!-- <%=dt.getUTCDate();%>/<%=dt.getUTCMonth()+1;%> -->
+            <%dt.setDate(dt.getDate()+1);;%>
+        </td>
+        <%}%>
+          <%}%>
+
+        </tr>
+        <%});%>
+  			<% } %>
+
+      </tbody>
+    </table>
+<%}%>
+
+<%if(chart!=''){%>
+
+    <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+          </div>
+          <script language = "JavaScript">
+             function drawChart() {
+                // Define the chart to be drawn.
+                var data = google.visualization.arrayToDataTable([
+                  <%if(chart=='1'){%>
+                   ['Day', 'Attendant', 'Absence'],
+                   <%}else{%>
+                  ['Day', 'Before 9:00 AM', 'After 9:00 AM'],
+                     <%}%>
+                   <%
+                if (stusign!='')  {
+                 stusign.forEach(function(rx){
+                   var dt = new Date(rx.sign_date);
+                 %>
+                ['<%=dt.getUTCDate();%>/<%=dt.getUTCMonth()+1;%>',  <%=rx.stu_count%>, <%=rx.tot_stu-rx.stu_count%>],
+                 <%
+                 });
+               };
+                 %>
+
+                ]);
+
+              <%if(chart=='1'){%>
+                var options = {
+              title: 'Attendant %',
+              isStacked:'percent'
+           };
+                <%}else{%>
+                  var options = {
+                  title: 'Delay %',
+                  isStacked:'percent'
+                  };
+                <%}%>
+
+                // Instantiate and draw the chart.
+                var chart = new google.visualization.ColumnChart(document.getElementById('container'));
+                chart.draw(data, options);
+             }
+             google.charts.setOnLoadCallback(drawChart);
+          </script>
+<%}%>
+
+
+</form>
+  </div>
+<footer>
+  <% include ./partials/footer %>
+</footer>
+
+</body>

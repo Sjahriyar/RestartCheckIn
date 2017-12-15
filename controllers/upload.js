@@ -7,7 +7,6 @@ const router = express.Router()
 var mysql = require('mysql');
 
 router.get('/:id', (req,res)=>{
-console.log("AAAAAAAAAa      "+req.params.id);
   res.render('upload',{id: req.params.id})
 
 });
@@ -32,7 +31,10 @@ router.post('/upload/:id', (req,res)=>{
   req.getConnection(function(err, connection) {
     if (err) return next(err);
 
+
   if (req.url == '/upload/'+req.params.id) {
+
+// console.log("xxxxxxx = "+req.params.stupar);
 
     var form = new formidable.IncomingForm({uploadDir : "."}),
         phtt = 0;
@@ -44,7 +46,6 @@ router.post('/upload/:id', (req,res)=>{
         var newpath = './public/uploads/' + files.upload.name;
 
 //Update record
-// console.log("xxxxxxxxxAAAZZZ   "+req.params.id);
 var sql = "update  bootcamp_students set stu_photo_name='" +files.upload.name+ "' where stu_id=" +req.params.id+ " ";
 connection.query(sql, function (err, result) {
  if (err) throw err;
@@ -60,19 +61,15 @@ connection.query(sql, function (err, result) {
       });
 
     });
-// console.log("A0   "+me);
     myPro.then( me => {
-       console.log("A1   "+me);
        req.session.phname=me;
       //
       res.end();
     });
+    req.flash('info','Student successfully added ... with photo');
+    // res.redirect('back');
+
 res.redirect('/students');
-
-
-
-
-
 
 
  // res.render('/students');

@@ -2,66 +2,177 @@
 
 <html lang="en">
 <head>
+	<script>
+	function startTime() {
+		// Math.floor((new Date()).getTime() / 1000);
+	    var today = new Date();
+
+	    var h = today.getHours();
+	    var m = today.getMinutes();
+	    var s = today.getSeconds();
+	    m = checkTime(m);
+	    s = checkTime(s);
+	    document.getElementById('txt').innerHTML =
+	    h + ":" + m + ":" + s;
+	    var t = setTimeout(startTime, 500);
+	}
+	function checkTime(i) {
+	    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+	    return i;
+	}
+	</script>
+
 	<% include ./partials/head %>
-	<%if (refresh_endtime>=0 ){%>
-<meta http-equiv="refresh" content="<%=refresh_endtime*60%>">
+	<link rel="stylesheet" href="/css/live_checkin.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+
+       <link rel="stylesheet" href="/css/style2.css">
+
+
+<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+
+
+
+	<%if (refresh_endtime>=0){%>
+<meta http-equiv="refresh" content="<%=refresh_endtime*60%>;  URL=../main/check">
   <%}%>
 
+	<%if (refresh_endtime == -1000){%>
+	<meta http-equiv="refresh" content="2;  URL=../main/check">
+	<%}%>
 </head>
-<body class="container_main" onload="document.f1.cardid.focus();">
+<body onclick="document.f1.cardid.focus();" onload="startTime();document.f1.cardid.focus();">
+
+
+
+<%if (birth!='')  { %>
+	<div  class="container_maing">
+		<%}
+else{
+		%>
+<div  class="container_main">
+	<%}
+	%>
+		<div class="clock_container"  id="txt"></div>
+	<form name="f2" method="POST" action="../main/check_get" >
+
+	</form>
+
+	<%if (msg!=''){ %>
+<%if (msg=='ok'){ %>
+<script>
+document.f2.submit();
+</script>
+<% } %>
+	<!-- <p id="welcome_msg"><%= msg[0].check_message %></p> -->
+	<br /><br />
+
+
+	<!-- <a href="#costumModal7" role="button" class="btn btn-default" data-toggle="modal">
+			whirlIn
+	</a> -->
+	<%if(msg[0].sound>=1){ %>
+		<%if (birth!='')  { %>
+			<%birthval=",    Happy birthday "+birth[0].stu_name%>
+			<%
+		}
+			else{
+				birthval='';
+
+			}
+
+			%>
+		<!-- <input onclick='responsiveVoice.speak("<%= msg[0].check_message %>");' type='button' value='🔊 Play' /> -->
+<script>
+<%if(Math.floor((Math.random() * 2) + 1)==1){%>
+responsiveVoice.speak("<%= msg[0].check_message %>");
+<%}else{%>
+responsiveVoice.speak("<%= msg[0].check_message %>", "UK English Male");
+<%}%>
+</script>
+	<div class="circle"  data-toggle="modal">
+		<%= msg[0].check_message %><%=birthval%></div>
+<% } %>
+
+		<!-- <%if(msg[0].sound==1 || msg[0].sound==4){ %> -->
+
+<div  class="top_container_img" ><img src="/uploads/<%= msg[0].stu_photo_name %>"  style="width:200px;border-radius: 50%;box-shadow: 5px 5px 5px #888888;"></div>
+<!-- <% } %> -->
+
+		<%if (msg[0].check_message=='222')  { %>
+		<audio src="/<%= msg[0].sound %>.m4a" autoplay>
+		<p>If you are reading this, it is because your browser does not support the audio element.     </p>
+	</audio> <% } %><% } %>
+
+
+<%if (birth!='')  { %>
+
+	      <audio src="/Happy-Birthday.mp3" autoplay>
+
+	    </audio>
+
+			<% } %>
+
 	<header>
-		<% include ./partials/header %>
+
 	</header>
 
 
-  <main>
-		<div class="row">
+  <!-- <main> -->
 
-
-				<div class="jumbotron" align="center">
-
-<h3>Check in <%=refresh_endtime%></h3>
 <form name="f1" method="POST" action="../main/check" >
-<table class="table table-hover">
+
 
 <tbody>
 
 
 <!--  TR -->
-<tr>
-<td>Card id</td>
-<td>
-<input type="password" name="cardid" class="form-control form-control-sm"  >
 
-</td>
-</tr>
-<!--//  TR -->
+<input type="password" name="cardid" style="opacity: 0;"  >
 
-<!--  TR -->
-<tr>
+<input type="submit" name="Check" value="Save" id="save" style="opacity: 0;" >
 
-<td  align="center">
 
-</td>
-<td  align="center">
-<input type="submit" name="Check" value="Save" id="save" class="btn btn-primary">
-</td>
-</tr>
-<!--//  TR -->
+
 </tbody>
-</table>
+
 </form>
-				</div>
+				<!-- </div>
 
 
 
-		</div>
-	</main>
+		</div> -->
+	<!-- </main> -->
+
+
+	<div align="center" class="bottom_container">
+		<%if (signed_stu!='')  {i=0; %>
+		<%signed_stu.forEach(function(sign){i=i+1;%>
+			<div class="images">
+   <img src="/uploads/<%= sign.stu_photo_name %>" style="width:60px; height:60px;border-radius: 50%;">
+   <p><%= sign.sign_in_date.getHours() %>:<%= sign.sign_in_date.getMinutes() %></p>
+</div>
+
+			<%});%>
+
+					<% } %>
+	</div>
+
+</div>
+<footer>
+	<% include ./partials/footer %>
+</footer>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
+
+	<script  src="/js/index.js"></script>
 
 
 
-	<footer>
-		<% include ./partials/footer %>
-	</footer>
 
 </body>

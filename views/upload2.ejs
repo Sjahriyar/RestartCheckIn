@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<% include ./partials/head %>
+
+</head>
+<body >
+
+	<header>
+		<% include ./partials/header %>
+	</header>
+
+
+
+				<div class="container_stu" >
+
+					<h3>Upload photo</h3>
+					<form action="upload2/<%=id%>" enctype="multipart/form-data" method="post">
+
+            <input type="text" name="title">
+            <input type="file" name="upload">
+            <input type="submit" value="Upload">
+        </form>
+				</div>
+
+
+
+
+
+
+
+
+	<footer>
+		<% include ./partials/footer %>
+	</footer>
+
+</body>

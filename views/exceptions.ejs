@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Exceptions</title>
+
+    <% include ./partials/head %>
+    <link href="css/records.css" rel="stylesheet" type="text/css">
+
+</head>
+  <body>
+<header>
+    <% include ./partials/header %>
+</header>
+
+  <div class="container_records" align="center">
+  <form method="post" action="/exceptions/show" name="f1">
+    <table cellSpacing="2" cellPadding="2" class="table table-striped" border="0" width="100%" align="center">
+      <tr bgcolor="#EDEAEA">
+      <td align="center" colspan="4" bgcolor="#A6A7AA" ><font color="#FFF"><b>
+        Exceptions
+      </b></font>
+      </td>
+      </tr>
+
+    <tr bgcolor="#EDEAEA">
+    <td align="center" colspan="4">
+      <select name="slelectbootcamp" onchange="document.f1.submit();" >
+        <option value="">Select bootcamp name</option>
+        <%bootcamp.forEach(function(res){%>
+        <option value="<%=res.bootcamp_id%>" <%if(stu!=''){%><%if(stu[0].bootcamp_id == res.bootcamp_id){%> selected <%};%><%};%> > <%=res.bootcamp_name%> </option>
+        <%});%>
+      </select>
+    </td>
+    </tr>
+
+    <tr bgcolor="#DDDBDB">
+    <td align="center" colspan="4">
+      <select name="slelectstu">
+
+
+        <%if(stu!=''){%>
+          <option value="0" <%if(selstu!=''){%><%if(selstu == '0'){%> selected <%};%><%};%>>Show all Students</option>
+        <%stu.forEach(function(res){%>
+        <option value="<%=res.stu_id%>" <%if(selstu!=''){%><%if(selstu == res.stu_id){%> selected <%};%><%};%>> <%=res.stu_name%> </option>
+        <%});%>
+        <%}else{%>
+  <option value="">Select Student</option>
+          <%};%>
+        </select>
+    </td>
+    </tr>
+
+    <tr bgcolor="#DDDBDB">
+    <td align="left">
+      From date
+    </td>
+    <td align="left">
+      <input type="date" name="fromdate" value="<%=currentdate%>" />
+    </td>
+    <td align="left">
+      To date
+    </td>
+    <td align="left">
+      <input type="date" name="todate" value="<%=todate%>" />
+      <%if(stu!=''){%>
+        &nbsp;&nbsp;
+        <input type="submit" name="show_reports" Value="  Show  " class="myButton">
+
+         <%};%>
+           <%if(stu==''){%>
+           <input type="hidden" name="show_reports" Value="">
+         <%};%>
+    </td>
+    </tr>
+    </table>
+
+
+    <table class="table table-striped" border="1">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th align="left">Student Name</th>
+          <%if(todate=='' && currentdate!=''){
+var dt = new Date(currentdate);
+            %>
+<th align="left">
+            <%=dt.getUTCDate();%>/<%=dt.getUTCMonth()+1;%>
+</th>
+        <%}%>
+
+          <%if(todate!=''){
+var dt = new Date(currentdate);
+var dt2 = new Date(todate);
+for(j=0;j<=dayloop;j++){
+            %>
+      <th align="left">
+            <%=dt.getUTCDate();%>/<%=dt.getUTCMonth()+1;%>
+            <%dt.setDate(dt.getDate()+1);;%>
+      </th>
+        <%}%>
+          <%}%>
+        </tr>
+      </thead>
+      <tbody>
+        <%if (stu2!='')  {i=0; %>
+        <%stu2.forEach(function(stu2){i=i+1;%>
+        <tr>
+          <th scope="row"><%=i%></th>
+          <td align="left">
+            <div class="images">
+            <img src="/uploads/<%= stu2.stu_photo_name %>" style="width:60px; height:60px;border-radius: 50%;">
+            </div>
+            <%= stu2.stu_name %>
+             </td>
+
+          <%if(todate=='' && currentdate!=''){
+            var dt = new Date(currentdate);
+            var dt2 = new Date(todate);
+            xid=0;
+            for(j=0;j<1;j++){
+
+            %>
+            <td align="left">
+              <%
+              xmon=dt.getMonth()+1;
+              if (xmon.toString().length==1){xmon='0'+xmon;}
+              xday=dt.getUTCDate().toString();
+                if (xday.length==1){xday='0'+xday;}
+              xd1=dt.getUTCFullYear()+'-'+ xmon+'-'+xday;
+
+              monvar=dt.getUTCMonth()+1;
+              hvar="h"+stu2.stu_id.toString()+dt.getUTCDate().toString()+monvar.toString()+dt.getUTCFullYear().toString();
+              chkvar="chk"+stu2.stu_id.toString()+dt.getUTCDate().toString()+monvar.toString()+dt.getUTCFullYear().toString();
+              txtvar="txt"+stu2.stu_id.toString()+dt.getUTCDate().toString()+monvar.toString()+dt.getUTCFullYear().toString();
+              %>
+
+              <input type="hidden" name="<%=hvar%>" value="<%=xd1%>"  >
+              <input type="checkbox" name="<%=chkvar%>" value="<%=xd1%>" <% if (sign!=''){sign.forEach(function(res_sign){ %>   <%xd2=res_sign.execuse_date;%><%if (res_sign.stu_id==stu2.stu_id && xd1==xd2 ){%> checked  <%}%> <%});%>   <%}%>  >
+              <input type="text" name="<%=txtvar%>" size="13" placeholder="Exception reason ..."  <%txtvar=''; if (sign!=''){sign.forEach(function(res_sign){ %>   <%xd2=res_sign.execuse_date;%><%if (res_sign.stu_id==stu2.stu_id && xd1==xd2 ){txtvar=res_sign.execuse_reason;%> value="<%=res_sign.execuse_reason%>"  <%}%> <%});%>   <%}%>  >
+               <font color='#000' size='1'><b><br/><%=txtvar%></b></font>
+
+               <% if (regsign!=''){regsign.forEach(function(reg){ %>   <%xmon2=reg.sign_in_date.getMonth()+1;if (xmon2.toString().length==1){xmon2='0'+xmon2;}xday=reg.sign_in_date.getUTCDate();if (xday.toString().length==1){xday='0'+xday;}xd2=reg.sign_in_date.getUTCFullYear()+'-'+ xmon2 +'-'+xday;%><%if (reg.stu_id==stu2.stu_id && xd1==xd2  ){%> <%if (reg.sign_alarm==1 ){%> <font color='#075903' size='1'><b>Cool down</b></font>  <%}%>
+     <%if (reg.sign_alarm==2 ){%> <font color='blue' size='2'><b>Wash dishes</b></font>  <%}%>
+      <%if (reg.sign_alarm==3 ){%> <font color='red' size='3'><b>OUT, Please stop this student, or do exception for him/her </b></font>  <%}%>
+                   <%}%> <%});%>   <%}%>
+              <%dt.setDate(dt.getDate()+1);%>
+            </td>
+            <%}%>
+              <%}%>
+
+
+
+
+        <%if(todate!=''){
+        var dt = new Date(currentdate);
+        var dt2 = new Date(todate);
+        xid=0;
+        for(j=0;j<=dayloop;j++){
+        jx=-1;
+        %>
+        <td align="left">
+          <%
+          xmon=dt.getMonth()+1;
+          if (xmon.toString().length==1){xmon='0'+xmon;}
+          xday=dt.getUTCDate().toString();
+            if (xday.length==1){xday='0'+xday;}
+          xd1=dt.getUTCFullYear()+'-'+ xmon+'-'+xday;
+
+          monvar=dt.getUTCMonth()+1;
+          hvar="h"+stu2.stu_id.toString()+dt.getUTCDate().toString()+monvar.toString()+dt.getUTCFullYear().toString();
+          chkvar="chk"+stu2.stu_id.toString()+dt.getUTCDate().toString()+monvar.toString()+dt.getUTCFullYear().toString();
+          txtvar="txt"+stu2.stu_id.toString()+dt.getUTCDate().toString()+monvar.toString()+dt.getUTCFullYear().toString();
+          %>
+
+          <input type="hidden" name="<%=hvar%>" value="<%=xd1%>"  >
+          <input type="checkbox" name="<%=chkvar%>" value="<%=xd1%>" <% if (sign!=''){sign.forEach(function(res_sign){ %>   <%xd2=res_sign.execuse_date;%><%if (res_sign.stu_id==stu2.stu_id && xd1==xd2 ){%> checked  <%}%> <%});%>   <%}%>  >
+          <input type="text" name="<%=txtvar%>" size="13" placeholder="Exception reason ..."  <%txtvar=''; if (sign!=''){sign.forEach(function(res_sign){ %>   <%xd2=res_sign.execuse_date;%><%if (res_sign.stu_id==stu2.stu_id && xd1==xd2 ){txtvar=res_sign.execuse_reason;%> value="<%=res_sign.execuse_reason%>"  <%}%> <%});%>   <%}%>  >
+           <font color='#000' size='1'><b><br/><%=txtvar%></b></font>
+
+          <% if (regsign!=''){regsign.forEach(function(reg){ %>   <%xmon2=reg.sign_in_date.getMonth()+1;if (xmon2.toString().length==1){xmon2='0'+xmon2;}xday=reg.sign_in_date.getUTCDate();if (xday.toString().length==1){xday='0'+xday;}xd2=reg.sign_in_date.getUTCFullYear()+'-'+ xmon2 +'-'+xday;%><%if (reg.stu_id==stu2.stu_id && xd1==xd2  ){%> <%if (reg.sign_alarm==1 ){%> <font color='#075903' size='1'><b>Cool down</b></font>  <%}%>
+ <%if (reg.sign_alarm==2 ){%> <font color='blue' size='2'><b>Wash dishes</b></font>  <%}%>
+  <%if (reg.sign_alarm==3 ){%> <font color='red' size='3'><b>OUT, Please stop this student, or do exception for him/her </b></font>  <%}%>
+               <%}%> <%});%>   <%}%>
+          <%dt.setDate(dt.getDate()+1);%>
+        </td>
+        <%}%>
+          <%}%>
+
+        </tr>
+        <%});%>
+  			<% } %>
+
+      </tbody>
+    </table>
+
+<div align="center">
+<input type="submit" name="saveme" Value="  Save exceptions  " class="myButton">
+</div>
+<br/>
+</form>
+  </div>
+<footer>
+  <% include ./partials/footer %>
+</footer>
+
+</body>

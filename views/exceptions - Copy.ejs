@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Records</title>
+
+    <% include ./partials/head %>
+    <link href="css/records.css" rel="stylesheet" type="text/css">
+
+</head>
+  <body>
+<header>
+    <% include ./partials/header %>
+</header>
+
+<!-- from here -->
+<form action="exceptions" method="POST" name="f1">
+<div class="container">
+
+
+
+
+
+
+
+        <div class="wrapper">
+					<table class="table table-hover" id="acrylic">
+						<thead>
+              <tr>
+                <td colspan="3" align="center">
+                <select name="bootcamps" onchange="document.f1.submit();">
+                  <option value="0">Select Bootcamp</option>
+                  <% for(i=0 ; i < data_name.length ; i++){ %>
+                      <option value="<%= data_name[i].bootcamp_id %>" ><%= data_name[i].bootcamp_name %></option>
+                  <% } %>
+                </select>
+              </td>
+              </tr>
+
+              <tr>
+                <td colspan="3" align="center">
+                Exception Date
+                <input type="date" name="exp_date" class="form-control form-control-sm" required >
+              </td>
+              </tr>
+							<tr>
+								<th>Name</th>
+								 <th>Check</th>
+                <th>Exception Reason</th>
+							</tr>
+						</thead>
+						<tbody >
+              <% if(data != '') {%>
+              <% for(i=0 ; i < data.length ; i++) {
+              %>
+							<tr>
+								<td><%= data[i].stu_name %>  </td>
+                <td><input type="checkbox" name="chk<%= data[i].stu_id %>" value="<%= data[i].stu_id %>" > </td>
+<td><input type="trxt" name="txt<%= data[i].stu_id %>" value="" > </td>
+							</tr>
+              <%}%>
+              <%}%>
+              <tr>
+                <td colspan="3" align="center">
+                <input type="submit" name="update" value=" Do Exception " >
+              </td>
+              </tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+</form>
+      <script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("acrylic");
+  tr = table.getElementsByTagName("tr");
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+<footer>
+  <% include ./partials/footer %>
+</footer>
+
+</body>

@@ -1,0 +1,56 @@
+<head>
+
+    <% include ./partials/head_s %>
+</head>
+<header>
+    <% include ./partials/header %>
+</header>
+<body>
+    <div class="container_shahriar">
+        <div class="dropdown">
+          <button class="btn btn-warning dropdown-toggle" type="button"  >
+            Log in details
+          </button>
+
+        </div>
+        <%- messages('messages', locals) %>
+      <form method="POST" action="/logindet" id="contact" class="form">
+        <div align="justify">
+        <h4>This is the master email and password to log into the control panel for the checking system and also to send througth it notifiction emails to student and to receive also alarm email if student reach to wash dishes condition or out from the program, so it must be valid email and password </h4>
+      </div><hr />
+
+          <div class="form__group">
+              <input type="text" name="email" value="<%=data[0].email%>" placeholder="Master email"  class="form__input" required="" oninvalid="this.setCustomValidity('Master email is required')"
+ oninput="setCustomValidity('')"/>
+          </div>
+
+
+
+          <div class="form__group">
+            <%if (pws!=''){user_pws=pws;}%>
+              <input type="password" name="password" value="<%= user_pws %>" placeholder="Master password" class="form__input" required="" oninvalid="this.setCustomValidity('Master password  is required')"
+ oninput="setCustomValidity('')"/>
+          </div>
+
+
+
+
+            <input type="submit" name="saveme" class="btn" value="  Save  ">
+      </form>
+      <div id="targetLayer">
+
+      </div>
+      <!--
+      <form id="uploadForm" action="/bootcamp/upload/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="BootcampIMG" />
+        <input type="submit" value="Upload">
+      </form> -->
+
+
+    </div>
+    </div>
+
+    <footer>
+      <% include ./partials/footer %>
+    </footer>
+<body>

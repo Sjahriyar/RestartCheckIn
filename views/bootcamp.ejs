@@ -1,61 +1,69 @@
-<!DOCTYPE html>
-<html>
-
 <head>
-    <% include ./partials/head %>
+
+    <% include ./partials/head_s %>
 </head>
-  <body>
 <header>
+
     <% include ./partials/header %>
 </header>
-
-    <div class="container">
+<body>
+    <div class="container_shahriar">
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Select Bootcamps
+          <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Edit Bootcamps
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-<<<<<<< HEAD
-            <% for(i=0 ; i < data.length ; i++){ %> <a class="dropdown-item" href="#"> <h5 class="drop_btcmp"><%= data[i].bootcamp_name %></h5> <br /> </a> <% } %>
+            <% for(i=0 ; i < data.length ; i++){ %> <a class="dropdown-item" href="/bootcamp/showbtcmp/<%= data[i].bootcamp_id %>"> <h5 class="drop_btcmp"><%= data[i].bootcamp_name %></h5> <br /> </a> <% } %>
           </div>
         </div>
-      <form method="POST" action="/bootcamp" id="contact" class="form">
-        <h4>Manage Bootcamps</h4>
-        <hr />
-          <div class="form__group">
-              <input type="text" name="bootcamp_name" placeholder="Bootcamp Name" class="form__input" required/>
-=======
-            <% for(i=0 ; i < data.length ; i++){ %> <a class="dropdown-item" href="/editbtcmp/<%= data[i].bootcamp_id %>"> <h5 class="drop_btcmp"><%= data[i].bootcamp_name %></h5> <br /> </a> <% } %>
-          </div>
-        </div>
+        <%- messages('messages', locals) %>
       <form method="POST" action="/bootcamp" id="contact" class="form">
         <h4>Add New Bootcamp</h4>
         <hr />
 
           <div class="form__group">
 
-              <input type="text" name="bootcamp_name" placeholder="Bootcamp Name"  class="form__input" required/>
->>>>>>> Shahriar
+              <input type="text" name="bootcamp_name" placeholder="Bootcamp Name"  class="form__input" required="" oninvalid="this.setCustomValidity('Name is required')"
+ oninput="setCustomValidity('')"/>
           </div>
 
           <div class="form__group">
-          <input type='date' name="start_date" class="form__input" required/>
+          <input type='date' name="start_date" class="form__input" required="" oninvalid="this.setCustomValidity('Starting date is required')"
+oninput="setCustomValidity('')"/>
           </div>
 
           <div class="form__group">
-              <input type="date" name="end_date" placeholder="End Date" class="form__input" required/>
+              <input type="date" name="end_date" placeholder="End Date" class="form__input" required="" oninvalid="this.setCustomValidity('Ending date is required')"
+ oninput="setCustomValidity('')"/>
           </div>
 
           <div class="form__group">
-              <input type="url" name="slack_link" placeholder="Slack Link" class="form__input" />
+              <input type="url" name="slack_link" placeholder="Slack Link" class="form__input" required="" oninvalid="this.setCustomValidity('Use a valid url')"
+ oninput="setCustomValidity('')"/>
+          </div>
+          <hr>
+          <div class="form__group">
+            <input type="checkbox" name="active" value="1">The active bootcamp
           </div>
 
-          <button class="btn">Submit</button>
+
+
+            <button class="btn">Add new Bootcamp</button>
       </form>
+      <div id="targetLayer">
+
+      </div>
+      <!--
+      <form id="uploadForm" action="/bootcamp/upload/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="BootcampIMG" />
+        <input type="submit" value="Upload">
+      </form> -->
 
 
+    </div>
     </div>
 
     <footer>
       <% include ./partials/footer %>
     </footer>
+<body>

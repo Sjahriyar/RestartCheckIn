@@ -1,0 +1,161 @@
+
+  <head>
+      <% include ./partials/head %>
+  </head>
+  <header>
+    <link rel="stylesheet" href="/css/editstud.css" type="text/css">
+    <link href="/css/students.css" rel="stylesheet" type="text/css">
+      <% include ./partials/header %>
+  </header>
+  <body>
+        <%- messages('messages', locals) %>
+      <div class="container_edit">
+         <div class="wrapper">
+           <form method="post" action="/see_students/show" name="f1">
+           <table cellSpacing="2" cellPadding="2" class="table table-striped" border="0" width="100%" align="center">
+             <tr bgcolor="#EDEAEA">
+             <td align="center" colspan="4" bgcolor="#A6A7AA" ><font color="#FFF"><b>
+               Edit Students
+             </b></font>
+             </td>
+             </tr>
+
+           <tr bgcolor="#EDEAEA">
+           <td align="center" colspan="4">
+             <select name="slelectbootcamp" onchange="document.f1.submit();" >
+               <option value="">Select bootcamp name</option>
+               <%bootcamp.forEach(function(res){%>
+               <option value="<%=res.bootcamp_id%>" <%if(stu!=''){%><%if(stu[0].bootcamp_id == res.bootcamp_id){%> selected <%};%><%};%> > <%=res.bootcamp_name%> </option>
+               <%});%>
+             </select>
+<%
+if(data!=''){%>
+    &nbsp;&nbsp;
+  <input type="submit" name="chkstop"  class="btn btn-warning" style="width:180px" value="Show stopped students">
+
+&nbsp;&nbsp;
+<input type="submit" name="chkdel"  class="btn btn-danger" style="width:180px" value="Show deleted students">
+<%}%>
+           </td>
+           </tr>
+
+<input type="hidden" name="slelectstu" >
+
+
+         </table>
+
+</form>
+
+                <%
+                if(data!=''){
+                  %>
+                  <table  class="table table-striped" id="acrylic">
+                     <thead>
+                         <tr>
+                           <th>#</th>
+                            <th>Name</th>
+                            <th>E-mail</th>
+                            <th>City</th>
+                            <th>Phone</th>
+                            <%if(data[0].stu_cancel==0 && data[0].stu_stop==0){ %>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            <th>Stop</th>
+                            <th>Update photo</th>
+                            <%}%>
+                            <%if(data[0].stu_cancel==1 && data[0].stu_stop==0){ %>
+                            <th>Cancel date</th>
+                            <th>Action</th>
+                            <%}%>
+                            <%if(data[0].stu_cancel==0 && data[0].stu_stop==1){ %>
+                            <th>Stop date</th>
+                            <th>Stop reason</th>
+                            <th>Action</th>
+                            <%}%>
+                          </tr>
+                      </thead>
+                        <tbody>
+                  <%
+                jx=0;
+                for(var i=0; i< data.length; i++) {
+                  jx=jx+1%>
+
+                <tr>
+                    <td><%= jx %></td>
+                    <td>
+                      <div class="images">
+                      <img src="/uploads/<%= data[i].stu_photo_name %>" style="width:60px; height:60px;border-radius: 50%;">
+
+                      </div>
+                      <%= data[i].stu_name %>
+
+                      </td>
+                    <td><%= data[i].email %></td>
+                    <td><%= data[i].city %></td>
+                    <td><%= data[i].phone_num %></td>
+                    <%if(data[i].stu_cancel==0 && data[i].stu_stop==0){%>
+                    <td><a class="btn btn-primary" href="/see_students/edit/<%= data[i].stu_id %>">Edit</a></td>
+
+
+                    <td> <form method="POST" id="submitMe<%=data[i].stu_id %>" action="/see_students/delete/<%= data[i].stu_id %>" >
+                      <a href="javascript:{}" class="btn btn-danger" onclick="document.getElementById('submitMe<%=data[i].stu_id %>').submit();">Delete</a>
+                    </form></td>
+
+                    <td>
+                      <form method="POST" id="stopMe<%=data[i].stu_id %>" action="/see_students/stop/<%=data[i].stu_id %>" >
+                      <input type="hidden" size="40" name="stopres" id="stopres<%=data[i].stu_id %>" placeholder="Please enter stop reason...">
+                     <a href="javascript:{}" id="stobut<%=data[i].stu_id %>" class="btn btn-warning" onclick="if(document.getElementById('stopres<%=data[i].stu_id %>').value==''){document.getElementById('stopres<%=data[i].stu_id %>').setAttribute('type', 'text');} else {document.getElementById('stopMe<%=data[i].stu_id %>').submit();}">Stop</a>
+                     </form>
+                     </td>
+
+                    <td>
+                      <a class="btn btn-success" href="/upload2/<%= data[i].stu_id %>" >Update photo</a>
+                    </td>
+                    <% } %>
+                  <%if(data[i].stu_cancel==1 && data[i].stu_stop==0){%>
+                       <td><%= data[i].stu_cancel_date %></td>
+                       <td> <form method="POST" id="submitMe<%=data[i].stu_id %>" action="/see_students/undo/<%= data[i].stu_id %>" >
+                         <a href="javascript:{}" class="btn btn-info" onclick="document.getElementById('submitMe<%=data[i].stu_id %>').submit();">Undo</a>
+                       </form></td>
+                  <% } %>
+                  <%if(data[i].stu_cancel==0 && data[i].stu_stop==1){%>
+                       <td><%= data[i].stu_stop_date %></td>
+                       <td><%= data[i].stu_stop_reason %></td>
+                       <td> <form method="POST" id="submitMe<%=data[i].stu_id %>" action="/see_students/undo/<%= data[i].stu_id %>" >
+                         <a href="javascript:{}" class="btn btn-info" onclick="document.getElementById('submitMe<%=data[i].stu_id %>').submit();">Undo</a>
+                       </form></td>
+                  <% } %>
+                    <% } %>
+
+                </tr>
+                <% } %>
+               </tbody>
+             </table>
+         </div>
+       </div>
+     </body>
+       <script>
+ function myFunction() {
+   var input, filter, table, tr, td, i;
+   input = document.getElementById("myInput");
+   filter = input.value.toUpperCase();
+   table = document.getElementById("acrylic");
+   tr = table.getElementsByTagName("tr");
+
+   // Loop through all table rows, and hide those who don't match the search query
+   for (i = 0; i < tr.length; i++) {
+     td = tr[i].getElementsByTagName("td")[0];
+     if (td) {
+       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+         tr[i].style.display = "";
+       } else {
+         tr[i].style.display = "none";
+       }
+     }
+   }
+ }
+ </script>
+
+  <footer>
+    <% include ./partials/footer %>
+  </footer>

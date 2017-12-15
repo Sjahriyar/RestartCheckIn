@@ -1,54 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <% include ./partials/head %>
-</head>
-  <body>
+    <% include ./partials/head_admin %>
+	</head>
+<body class="container">
+
 <header>
-
-
-
-      <% include ./partials/header %>
-
-
-  <nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-
-
-      <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-              <span class="glyphicon glyphicon glyphicon-tree-deciduous">Restart</span>
-          </a>
-
-          <ul class="nav navbar-nav">
-              <li><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
-          </ul>
-      </div>
-
-  </div>
-  </nav>
+    <% include ./partials/header_admin %>
 </header>
 
-    <div class="user">
-        <header class="user__header">
-            <img src="https://restart.network/images/logo_restart_nav.png" alt="logo" width="150px" />
-        </header>
+<main>
 
-        <form class="form">
 
-            <div class="form__group">
-                <input type="email" placeholder="Email" class="form__input" />
-            </div>
+<div  class="container" style="margin-top:30px">
+<div class="col-md-4">
+<div  class="panel panel-default">
+<div class="panel-heading"><h3 class="panel-title"><strong>Sign In </strong></h3></div>
+<div class="panel-body">
 
-            <div class="form__group">
-                <input type="password" placeholder="Password" class="form__input" />
-            </div>
+<form role="form" method="POST" action="/admin/login">
+<div class="form-group">
+<label for="exampleInputEmail1">Email</label>
+<input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter email">
+</div>
+<div class="form-group">
+<label for="exampleInputPassword1">Password </label>
+<input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+</div>
+<button type="submit" class="btn btn-sm btn-default">Sign in</button>
+</form>
+</div>
+</div>
+</div>
+</div>
 
-            <button class="btn" type="button">Log in</button>
-        </form>
-    </div>
 
-  <footer>
-    <% include ./partials/footer %>
-  </footer>
+
+
+
+
+
+</main>
+
+<footer>
+<% include ./partials/footer_admin %>
+</footer>
+
+</body>
+</html>

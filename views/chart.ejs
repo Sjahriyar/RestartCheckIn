@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ./partials/head %>
+</head>
+  <body>
+<header>
+    <% include ./partials/header %>
+
+    <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart']});
+      </script>
+
+</header>
+
+    <div class="container_shahriar">
+
+      <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto"></div>
+        <script language = "JavaScript">
+           function drawChart() {
+              // Define the chart to be drawn.
+              var data = google.visualization.arrayToDataTable([
+                 ['Year', 'Attendant', 'Absence'],
+                 ['2012',  900,      390],
+                 ['2013',  1000,      400],
+                 ['2014',  1170,      440],
+                 ['2015',  1250,       480],
+                 ['2016',  1530,      540],
+                 ['2017',  130,      540]
+              ]);
+
+              var options = {
+                 title: 'Attendant %',
+                 isStacked:'percent'
+              };
+
+              // Instantiate and draw the chart.
+              var chart = new google.visualization.BarChart(document.getElementById('container'));
+              chart.draw(data, options);
+           }
+           google.charts.setOnLoadCallback(drawChart);
+        </script>
+
+
+    </div>
+
+    <footer>
+      <% include ./partials/footer %>
+    </footer>
